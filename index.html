@@ -31,9 +31,10 @@ nav button.on{color:var(--yel);border-color:var(--yel);font-weight:700}
 .paper{background:#fff;color:#111;border-radius:6px;padding:14px;direction:ltr;text-align:left;font:13px/1.5 Arial,sans-serif}.paper h3{margin:0 0 8px;font-size:18px}.paper table{width:100%;border-collapse:collapse;margin:8px 0}.paper td,.paper th{border:1px solid #bbb;padding:5px;text-align:left}.paper .r{text-align:right}
 .spin{text-align:center;padding:30px;color:var(--mut)}
 #printarea{display:none}
+#lang{width:auto;margin:0;padding:4px 6px;font-size:13px;background:var(--navy);color:#e8ecee;border:1px solid #c8b27a}
 @media print{body.pp>*:not(#printarea){display:none!important}body.pp #printarea{display:block}body.pp{background:#fff;padding:0}body.pp .paper{border-radius:0;font-size:14px}}
 </style></head><body>
-<header><b>T.K Group</b><small id="who"></small></header>
+<header><b>T.K Group</b><small id="who"></small><select id="lang" aria-label="Language"><option value="ar">العربية</option><option value="en">English</option><option value="de">Deutsch</option></select></header>
 <main id="app"><div class="spin">جاري التحميل…</div></main>
 <nav id="nav" hidden></nav>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
@@ -54,6 +55,51 @@ const em=e=>{const m=(e&&e.message)||String(e);for(const k in ERR)if(m.indexOf(k
 let S={user:null,prof:null,tab:"list",ships:[],sel:null,detail:null,bal:0,msg:null,busy:false,quote:null,res:null,mode:"login",f:{dir:"eu2sy",goods:"newc",w:"",mode:"road",pay:"bank",cc:"Deutschland",city:"",rn:"",rp:"",desc:"",promo:""},seller:null};
 const msg=(t,k)=>{S.msg=t?{t,k:k||"e"}:null};
 const M=()=>S.msg?`<div class="msg ${S.msg.k}">${h(S.msg.t)}</div>`:"";
+/* ---------- i18n (ar / en / de) ---------- */
+const TR=[ // [arabic, english, german, exactOnly]
+["تم الحجز","Booked","Gebucht",1],["تم الاستلام في هيرنه","Received in Herne","In Herne angenommen",1],["في مستودع T.K","In T.K warehouse","Im T.K-Lager",1],["في الشحن","In transit","Im Versand",1],["التخليص الجمركي","Customs clearance","Zollabfertigung",1],["وصلت إلى بلد الوجهة","Arrived in destination country","Im Zielland angekommen",1],["تم التسليم","Delivered","Zugestellt",1],
+["ملابس / بضائع جديدة","Clothes / new goods","Kleidung / Neuware"],["مستعمل","Used goods","Gebrauchtwaren",1],["كهربائيات وإلكترونيات","Electrical & electronics","Elektro & Elektronik"],["أدوات","Tools","Werkzeuge",1],["ماكينات جديدة","New machines","Neue Maschinen"],["ماكينات مستعملة","Used machines","Gebrauchte Maschinen"],["عفش عائلي (عودة)","Household goods (return)","Umzugsgut (Rückkehr)"],["زيت","Oil","Öl",1],["مونة","Mouneh (preserved food)","Mouneh (Vorräte)",1],
+["محفظة T.K","T.K wallet","T.K-Guthaben"],["تحويل بنكي","Bank transfer","Banküberweisung",1],["عند التسليم","Pay on delivery","Zahlung bei Lieferung",1],["بري","Road","Straße",1],["جوي","Air","Luft",1],["بحري","Sea","See",1],
+["الإيميل أو كلمة السر غير صحيحة","Wrong e-mail or password","E-Mail oder Passwort falsch"],["لازم تأكدي الإيميل أول: افتحي الرابط اللي وصلك","Please confirm your e-mail first: open the link we sent you","Bitte bestätigen Sie zuerst Ihre E-Mail: Öffnen Sie den Link, den wir gesendet haben"],["هالإيميل مسجّل من قبل، جرّبي تسجيل الدخول","This e-mail is already registered, try logging in","Diese E-Mail ist bereits registriert, bitte melden Sie sich an"],["اكتبي اسم المستلم ورقم هاتفه","Enter the recipient's name and phone","Name und Telefonnummer des Empfängers eingeben"],["اكتبي وصف البضاعة","Describe the goods","Bitte die Ware beschreiben"],["الأغذية (زيت، مونة) بتُشحن من سوريا إلى أوروبا فقط","Food (oil, mouneh) ships from Syria to Europe only","Lebensmittel (Öl, Mouneh) nur von Syrien nach Europa"],["العفش العائلي من أوروبا إلى سوريا فقط","Household goods ship from Europe to Syria only","Umzugsgut nur von Europa nach Syrien"],["كود الخصم غير صحيح أو مستخدم","Promo code invalid or already used","Gutscheincode ungültig oder bereits verwendet"],["رصيد المحفظة غير كافٍ","Wallet balance too low","Guthaben reicht nicht aus"],["استني دقيقة وجرّبي مرة تانية","Wait a minute and try again","Bitte eine Minute warten und erneut versuchen"],
+["إنشاء حساب","Create account","Konto erstellen",1],["تسجيل الدخول","Log in","Anmelden",1],["الاسم","Name","Name",1],["رقم الهاتف","Phone number","Telefonnummer",1],["الإيميل","E-mail","E-Mail",1],["كلمة السر (8 أحرف على الأقل)","Password (at least 8 characters)","Passwort (mindestens 8 Zeichen)"],["كلمة السر","Password","Passwort",1],["دخول","Log in","Anmelden",1],["عندي حساب: تسجيل دخول","I have an account: log in","Ich habe ein Konto: anmelden"],["ما عندي حساب: إنشاء حساب","No account yet: create one","Noch kein Konto: registrieren"],
+["الأسعار: 6 € للكيلو للملابس والمونة، 5 € للكهربائيات والأدوات، الزيت 3.43 €.","Prices: €6 per kg for clothes and mouneh, €5 for electrical goods and tools, oil €3.43.","Preise: 6 € pro kg für Kleidung und Mouneh, 5 € für Elektro und Werkzeuge, Öl 3,43 €."],
+["أوروبا ← سوريا","Europe → Syria","Europa → Syrien"],["سوريا ← أوروبا","Syria → Europe","Syrien → Europa"],["إلى:","To:","An:"],["أهلاً","Welcome","Willkommen"],["رصيد المحفظة:","Wallet balance:","Guthaben:"],["رصيد المحفظة","Wallet balance","Guthaben",1],["ما عندك شحنات بعد.","You have no shipments yet.","Sie haben noch keine Sendungen."],["شحنة جديدة","New shipment","Neue Sendung",1],["الاتجاه","Direction","Richtung",1],["بلد الإرسال","Sending country","Versandland",1],["بلد الوصول","Destination country","Zielland",1],["المدينة بسوريا (للتوصيل)","City in Syria (for delivery)","Stadt in Syrien (Zustellung)",1],["المدينة بأوروبا (للتوصيل)","City in Europe (for delivery)","Stadt in Europa (Zustellung)",1],["نوع البضاعة","Type of goods","Art der Ware",1],["الوزن التقريبي (كغ)","Approx. weight (kg)","Ungefähres Gewicht (kg)",1],["طريقة الشحن","Shipping method","Versandart",1],["وصف البضاعة","Description of goods","Beschreibung der Ware",1],["اسم المستلم","Recipient name","Name des Empfängers",1],["هاتف المستلم","Recipient phone","Telefon des Empfängers",1],["كود خصم (اختياري)","Promo code (optional)","Gutscheincode (optional)",1],["طريقة الدفع","Payment method","Zahlungsart",1],["الرصيد","balance","Guthaben"],["السعر:","Price:","Preis:",1],
+["التسليم من المرسل في مستودعنا بهيرنه:","Sender drops off at our warehouse in Herne:","Abgabe durch den Absender in unserem Lager in Herne:"],["السعر النهائي بعد الوزن الفعلي بالاستلام.","The final price is set after weighing at drop-off.","Der Endpreis wird nach dem Wiegen bei der Abgabe festgelegt."],["تأكيد الحجز","Confirm booking","Buchung bestätigen",1],
+["بيانات التحويل البنكي","Bank transfer details","Bankverbindung für die Überweisung"],["المستفيد","Beneficiary","Empfänger",1],["البنك","Bank","Bank",1],["سبب التحويل","Payment reference","Verwendungszweck",1],["اكتبي رقم الشحنة بسبب التحويل حتى نربط الدفعة بشحنتك.","Enter the shipment number as the payment reference so we can match your payment.","Geben Sie die Sendungsnummer als Verwendungszweck an, damit wir die Zahlung zuordnen können."],
+["تم حجز شحنتك ✓","Your shipment is booked ✓","Ihre Sendung ist gebucht ✓"],["رقم الشحنة","Shipment number","Sendungsnummer",1],["السعر","Price","Preis",1],["رمز الاستلام (PIN) يلي بتسلّمو لموظفنا بهيرنه:","Drop-off code (PIN) to give our staff in Herne:","Abgabe-Code (PIN) für unsere Mitarbeiter in Herne:"],["احفظي الرمز هلق. ما رح يظهر مرة تانية.","Save the code now. It will not be shown again.","Code jetzt speichern. Er wird nicht noch einmal angezeigt."],["تفاصيل الشحنة","Shipment details","Sendungsdetails",1],["جاري التحميل…","Loading…","Wird geladen…",1],["الشحنة غير موجودة","Shipment not found","Sendung nicht gefunden",1],
+["شحناتي","My shipments","Meine Sendungen",1],["← شحناتي","← My shipments","← Meine Sendungen",1],["البضاعة","Goods","Ware",1],["الوزن","Weight","Gewicht",1],["المستلم","Recipient","Empfänger",1],["الدفع","Payment","Zahlung",1],["مدفوع ✓","Paid ✓","Bezahlt ✓",1],["بانتظار الدفع","Awaiting payment","Zahlung ausstehend",1],["تتبع الشحنة","Tracking","Sendungsverfolgung",1],["الفاتورة","Invoice","Rechnung",1],["تنزيل الفاتورة PDF","Download invoice (PDF)","Rechnung herunterladen (PDF)",1],
+["الهاتف","Phone","Telefon",1],["حفظ","Save","Speichern",1],["إلغاء","Cancel","Abbrechen",1],["تعديل الاسم والهاتف","Edit name and phone","Name und Telefon ändern",1],["حسابي","My account","Mein Konto",1],["كود الإحالة","Referral code","Empfehlungscode",1],["شاركي كودك: صاحبك بياخد خصم 5% على أول شحنة، وإنتي بتاخدي 5 € عند وصولها.","Share your code: your friend gets 5% off their first shipment and you get €5 when it arrives.","Teilen Sie Ihren Code: Ihre Freunde erhalten 5 % Rabatt auf die erste Sendung, Sie erhalten 5 €, wenn sie ankommt."],["تسجيل خروج","Log out","Abmelden",1],
+["اكتبي اسمك وكلمة سر 8 أحرف على الأقل","Enter your name and a password of at least 8 characters","Bitte Name und ein Passwort mit mindestens 8 Zeichen eingeben"],["اكتبي الإيميل وكلمة السر","Enter your e-mail and password","Bitte E-Mail und Passwort eingeben"],["اكتبي اسمك","Enter your name","Bitte Namen eingeben"],["تم حفظ التعديلات","Changes saved","Änderungen gespeichert"],["تم. افتحي الرابط اللي وصل لإيميلك لتأكيد الحساب، وبعدين سجّلي دخول.","Done. Open the link we e-mailed you to confirm your account, then log in.","Fertig. Öffnen Sie den Link in Ihrer E-Mail, um das Konto zu bestätigen, und melden Sie sich dann an."],["كمّلي الوزن ووصف البضاعة واسم وهاتف المستلم","Fill in the weight, description, and the recipient's name and phone","Bitte Gewicht, Beschreibung sowie Name und Telefon des Empfängers ausfüllen"],
+["سوريا","Syria","Syrien",1],["أوروبا","Europe","Europa",1],["الإيميل","E-mail","E-Mail",1]
+];
+const LK="tk_lang";
+let LANG="ar";
+try{LANG=localStorage.getItem(LK)||""}catch(e){}
+if(!/^(ar|en|de)$/.test(LANG)){const n=(navigator.language||"ar").slice(0,2);LANG=n==="de"?"de":n==="en"?"en":"ar"}
+const TX={en:{},de:{}};const TS={en:[],de:[]};
+TR.forEach(([a,e,d,x])=>{TX.en[a]=e;TX.de[a]=d;if(!x){TS.en.push([a,e]);TS.de.push([a,d])}});
+["en","de"].forEach(l=>TS[l].sort((p,q)=>q[0].length-p[0].length));
+function tpiece(p,l){
+  const m=p.match(/^(\s*)([\s\S]*?)(\s*)$/),core=m[2];
+  if(!core)return p;
+  if(TX[l][core]!==undefined)return m[1]+TX[l][core]+m[3];
+  let s=core;TS[l].forEach(([a,t])=>{if(s.indexOf(a)>-1)s=s.split(a).join(t)});
+  s=s.replace(/(\d+(?:[.,]\d+)?) كغ/g,"$1 kg").replace(/\(كغ\)/g,"(kg)");
+  return m[1]+s+m[3];
+}
+function ttext(t,l){return t.split(" · ").map(p=>tpiece(p,l)).join(" · ")}
+function applyLang(){
+  const d=document.documentElement;d.lang=LANG;d.dir=LANG==="ar"?"rtl":"ltr";
+  const sel=$("lang");if(sel&&sel.value!==LANG)sel.value=LANG;
+  if(LANG==="ar")return;
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);const ns=[];
+  while(w.nextNode())ns.push(w.currentNode);
+  ns.forEach(n=>{
+    const p=n.parentElement;if(!p||p.closest("script,style,textarea,#lang,#printarea"))return;
+    if(!/[؀-ۿ]/.test(n.nodeValue))return;
+    const v=ttext(n.nodeValue,LANG);if(v!==n.nodeValue)n.nodeValue=v;
+  });
+}
 
 /* ---------- data ---------- */
 async function loadAll(){
@@ -171,7 +217,8 @@ function vAcct(){const p=S.prof||{};
   <p class="mut">شاركي كودك: صاحبك بياخد خصم 5% على أول شحنة، وإنتي بتاخدي 5 € عند وصولها.</p>
   <button class="btn g" data-a="logout">تسجيل خروج</button></div>`}
 
-function R(){
+function R(){R0();applyLang()}
+function R0(){
   const a=$("app"),n=$("nav");
   $("who").textContent=S.prof?S.prof.name:"";
   if(!S.user){n.hidden=true;a.innerHTML=vAuth();return}
@@ -233,6 +280,7 @@ async function act(a,el){
     await loadAll();S.tab="res";return R();
   }
 }
+document.addEventListener("change",e=>{if(e.target.id==="lang"){LANG=e.target.value;try{localStorage.setItem(LK,LANG)}catch(x){}R()}});
 document.addEventListener("click",e=>{const el=e.target.closest("[data-a]");if(el)act(el.dataset.a,el)});
 document.addEventListener("input",e=>{
   const id=e.target.id;if(!id||id.slice(0,2)!=="f_")return;
