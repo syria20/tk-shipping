@@ -142,8 +142,10 @@ async function act(a,el){
   if(a==="open")return openShip(el.dataset.id);
   if(a==="logout"){await sb.auth.signOut();return}
   if(S.busy)return;
-  if(a==="login"){S.busy=true;msg(null);R();
-    const r=await sb.auth.signInWithPassword({email:$("a_e").value.trim(),password:$("a_p").value});S.busy=false;if(r.error)msg(em(r.error));return R()}
+  if(a==="login"){const e=$("a_e").value.trim(),p=$("a_p").value;
+    if(!e||!p){msg("اكتبي الإيميل وكلمة السر");return R()}
+    S.busy=true;msg(null);R();
+    const r=await sb.auth.signInWithPassword({email:e,password:p});S.busy=false;if(r.error)msg(em(r.error));return R()}
   if(a==="pay"){S.busy=true;msg(null);R();
     const r=await sb.rpc("confirm_payment",{p_ship:el.dataset.id});S.busy=false;
     if(r.error)msg(em(r.error));else{msg("تم تأكيد الدفع وإصدار الفاتورة","o");await loadPays()}
