@@ -1,44 +1,224 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>T.K Shipping – فحص الاتصال</title>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101c26">
+<title>T.K Group – الشحن</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-body{font:16px/1.6 system-ui,Arial,sans-serif;margin:0;background:#0d151c;color:#e8ecee;padding:16px}
-main{max-width:520px;margin:auto}h1{font-size:20px}.box{background:#16222c;border:1px solid #2c3b47;border-radius:10px;padding:14px;margin:12px 0}
-input,select,button{font:inherit;width:100%;padding:10px;margin:5px 0;border-radius:8px;border:1px solid #2c3b47;background:#0a121a;color:#fff}
-button{background:#f5c518;color:#101c26;font-weight:700;border:0;cursor:pointer}.ok{color:#5fd08f}.er{color:#ff8a7a}pre{white-space:pre-wrap;direction:ltr;text-align:left;font-size:13px}
-</style></head><body><main>
-<h1>T.K Shipping – فحص الاتصال بقاعدة البيانات</h1>
-<div class="box"><b>1) الاتصال</b><div id="s1">…</div></div>
-<div class="box"><b>2) الأسعار الحقيقية من قاعدة البيانات</b><div id="s2">…</div></div>
-<div class="box"><b>3) حاسبة السعر (دالة quote_price)</b>
-<select id="g"></select><input id="w" type="number" value="20" min="1" inputmode="decimal" placeholder="الوزن كغ"><button id="q">احسب</button><div id="s3"></div></div>
-<div class="box"><b>4) حساب تجريبي</b>
-<input id="e" type="email" placeholder="الإيميل" autocomplete="email" dir="ltr"><input id="p" type="password" placeholder="كلمة السر (8 أحرف على الأقل)" autocomplete="current-password" dir="ltr">
-<button id="su">إنشاء حساب</button><button id="si">تسجيل دخول</button><button id="so" hidden>خروج</button><div id="s4"></div></div>
-</main>
+:root{color-scheme:light dark;--bg:#f1f2ee;--card:#fff;--tx:#14202a;--mut:#64707a;--bd:#d8dcd4;--gold:#c8b27a;--yel:#f5c518;--navy:#101c26;--ok:#2f9460;--err:#c0392b;--inf:#3b7dd8}
+@media (prefers-color-scheme:dark){:root{--bg:#0d151c;--card:#16222c;--tx:#e8ecee;--mut:#94a1ab;--bd:#2c3b47}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 Tajawal,system-ui,Arial,sans-serif;padding-bottom:78px}
+header{background:var(--navy);color:#e8ecee;padding:10px 14px;border-bottom:3px solid var(--yel);display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:5}
+header b{flex:1;font-size:17px}header small{color:#c8b27a}
+main{max-width:640px;margin:auto;padding:14px}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}
+.box h2{margin:0 0 10px;font-size:16px}
+label{display:block;font-size:13px;color:var(--mut);margin-top:10px}
+input,select,textarea{width:100%;font:inherit;padding:11px;border-radius:10px;border:1.5px solid var(--bd);background:var(--bg);color:var(--tx);margin-top:4px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--yel);border-color:var(--yel)}
+.btn{display:block;width:100%;background:var(--yel);color:#101c26;border:0;border-radius:12px;padding:13px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px;text-align:center}
+.btn.g{background:transparent;color:var(--tx);border:1.5px solid var(--bd)}.btn[disabled]{opacity:.5}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.sp{justify-content:space-between}
+.mut{color:var(--mut);font-size:13px}.ok{color:var(--ok)}.er{color:var(--err)}.msg{padding:10px;border-radius:10px;margin-top:10px;font-size:14px}
+.msg.e{background:#c0392b22;color:var(--err)}.msg.o{background:#2f946022;color:var(--ok)}.msg.i{background:#3b7dd822}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;background:var(--bd);margin-inline-start:6px}
+.tag.s0{background:#f5c51833}.tag.s6{background:#2f946033;color:var(--ok)}
+nav{position:fixed;bottom:0;inset-inline:0;background:var(--navy);display:flex;padding-bottom:env(safe-area-inset-bottom,0)}
+nav button{flex:1;border:0;background:none;color:#c8b27a;font:inherit;padding:12px 4px;border-top:3px solid transparent;cursor:pointer}
+nav button.on{color:var(--yel);border-color:var(--yel);font-weight:700}
+.pin{font:700 34px/1 ui-monospace,Menlo,monospace;letter-spacing:8px;text-align:center;direction:ltr;background:var(--navy);color:var(--yel);padding:16px;border-radius:12px;margin:8px 0}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--bd)}.kv:last-child{border:0}.kv b{direction:ltr;text-align:left;word-break:break-all}
+.tl{list-style:none;margin:0;padding:0}.tl li{padding:6px 0;display:flex;gap:10px}.tl i{width:12px;height:12px;border-radius:50%;background:var(--bd);margin-top:6px;flex:none}.tl li.d i{background:var(--ok)}.tl li.d{color:var(--tx)}.tl li{color:var(--mut)}
+.paper{background:#fff;color:#111;border-radius:6px;padding:14px;direction:ltr;text-align:left;font:13px/1.5 Arial,sans-serif}.paper h3{margin:0 0 8px;font-size:18px}.paper table{width:100%;border-collapse:collapse;margin:8px 0}.paper td,.paper th{border:1px solid #bbb;padding:5px;text-align:left}.paper .r{text-align:right}
+.spin{text-align:center;padding:30px;color:var(--mut)}
+</style></head><body>
+<header><b>T.K Group</b><small id="who"></small></header>
+<main id="app"><div class="spin">جاري التحميل…</div></main>
+<nav id="nav" hidden></nav>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
+"use strict";
 const SB_URL="https://uvaugdqmktntmautneyp.supabase.co",SB_KEY="sb_publishable_FJgqWlepVpPPpocjYOxq1Q_sD7zGoP8";
-const $=i=>document.getElementById(i),put=(i,t,c)=>{$(i).className=c||'';$(i).textContent=t};
 const sb=supabase.createClient(SB_URL,SB_KEY);
-const NM={newc:'جديد',used:'مستعمل',elec:'إلكترونيات',tools:'أدوات',mnew:'ماكينات جديدة',mused:'ماكينات مستعملة',fam:'عفش عائلي',oil:'زيت',mn:'مونة'};
-async function init(){
-  try{
-    const {data,error}=await sb.from('rates').select('goods,eur_per_kg').order('goods');
-    if(error)throw error;
-    put('s1','الاتصال شغّال ✓','ok');
-    put('s2',data.length?data.map(r=>(NM[r.goods]||r.goods)+': '+r.eur_per_kg+' €/كغ').join(' | '):'الجدول فاضي: لازم تنضاف الأسعار (الخطوة الجاية)',data.length?'ok':'er');
-    $('g').innerHTML=Object.keys(NM).map(k=>'<option value="'+k+'">'+NM[k]+'</option>').join('');
-  }catch(e){put('s1','فشل الاتصال: '+(e.message||e),'er')}
-  sess()
+const $=i=>document.getElementById(i);
+const h=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur=n=>new Intl.NumberFormat("de-DE",{style:"currency",currency:"EUR"}).format(+n||0);
+const ST=["تم الحجز","تم الاستلام في هيرنه","في مستودع T.K","في الشحن","التخليص الجمركي","وصلت إلى بلد الوجهة","تم التسليم"];
+const GN={newc:"ملابس / بضائع جديدة",used:"مستعمل",elec:"كهربائيات وإلكترونيات",tools:"أدوات",mnew:"ماكينات جديدة",mused:"ماكينات مستعملة",fam:"عفش عائلي (عودة)",oil:"زيت",mn:"مونة"};
+const GO={eu2sy:["newc","used","elec","tools","mnew","mused","fam"],sy2eu:["newc","used","elec","tools","mnew","mused","oil","mn"]};
+const PM={bank:"تحويل بنكي",cod:"عند التسليم",wallet:"محفظة T.K"};
+const MODE={road:"بري",air:"جوي",sea:"بحري"};
+const ERR={"Invalid login credentials":"الإيميل أو كلمة السر غير صحيحة","Email not confirmed":"لازم تأكدي الإيميل أول: افتحي الرابط اللي وصلك","User already registered":"هالإيميل مسجّل من قبل، جرّبي تسجيل الدخول","recipient details required":"اكتبي اسم المستلم ورقم هاتفه","description required":"اكتبي وصف البضاعة","food goods ship Syria -> Europe only":"الأغذية (زيت، مونة) بتُشحن من سوريا إلى أوروبا فقط","family return ships Europe -> Syria only":"العفش العائلي من أوروبا إلى سوريا فقط","invalid promo code":"كود الخصم غير صحيح أو مستخدم","insufficient wallet balance":"رصيد المحفظة غير كافٍ"};
+const em=e=>{const m=(e&&e.message)||String(e);for(const k in ERR)if(m.indexOf(k)>-1)return ERR[k];if(/after \d+ seconds/.test(m))return "استني دقيقة وجرّبي مرة تانية";return m};
+let S={user:null,prof:null,tab:"list",ships:[],sel:null,detail:null,bal:0,msg:null,busy:false,quote:null,res:null,mode:"login",f:{dir:"eu2sy",goods:"newc",w:"",mode:"road",pay:"bank",cc:"Deutschland",city:"",rn:"",rp:"",desc:"",promo:""},seller:null};
+const msg=(t,k)=>{S.msg=t?{t,k:k||"e"}:null};
+const M=()=>S.msg?`<div class="msg ${S.msg.k}">${h(S.msg.t)}</div>`:"";
+
+/* ---------- data ---------- */
+async function loadAll(){
+  const [p,s,b]=await Promise.all([
+    sb.from("profiles").select("name,phone,email,role,ref_code").eq("id",S.user.id).single(),
+    sb.from("shipments").select("id,dir,from_place,to_place,city,goods,weight_kg,mode,status,price,created_at,recipient_name").order("created_at",{ascending:false}),
+    sb.rpc("wallet_balance")]);
+  S.prof=p.data;S.ships=s.data||[];S.bal=b.data||0;
 }
-async function sess(){const {data}=await sb.auth.getSession();const u=data.session&&data.session.user;put('s4',u?'مسجّلة الدخول: '+u.email:'غير مسجّلة','');$('so').hidden=!u}
-$('q').onclick=async()=>{const {data,error}=await sb.rpc('quote_price',{p_goods:$('g').value,p_weight:+$('w').value,p_biz:false});
-  error?put('s3','خطأ: '+error.message,'er'):put('s3','السعر: '+JSON.stringify(data),'ok')};
-$('su').onclick=async()=>{const {error}=await sb.auth.signUp({email:$('e').value.trim(),password:$('p').value,options:{data:{name:$('e').value.split('@')[0]}}});
-  error?put('s4','خطأ: '+error.message,'er'):(put('s4','تم. إذا طلب التأكيد، افتحي الرابط اللي وصل لإيميلك ثم سجّلي دخول','ok'),sess())};
-$('si').onclick=async()=>{const {error}=await sb.auth.signInWithPassword({email:$('e').value.trim(),password:$('p').value});
-  error?put('s4','خطأ: '+error.message,'er'):sess()};
-$('so').onclick=async()=>{await sb.auth.signOut();sess()};
-init();
+async function openShip(id){
+  S.sel=id;S.detail=null;S.tab="detail";R();
+  const [sh,lg,pay,inv]=await Promise.all([
+    sb.from("shipments").select("*").eq("id",id).single(),
+    sb.from("shipment_status_log").select("status,at").eq("shipment_id",id).order("at"),
+    sb.from("payments").select("method,status,amount,kind").eq("shipment_id",id).order("id"),
+    sb.from("invoices").select("number,issued_at,amount,net,vat_rate,vat").eq("shipment_id",id).order("id")]);
+  if(!S.seller){const r=await sb.from("seller").select("*").eq("id",1).maybeSingle();S.seller=r.data}
+  S.detail={s:sh.data,log:lg.data||[],pay:pay.data||[],inv:inv.data||[]};R();
+}
+async function refreshQuote(){
+  const w=+S.f.w;if(!(w>0)){S.quote=null;return upd()}
+  const {data,error}=await sb.rpc("quote_price",{p_goods:S.f.goods,p_weight:w,p_biz:S.prof&&S.prof.role==="business"});
+  S.quote=error?null:data;upd()
+}
+function upd(){const q=$("q");if(q)q.textContent=S.quote!=null?eur(S.quote):"—"}
+
+/* ---------- views ---------- */
+function vAuth(){
+  const su=S.mode==="signup";
+  return `<div class="box"><h2>${su?"إنشاء حساب":"تسجيل الدخول"}</h2>
+  ${su?`<label>الاسم<input id="a_n" autocomplete="name"></label><label>رقم الهاتف<input id="a_p" type="tel" dir="ltr" autocomplete="tel" placeholder="+49 …"></label>`:""}
+  <label>الإيميل<input id="a_e" type="email" dir="ltr" autocomplete="email"></label>
+  <label>كلمة السر${su?" (8 أحرف على الأقل)":""}<input id="a_pw" type="password" dir="ltr" autocomplete="${su?"new-password":"current-password"}"></label>
+  ${M()}<button class="btn" data-a="${su?"signup":"login"}" ${S.busy?"disabled":""}>${su?"إنشاء حساب":"دخول"}</button>
+  <button class="btn g" data-a="mode">${su?"عندي حساب: تسجيل دخول":"ما عندي حساب: إنشاء حساب"}</button></div>
+  <p class="mut" style="text-align:center">الأسعار: 6 € للكيلو للملابس والمونة، 5 € للكهربائيات والأدوات، الزيت 3.43 €.</p>`;
+}
+function vList(){
+  const L=S.ships.map(x=>`<div class="box" data-a="open" data-id="${h(x.id)}" style="cursor:pointer"><div class="row sp"><b dir="ltr">${h(x.id)}</b><span class="tag s${x.status}">${ST[x.status]}</span></div>
+  <div class="mut">${h(GN[x.goods]||x.goods)} · ${x.weight_kg} كغ · ${x.dir==="eu2sy"?"أوروبا ← سوريا":"سوريا ← أوروبا"}</div>
+  <div class="row sp"><span class="mut">إلى: ${h(x.recipient_name)}</span><b>${eur(x.price)}</b></div></div>`).join("");
+  return `<div class="box"><div class="row sp"><div>أهلاً ${h(S.prof&&S.prof.name)}</div><div class="mut">رصيد المحفظة: <b>${eur(S.bal)}</b></div></div></div>
+  ${L||`<div class="box mut" style="text-align:center">ما عندك شحنات بعد.<button class="btn" data-a="tab" data-t="new">شحنة جديدة</button></div>`}`;
+}
+function vNew(){
+  const f=S.f,goods=GO[f.dir];
+  if(goods.indexOf(f.goods)<0)f.goods=goods[0];
+  const eu=["Deutschland","Niederlande","Frankreich"];
+  return `<div class="box"><h2>شحنة جديدة</h2>
+  <label>الاتجاه<select id="f_dir"><option value="eu2sy" ${f.dir==="eu2sy"?"selected":""}>أوروبا ← سوريا</option><option value="sy2eu" ${f.dir==="sy2eu"?"selected":""}>سوريا ← أوروبا</option></select></label>
+  <label>${f.dir==="eu2sy"?"بلد الإرسال":"بلد الوصول"}<select id="f_cc">${eu.map(c=>`<option ${f.cc===c?"selected":""}>${c}</option>`).join("")}</select></label>
+  <label>${f.dir==="eu2sy"?"المدينة بسوريا (للتوصيل)":"المدينة بأوروبا (للتوصيل)"}<input id="f_city" value="${h(f.city)}"></label>
+  <label>نوع البضاعة<select id="f_goods">${goods.map(g=>`<option value="${g}" ${f.goods===g?"selected":""}>${GN[g]}</option>`).join("")}</select></label>
+  <label>الوزن التقريبي (كغ)<input id="f_w" type="number" min="1" inputmode="decimal" dir="ltr" value="${h(f.w)}"></label>
+  <label>طريقة الشحن<select id="f_mode">${Object.keys(MODE).map(k=>`<option value="${k}" ${f.mode===k?"selected":""}>${MODE[k]}</option>`).join("")}</select></label>
+  <label>وصف البضاعة<textarea id="f_desc" rows="2">${h(f.desc)}</textarea></label>
+  <label>اسم المستلم<input id="f_rn" value="${h(f.rn)}"></label>
+  <label>هاتف المستلم<input id="f_rp" type="tel" dir="ltr" value="${h(f.rp)}"></label>
+  <label>كود خصم (اختياري)<input id="f_promo" dir="ltr" value="${h(f.promo)}"></label>
+  <label>طريقة الدفع<select id="f_pay">${Object.keys(PM).map(k=>`<option value="${k}" ${f.pay===k?"selected":""}>${PM[k]}${k==="wallet"?" (الرصيد "+eur(S.bal)+")":""}</option>`).join("")}</select></label>
+  <div class="row sp" style="margin-top:14px"><span>السعر:</span><b id="q" style="font-size:20px">${S.quote!=null?eur(S.quote):"—"}</b></div>
+  <p class="mut" style="margin:4px 0 0">التسليم من المرسل في مستودعنا بهيرنه: Baukauer Str. 39F, 44653 Herne. السعر النهائي بعد الوزن الفعلي بالاستلام.</p>
+  ${M()}<button class="btn" data-a="create" ${S.busy?"disabled":""}>تأكيد الحجز</button></div>`;
+}
+function bankBox(id){return `<div class="box"><h2>بيانات التحويل البنكي</h2>
+  <div class="kv"><span>المستفيد</span><b>M. Ismaiel Kaytou</b></div><div class="kv"><span>البنك</span><b>Herner Sparkasse</b></div>
+  <div class="kv"><span>IBAN</span><b>DE43 4325 0030 0011 0384 45</b></div><div class="kv"><span>BIC</span><b>WELADED1HRN</b></div>
+  <div class="kv"><span>سبب التحويل</span><b>${h(id)}</b></div><p class="mut">اكتبي رقم الشحنة بسبب التحويل حتى نربط الدفعة بشحنتك.</p></div>`}
+function vRes(){const r=S.res;return `<div class="box"><h2>تم حجز شحنتك ✓</h2>
+  <div class="kv"><span>رقم الشحنة</span><b>${h(r.id)}</b></div><div class="kv"><span>السعر</span><b>${eur(r.price)}</b></div>
+  <p>رمز الاستلام (PIN) يلي بتسلّمو لموظفنا بهيرنه:</p><div class="pin">${h(r.pin)}</div>
+  <div class="msg i">احفظي الرمز هلق. ما رح يظهر مرة تانية.</div></div>
+  ${r.pay==="bank"?bankBox(r.id):""}
+  <button class="btn" data-a="open" data-id="${h(r.id)}">تفاصيل الشحنة</button>`}
+function vDetail(){
+  const d=S.detail;if(!d)return `<div class="spin">جاري التحميل…</div>`;
+  const s=d.s;if(!s)return `<div class="box">الشحنة غير موجودة</div>`;
+  const paid=d.pay.some(p=>p.status==="paid"),main=d.pay[0];
+  const seen={};d.log.forEach(l=>seen[l.status]=l.at);
+  const tl=ST.map((n,i)=>`<li class="${seen[i]?"d":""}"><i></i><span>${n}${seen[i]?` <span class="mut">${new Date(seen[i]).toLocaleDateString("de-DE")}</span>`:""}</span></li>`).join("");
+  return `<button class="btn g" data-a="tab" data-t="list" style="margin:0 0 10px">← شحناتي</button>
+  <div class="box"><div class="row sp"><b dir="ltr">${h(s.id)}</b><span class="tag s${s.status}">${ST[s.status]}</span></div>
+  <div class="kv"><span>البضاعة</span><b>${h(GN[s.goods]||s.goods)}</b></div><div class="kv"><span>الوزن</span><b>${s.weight_kg} كغ</b></div>
+  <div class="kv"><span>المستلم</span><b>${h(s.recipient_name)} · ${h(s.recipient_phone)}</b></div>
+  <div class="kv"><span>السعر</span><b>${eur(s.price)}</b></div>
+  <div class="kv"><span>الدفع</span><b>${main?h(PM[main.method]||main.method):""} · ${paid?"مدفوع ✓":"بانتظار الدفع"}</b></div></div>
+  ${!paid&&main&&main.method==="bank"?bankBox(s.id):""}
+  <div class="box"><h2>تتبع الشحنة</h2><ul class="tl">${tl}</ul></div>
+  ${d.inv.map(i=>invDoc(s,i)).join("")}`;
+}
+function invDoc(s,i){
+  const k=S.seller||{},rate=Math.round(+i.vat_rate*100);
+  return `<div class="box"><h2>الفاتورة</h2><div class="paper"><h3>RECHNUNG</h3>
+  <div><b>Verkäufer:</b> ${h(k.name)}, ${h(k.street)}, ${h(k.city)}<br>Tel: ${h(k.phone)} · Steuernummer: ${h(k.tax_no)} · USt-IdNr.: ${h(k.vat_id)}</div>
+  <div style="margin-top:6px"><b>Käufer:</b> ${h(S.prof&&S.prof.name)}, ${h(S.prof&&S.prof.email)}</div>
+  <div style="margin-top:6px"><b>Rechnungsnr.:</b> ${h(i.number)} · <b>Datum:</b> ${new Date(i.issued_at).toLocaleDateString("de-DE")}</div>
+  <table><tr><th>Leistung</th><th>USt</th><th class="r">Netto</th></tr><tr><td>Transport ${h(s.id)} (${s.weight_kg} kg)</td><td>${rate} %</td><td class="r">${eur(i.net)}</td></tr></table>
+  <div class="r">Nettosumme: ${eur(i.net)}<br>USt ${rate} %: ${eur(i.vat)}<br><b>Gesamtbetrag: ${eur(i.amount)}</b></div>
+  <div style="margin-top:6px"><b>Bankverbindung:</b> Herner Sparkasse · M. Ismaiel Kaytou · IBAN DE43 4325 0030 0011 0384 45 · SWIFT WELADED1HRN</div>
+  <div style="margin-top:6px">Vielen Dank für Ihren Auftrag!</div></div></div>`;
+}
+function vAcct(){const p=S.prof||{};return `<div class="box"><h2>حسابي</h2>
+  <div class="kv"><span>الاسم</span><b>${h(p.name)}</b></div><div class="kv"><span>الإيميل</span><b>${h(p.email)}</b></div>
+  <div class="kv"><span>الهاتف</span><b>${h(p.phone||"—")}</b></div><div class="kv"><span>رصيد المحفظة</span><b>${eur(S.bal)}</b></div>
+  <div class="kv"><span>كود الإحالة</span><b>${h(p.ref_code)}</b></div>
+  <p class="mut">شاركي كودك: صاحبك بياخد خصم 5% على أول شحنة، وإنتي بتاخدي 5 € عند وصولها.</p>
+  <button class="btn g" data-a="logout">تسجيل خروج</button></div>`}
+
+function R(){
+  const a=$("app"),n=$("nav");
+  $("who").textContent=S.prof?S.prof.name:"";
+  if(!S.user){n.hidden=true;a.innerHTML=vAuth();return}
+  n.hidden=false;
+  const t=S.tab==="detail"?"list":S.tab;
+  n.innerHTML=[["list","شحناتي"],["new","شحنة جديدة"],["acct","حسابي"]].map(([k,l])=>`<button data-a="tab" data-t="${k}" class="${t===k?"on":""}">${l}</button>`).join("");
+  a.innerHTML=S.tab==="list"?vList():S.tab==="new"?vNew():S.tab==="res"?vRes():S.tab==="detail"?vDetail():vAcct();
+}
+
+/* ---------- actions ---------- */
+const val=i=>{const e=$(i);return e?e.value.trim():""};
+async function act(a,el){
+  if(a==="mode"){S.mode=S.mode==="login"?"signup":"login";msg(null);return R()}
+  if(a==="tab"){msg(null);S.tab=el.dataset.t;if(S.tab==="list"||S.tab==="acct")await loadAll();return R()}
+  if(a==="open")return openShip(el.dataset.id);
+  if(a==="logout"){await sb.auth.signOut();return}
+  if(S.busy)return;
+  if(a==="login"||a==="signup"){
+    const e=val("a_e"),p=$("a_pw").value;
+    if(!e||!p){msg("اكتبي الإيميل وكلمة السر");return R()}
+    if(a==="signup"&&(p.length<8||val("a_n").length<2)){msg("اكتبي اسمك وكلمة سر 8 أحرف على الأقل");return R()}
+    S.busy=true;msg(null);R();
+    const r=a==="login"?await sb.auth.signInWithPassword({email:e,password:p})
+      :await sb.auth.signUp({email:e,password:p,options:{data:{name:val("a_n"),phone:val("a_p")}}});
+    S.busy=false;
+    if(r.error)msg(em(r.error));
+    else if(a==="signup"&&!r.data.session){msg("تم. افتحي الرابط اللي وصل لإيميلك لتأكيد الحساب، وبعدين سجّلي دخول.","o");S.mode="login"}
+    return R();
+  }
+  if(a==="create"){
+    const f=S.f;
+    if(!(+f.w>0)||!f.rn||!f.rp||f.desc.length<3){msg("كمّلي الوزن ووصف البضاعة واسم وهاتف المستلم");return R()}
+    S.busy=true;msg(null);R();
+    const eu=f.cc,sy=f.city?"سوريا / "+f.city:"سوريا";
+    const {data,error}=await sb.rpc("create_shipment",{p_dir:f.dir,p_from:f.dir==="eu2sy"?eu:sy,p_to:f.dir==="eu2sy"?sy:eu,p_goods:f.goods,p_weight:+f.w,
+      p_mode:f.mode,p_recipient_name:f.rn,p_recipient_phone:f.rp,p_city:f.city||null,p_desc:f.desc,p_how:"drop",p_pay:f.pay,p_promo:f.promo||null,p_items:[]});
+    S.busy=false;
+    if(error){msg(em(error));return R()}
+    const r=Array.isArray(data)?data[0]:data;
+    S.res={id:r.shipment_id,pin:r.pin,price:r.price,pay:f.pay};
+    S.f={...f,w:"",desc:"",rn:"",rp:"",promo:"",city:""};S.quote=null;
+    await loadAll();S.tab="res";return R();
+  }
+}
+document.addEventListener("click",e=>{const el=e.target.closest("[data-a]");if(el)act(el.dataset.a,el)});
+document.addEventListener("input",e=>{
+  const id=e.target.id;if(!id||id.slice(0,2)!=="f_")return;
+  const k={f_dir:"dir",f_cc:"cc",f_city:"city",f_goods:"goods",f_w:"w",f_mode:"mode",f_desc:"desc",f_rn:"rn",f_rp:"rp",f_promo:"promo",f_pay:"pay"}[id];
+  if(!k)return;S.f[k]=e.target.value;
+  if(id==="f_dir"){R()}
+  if(id==="f_dir"||id==="f_goods"||id==="f_w")refreshQuote();
+});
+
+/* ---------- boot ---------- */
+async function onSession(sess){
+  S.user=sess?sess.user:null;
+  if(S.user){await loadAll();if(S.tab==="list"||!S.tab)S.tab="list"}else{S.prof=null;S.ships=[]}
+  R();
+}
+sb.auth.onAuthStateChange((ev,sess)=>{if(ev==="INITIAL_SESSION"||ev==="SIGNED_IN"||ev==="SIGNED_OUT")setTimeout(()=>onSession(sess),0)});
 </script></body></html>
