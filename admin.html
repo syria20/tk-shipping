@@ -127,7 +127,7 @@ async function loadTeam(){
 }
 function vTeam(){const T=S.team||[];
   const opts=["herne_staff","support","accountant","admin","customer"].map(k=>`<option value="${k}">${RL[k]}</option>`).join("");
-  return `<div class="box"><h2>فريق العمل (${T.length})</h2>${T.map(x=>`<div class="kv"><span>${h(x.name)} <small class="mut" dir="ltr">${h(x.email)}</small></span><b>${h(RL[x.role]||x.role)}</b></div>`).join("")}</div>
+  return `<div class="box"><h2>فريق العمل (${T.length})</h2>${T.map(x=>`<div class="kv"><span>${h(x.name)} <small class="mut" dir="ltr">${h(x.email)}</small></span><b style="word-break:normal;white-space:nowrap;direction:rtl;text-align:right;flex:none">${h(RL[x.role]||x.role)}</b></div>`).join("")}</div>
   <div class="box"><h2>إضافة أو تغيير دور موظف</h2>
   <p class="mut">الموظف الجديد لازم يسجّل حساب أول من تطبيق الزبون ويأكّد إيميله. بعدين اكتبي إيميله هون واختاري دوره. لإرجاعه زبون اختاري "زبون".</p>
   <label>إيميل الموظف<input id="t_e" type="email" dir="ltr" value="${h(S.tm.e)}"></label>
