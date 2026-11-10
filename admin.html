@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>T.K Group – لوحة الإدارة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light dark;--bg:#f1f2ee;--card:#fff;--tx:#14202a;--mut:#64707a;--bd:#d8dcd4;--yel:#f5c518;--navy:#101c26;--ok:#2f9460;--err:#c0392b}
+@media (prefers-color-scheme:dark){:root{--bg:#0d151c;--card:#16222c;--tx:#e8ecee;--mut:#94a1ab;--bd:#2c3b47}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 Tajawal,system-ui,Arial,sans-serif;padding-bottom:78px}
+header{background:var(--navy);color:#e8ecee;padding:10px 14px;border-bottom:3px solid var(--yel);display:flex;gap:10px;align-items:center;position:sticky;top:0;z-index:5}
+header b{flex:1}header small{color:#c8b27a}
+main{max-width:760px;margin:auto;padding:14px}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}.box h2{margin:0 0 10px;font-size:16px}
+label{display:block;font-size:13px;color:var(--mut);margin-top:10px}
+input,select{width:100%;font:inherit;padding:11px;border-radius:10px;border:1.5px solid var(--bd);background:var(--bg);color:var(--tx);margin-top:4px}
+input:focus,select:focus{outline:2px solid var(--yel);border-color:var(--yel)}
+.btn{display:block;width:100%;background:var(--yel);color:#101c26;border:0;border-radius:12px;padding:12px;font:inherit;font-weight:700;cursor:pointer;margin-top:10px;text-align:center}
+.btn.g{background:transparent;color:var(--tx);border:1.5px solid var(--bd)}.btn.ok{background:var(--ok);color:#fff}.btn.s{display:inline-block;width:auto;padding:7px 12px;margin:3px 2px;font-size:13px}.btn[disabled]{opacity:.45}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}.sp{justify-content:space-between}
+.mut{color:var(--mut);font-size:13px}.msg{padding:10px;border-radius:10px;margin-top:10px;font-size:14px}.msg.e{background:#c0392b22;color:var(--err)}.msg.o{background:#2f946022;color:var(--ok)}.msg.i{background:#3b7dd822}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;background:var(--bd);margin-inline-start:6px}.tag.s0{background:#f5c51833}.tag.s6{background:#2f946033;color:var(--ok)}.tag.w{background:#f5c51844}.tag.p{background:#2f946033;color:var(--ok)}
+nav{position:fixed;bottom:0;inset-inline:0;background:var(--navy);display:flex;padding-bottom:env(safe-area-inset-bottom,0)}
+nav button{flex:1;border:0;background:none;color:#c8b27a;font:inherit;padding:12px 4px;border-top:3px solid transparent;cursor:pointer}nav button.on{color:var(--yel);border-color:var(--yel);font-weight:700}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--bd)}.kv:last-child{border:0}.kv b{direction:ltr;text-align:left;word-break:break-all}
+.it{cursor:pointer}.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}.chips button{flex:none;border:1.5px solid var(--bd);background:none;color:var(--tx);border-radius:99px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}.chips button.on{background:var(--yel);color:#101c26;border-color:var(--yel)}
+.spin{text-align:center;padding:30px;color:var(--mut)}
+</style></head><body>
+<header><b>T.K Group · لوحة الإدارة</b><small id="who"></small></header>
+<main id="app"><div class="spin">جاري التحميل…</div></main>
+<nav id="nav" hidden></nav>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+"use strict";
+const SB_URL="https://uvaugdqmktntmautneyp.supabase.co",SB_KEY="sb_publishable_FJgqWlepVpPPpocjYOxq1Q_sD7zGoP8";
+const sb=supabase.createClient(SB_URL,SB_KEY);
+const $=i=>document.getElementById(i);
+const h=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur=n=>new Intl.NumberFormat("de-DE",{style:"currency",currency:"EUR"}).format(+n||0);
+const dt=d=>d?new Date(d).toLocaleString("de-DE",{dateStyle:"short",timeStyle:"short"}):"";
+const ST=["تم الحجز","تم الاستلام في هيرنه","في مستودع T.K","في الشحن","التخليص الجمركي","وصلت إلى بلد الوجهة","تم التسليم"];
+const GN={newc:"جديد",used:"مستعمل",elec:"كهربائيات",tools:"أدوات",mnew:"ماكينات جديدة",mused:"ماكينات مستعملة",fam:"عفش عائلي",oil:"زيت",mn:"مونة"};
+const PM={bank:"تحويل بنكي",cod:"عند التسليم",wallet:"محفظة",card:"بطاقة"};
+const RL={customer:"زبون",business:"شركة",herne_staff:"موظف هيرنه",support:"دعم",accountant:"محاسب",admin:"مدير"};
+const COND={ok:"سليمة",dmg:"فيها ضرر",short:"ناقصة"};
+const ERR={"Invalid login credentials":"الإيميل أو كلمة السر غير صحيحة","Email not confirmed":"لازم تأكدي الإيميل أول","forbidden":"ما عندك صلاحية لهالعملية","already received":"هالشحنة انستلمت من قبل","shipment not found":"رقم الشحنة غير موجود","weight and packages required":"اكتبي الوزن وعدد الطرود","receiver name required":"اكتبي اسم المستلم","no pending payment":"ما في دفعة معلّقة"};
+const em=e=>{const m=(e&&e.message)||String(e);for(const k in ERR)if(m.indexOf(k)>-1)return ERR[k];return m};
+const STAFF=["herne_staff","support","accountant","admin"];
+let S={user:null,prof:null,tab:"ships",ships:[],flt:"all",q:"",sel:null,det:null,pays:[],msg:null,busy:false,intake:{id:"",pin:"",w:"",n:"1",c:"ok"},ires:null};
+const msg=(t,k)=>{S.msg=t?{t,k:k||"e"}:null},M=()=>S.msg?`<div class="msg ${S.msg.k}">${h(S.msg.t)}</div>`:"";
+const role=()=>S.prof&&S.prof.role;
+const can=a=>role()==="admin"||a.includes(role());
+
+async function loadShips(){
+  const r=await sb.from("shipments").select("id,dir,goods,weight_kg,status,price,created_at,recipient_name,profiles(name,phone)").order("created_at",{ascending:false}).limit(300);
+  S.ships=r.data||[];
+}
+async function loadPays(){
+  const r=await sb.from("payments").select("id,shipment_id,method,status,amount,kind,created_at").eq("status","pending").order("created_at");
+  S.pays=r.data||[];
+}
+async function openShip(id){
+  S.sel=id;S.det=null;S.tab="detail";msg(null);R();
+  const [sh,lg,py,iv]=await Promise.all([
+    sb.from("shipments").select("*,profiles(name,phone,email)").eq("id",id).single(),
+    sb.from("shipment_status_log").select("status,at").eq("shipment_id",id).order("at"),
+    sb.from("payments").select("id,method,status,amount,kind,paid_at").eq("shipment_id",id).order("id"),
+    sb.from("invoices").select("number,issued_at,amount").eq("shipment_id",id)]);
+  S.det={s:sh.data,log:lg.data||[],pay:py.data||[],inv:iv.data||[]};R();
+}
+
+/* views */
+function vLogin(){return `<div class="box"><h2>دخول الموظفين</h2>
+ <label>الإيميل<input id="a_e" type="email" dir="ltr" autocomplete="email"></label>
+ <label>كلمة السر<input id="a_p" type="password" dir="ltr" autocomplete="current-password"></label>${M()}
+ <button class="btn" data-a="login" ${S.busy?"disabled":""}>دخول</button></div>`}
+function vDenied(){return `<div class="box"><h2>ما عندك صلاحية</h2><p>حسابك (${h(S.prof&&S.prof.email)}) دوره "${h(RL[role()]||role())}". لوحة الإدارة للموظفين فقط.</p><button class="btn g" data-a="logout">خروج</button></div>`}
+function shipList(){
+  const f=S.flt,q=S.q.trim().toLowerCase();
+  const L=S.ships.filter(x=>(f==="all"||String(x.status)===f)&&(!q||(x.id+" "+x.recipient_name+" "+((x.profiles&&x.profiles.name)||"")).toLowerCase().includes(q)));
+  return L.map(x=>`<div class="box it" data-a="open" data-id="${h(x.id)}"><div class="row sp"><b dir="ltr">${h(x.id)}</b><span class="tag s${x.status}">${ST[x.status]}</span></div>
+  <div class="mut">${h(GN[x.goods]||x.goods)} · ${x.weight_kg} كغ · ${x.dir==="eu2sy"?"أوروبا←سوريا":"سوريا←أوروبا"} · ${dt(x.created_at)}</div>
+  <div class="row sp"><span class="mut">${h((x.profiles&&x.profiles.name)||"")} ← ${h(x.recipient_name)}</span><b>${eur(x.price)}</b></div></div>`).join("")||`<div class="box mut" style="text-align:center">لا يوجد شحنات</div>`}
+function vShips(){
+  const f=S.flt;
+  const chips=[["all","الكل"],...ST.map((n,i)=>[String(i),n])].map(([k,l])=>`<button data-a="flt" data-k="${k}" class="${f===k?"on":""}">${l}</button>`).join("");
+  return `<div class="box"><input id="s_q" placeholder="بحث: رقم الشحنة أو اسم" value="${h(S.q)}"><div class="chips" style="margin-top:8px">${chips}</div></div><div id="sl">${shipList()}</div>`;
+}
+function vDetail(){
+  const d=S.det;if(!d)return `<div class="spin">جاري التحميل…</div>`;const s=d.s;if(!s)return `<div class="box">غير موجودة</div>`;
+  const main=d.pay.find(p=>p.kind==="main"),paid=main&&main.status==="paid",c=s.profiles||{};
+  const seen={};d.log.forEach(l=>seen[l.status]=l.at);
+  const stBtns=can(["support"])?ST.slice(0,6).map((n,i)=>{const blocked=i>=3&&main&&main.method==="bank"&&!paid;
+    return `<button class="btn s ${s.status===i?"":"g"}" data-a="setst" data-id="${h(s.id)}" data-st="${i}" ${blocked||s.status===i?"disabled":""}>${n}</button>`}).join(""):"";
+  return `<button class="btn g" data-a="tab" data-t="ships" style="margin:0 0 10px">← الشحنات</button>
+  <div class="box"><div class="row sp"><b dir="ltr">${h(s.id)}</b><span class="tag s${s.status}">${ST[s.status]}</span></div>
+  <div class="kv"><span>الزبون</span><b>${h(c.name)} · ${h(c.phone||"")}</b></div><div class="kv"><span>الإيميل</span><b>${h(c.email)}</b></div>
+  <div class="kv"><span>المستلم</span><b>${h(s.recipient_name)} · ${h(s.recipient_phone)}</b></div>
+  <div class="kv"><span>المسار</span><b>${h(s.from_place)} ← ${h(s.to_place)}</b></div>
+  <div class="kv"><span>البضاعة</span><b>${h(GN[s.goods]||s.goods)} · ${s.weight_kg} كغ</b></div><div class="kv"><span>الوصف</span><b>${h(s.description)}</b></div>
+  <div class="kv"><span>السعر</span><b>${eur(s.price)}${s.promo_code?" (كود "+h(s.promo_code)+")":""}</b></div>
+  ${s.status===6?`<div class="kv"><span>استلمها</span><b>${h(s.pod_by)} · ${dt(s.delivered_at)}</b></div>`:""}</div>
+  <div class="box"><h2>الدفع</h2>${d.pay.map(p=>`<div class="kv"><span>${p.kind==="adjustment"?"فرق وزن":"الدفعة"}: ${h(PM[p.method]||p.method)}</span><b>${eur(p.amount)} · ${p.status==="paid"?"مدفوع":"معلّق"}</b></div>`).join("")}
+  ${d.inv.map(i=>`<div class="kv"><span>الفاتورة</span><b>${h(i.number)}</b></div>`).join("")}
+  ${!paid&&main&&can(["accountant"])?`<button class="btn ok" data-a="pay" data-id="${h(s.id)}" ${S.busy?"disabled":""}>تأكيد استلام الدفعة (${PM[main.method]})</button>`:""}${M()}</div>
+  ${stBtns?`<div class="box"><h2>تغيير الحالة</h2>${stBtns}${!paid&&main&&main.method==="bank"?`<p class="mut">المراحل بعد المستودع مقفلة لحد تأكيد التحويل البنكي.</p>`:""}</div>`:""}
+  ${can(["support"])&&s.status>=1&&s.status<6?`<div class="box"><h2>تسجيل التسليم للمستلم</h2><label>اسم اللي استلم<input id="d_by"></label><button class="btn ok" data-a="deliver" data-id="${h(s.id)}">تم التسليم</button></div>`:""}
+  <div class="box"><h2>السجل</h2>${ST.map((n,i)=>seen[i]?`<div class="kv"><span>${n}</span><b>${dt(seen[i])}</b></div>`:"").join("")}</div>`;
+}
+function vIntake(){const i=S.intake,r=S.ires;
+  return `<div class="box"><h2>استلام شحنة بهيرنه</h2>
+  <label>رقم الشحنة<input id="i_id" dir="ltr" value="${h(i.id)}" placeholder="TK123456" autocapitalize="characters"></label>
+  <label>رمز الزبون (PIN)<input id="i_pin" dir="ltr" inputmode="numeric" maxlength="4" value="${h(i.pin)}"></label>
+  <label>الوزن الفعلي (كغ)<input id="i_w" type="number" step="0.1" dir="ltr" inputmode="decimal" value="${h(i.w)}"></label>
+  <label>عدد الطرود<input id="i_n" type="number" min="1" dir="ltr" value="${h(i.n)}"></label>
+  <label>حالة الطرود<select id="i_c">${Object.keys(COND).map(k=>`<option value="${k}" ${i.c===k?"selected":""}>${COND[k]}</option>`).join("")}</select></label>
+  ${M()}${r?`<div class="msg ${r.k}">${h(r.t)}</div>`:""}<button class="btn" data-a="intake" ${S.busy?"disabled":""}>تأكيد الاستلام</button></div>`}
+function vPays(){return `<div class="box"><h2>دفعات بانتظار التأكيد (${S.pays.length})</h2></div>
+  ${S.pays.map(p=>`<div class="box"><div class="row sp"><b dir="ltr">${h(p.shipment_id)}</b><b>${eur(p.amount)}</b></div><div class="mut">${h(PM[p.method]||p.method)} · ${dt(p.created_at)}</div>
+  <button class="btn ok" data-a="pay" data-id="${h(p.shipment_id)}" ${S.busy?"disabled":""}>تأكيد الاستلام</button><button class="btn g" data-a="open" data-id="${h(p.shipment_id)}">التفاصيل</button></div>`).join("")||`<div class="box mut" style="text-align:center">ما في دفعات معلّقة</div>`}${M()}`}
+function vAcct(){return `<div class="box"><h2>حسابي</h2><div class="kv"><span>الاسم</span><b>${h(S.prof.name)}</b></div><div class="kv"><span>الدور</span><b>${h(RL[role()]||role())}</b></div><button class="btn g" data-a="logout">تسجيل خروج</button></div>`}
+
+function tabs(){const t=[];
+  if(can(["support"])||can(["accountant"]))t.push(["ships","الشحنات"]);
+  if(can(["herne_staff"]))t.push(["intake","استلام هيرنه"]);
+  if(can(["accountant"]))t.push(["pays","المدفوعات"]);
+  t.push(["acct","حسابي"]);return t}
+function R(){
+  const a=$("app"),n=$("nav");$("who").textContent=S.prof?S.prof.name:"";
+  if(!S.user){n.hidden=true;a.innerHTML=vLogin();return}
+  if(!S.prof||STAFF.indexOf(role())<0){n.hidden=true;a.innerHTML=vDenied();return}
+  n.hidden=false;const T=tabs();if(!T.some(x=>x[0]===S.tab)&&S.tab!=="detail")S.tab=T[0][0];
+  const cur=S.tab==="detail"?"ships":S.tab;
+  n.innerHTML=T.map(([k,l])=>`<button data-a="tab" data-t="${k}" class="${cur===k?"on":""}">${l}</button>`).join("");
+  a.innerHTML=S.tab==="ships"?vShips():S.tab==="detail"?vDetail():S.tab==="intake"?vIntake():S.tab==="pays"?vPays():vAcct();
+}
+
+/* actions */
+async function reload(){await Promise.all([loadShips(),loadPays()])}
+async function act(a,el){
+  if(a==="tab"){msg(null);S.ires=null;S.tab=el.dataset.t;if(S.tab==="ships")await loadShips();if(S.tab==="pays")await loadPays();return R()}
+  if(a==="flt"){S.flt=el.dataset.k;return R()}
+  if(a==="open")return openShip(el.dataset.id);
+  if(a==="logout"){await sb.auth.signOut();return}
+  if(S.busy)return;
+  if(a==="login"){S.busy=true;msg(null);R();
+    const r=await sb.auth.signInWithPassword({email:$("a_e").value.trim(),password:$("a_p").value});S.busy=false;if(r.error)msg(em(r.error));return R()}
+  if(a==="pay"){S.busy=true;msg(null);R();
+    const r=await sb.rpc("confirm_payment",{p_ship:el.dataset.id});S.busy=false;
+    if(r.error)msg(em(r.error));else{msg("تم تأكيد الدفع وإصدار الفاتورة","o");await loadPays()}
+    return S.tab==="detail"?openShip(el.dataset.id).then(()=>{}):R()}
+  if(a==="setst"){S.busy=true;msg(null);R();
+    const r=await sb.rpc("set_status",{p_ship:el.dataset.id,p_status:+el.dataset.st});S.busy=false;
+    if(r.error){msg(em(r.error));return R()}
+    return openShip(el.dataset.id)}
+  if(a==="deliver"){const by=($("d_by")||{}).value;S.busy=true;msg(null);R();
+    const r=await sb.rpc("record_delivery",{p_ship:el.dataset.id,p_by:by||""});S.busy=false;
+    if(r.error){msg(em(r.error));return R()}
+    return openShip(el.dataset.id)}
+  if(a==="intake"){const i=S.intake;
+    if(!i.id||i.pin.length!==4||!(+i.w>0)||!(+i.n>=1)){S.ires={t:"اكتبي رقم الشحنة والـ PIN (4 أرقام) والوزن وعدد الطرود",k:"e"};return R()}
+    S.busy=true;S.ires=null;msg(null);R();
+    const r=await sb.rpc("verify_intake",{p_ship:i.id.toUpperCase(),p_pin:i.pin,p_weight:+i.w,p_packages:+i.n,p_cond:i.c});S.busy=false;
+    if(r.error)S.ires={t:em(r.error),k:"e"};
+    else{const x=(r.data&&r.data[0])||{};
+      if(x.result==="ok"){S.ires={t:`تم الاستلام ✓  السعر ${eur(x.price_before)} ← ${eur(x.price_after)}${+x.diff?" (فرق "+eur(x.diff)+")":""}`,k:"o"};S.intake={id:"",pin:"",w:"",n:"1",c:"ok"}}
+      else if(x.result==="wrong_pin")S.ires={t:"الرمز غلط. المحاولات محدودة (5).",k:"e"};
+      else if(x.result==="locked")S.ires={t:"الشحنة مقفلة بعد 5 محاولات غلط. تواصلي مع المدير.",k:"e"};
+      else S.ires={t:"نتيجة غير متوقعة",k:"e"}}
+    return R()}
+}
+document.addEventListener("click",e=>{const el=e.target.closest("[data-a]");if(el)act(el.dataset.a,el)});
+document.addEventListener("input",e=>{const id=e.target.id;
+  if(id==="s_q"){S.q=e.target.value;const l=$("sl");if(l)l.innerHTML=shipList();return}
+  const k={i_id:"id",i_pin:"pin",i_w:"w",i_n:"n",i_c:"c"}[id];if(k)S.intake[k]=e.target.value});
+
+async function onSession(sess){
+  S.user=sess?sess.user:null;S.prof=null;
+  if(S.user){const p=await sb.from("profiles").select("name,email,role").eq("id",S.user.id).single();S.prof=p.data;
+    if(S.prof&&STAFF.indexOf(S.prof.role)>=0)await reload()}
+  R();
+}
+sb.auth.onAuthStateChange((ev,sess)=>{if(ev==="INITIAL_SESSION"||ev==="SIGNED_IN"||ev==="SIGNED_OUT")setTimeout(()=>onSession(sess),0)});
+</script></body></html>
