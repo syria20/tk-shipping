@@ -675,7 +675,7 @@ else if(v=="points"){h=slim("نقاط T.K")+`<div class="pad pt"><div class="wh"
 <div class="card"><div class="t" style="display:flex;align-items:center;gap:12px"><div class="ico" style="width:46px;height:46px;border-radius:14px;background:rgba(10,47,107,.09);color:var(--brand);display:grid;place-items:center">${ic("pin",24)}</div><div><b style="display:block;font-size:16px">T.K Group — هيرنه</b><small class="sub">Baukauer Str. 39F<br>44653 Herne</small></div></div><a class="cta ghost" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Baukauer+Str+39F+44653+Herne">افتح في الخرائط</a></div><p class="note">نضيف نقاطاً جديدة قريباً</p></div>`;}
 else if(v=="acct"){const u=s.user;
 if(s.au.mode=="newpw"){h=window.newpwView()}else if(!u&&s.au.mode=="forgot"){const a=s.au;h=slim("استعادة كلمة المرور")+`<div class="pad pt"><div class="card">${a.sent?`<div class="done-ic" style="width:64px;height:64px;margin:0 auto 12px"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="${P.check}"/></svg></div><h3 style="text-align:center">تحقق من بريدك</h3><p class="sub" style="text-align:center">أرسلنا رابط إعادة تعيين كلمة المرور إلى ${esc(a.email)}</p><button class="cta" onclick="s.au.mode='in';s.au.sent=false;draw()">العودة لتسجيل الدخول</button>`:`<p class="sub">أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.</p><span class="lbl">البريد الإلكتروني</span><input type="email" dir="ltr" style="text-align:right" value="${esc(a.email)}" oninput="s.au.email=this.value" placeholder="name@email.com">${a.err?`<div class="err">${a.err}</div>`:""}<button class="cta" onclick="resetPw()">إرسال الرابط</button><button class="cta ghost" onclick="s.au.mode='in';s.au.err='';draw()">رجوع</button>`}</div></div>`;}
-else if(!u){const a=s.au;h=slim("حسابي")+`<div class="pad pt"><div class="card">${langSw()}</div>${acctLinks()}${moreLink()}${s.bio.on?bioBtn():""}<div class="card"><div class="opt2"><button class="${a.mode=="in"?"on":""}" onclick="s.au.mode='in';s.au.err='';draw()">تسجيل الدخول</button><button class="${a.mode=="up"?"on":""}" onclick="s.au.mode='up';s.au.err='';draw()">حساب جديد</button></div>${a.mode=="up"?`<span class="lbl">الاسم الكامل</span><input value="${esc(a.name)}" oninput="s.au.name=this.value" placeholder="مثال: أحمد الخطيب">`:""}<span class="lbl">البريد الإلكتروني</span><input type="email" dir="ltr" style="text-align:right" value="${esc(a.email)}" oninput="s.au.email=this.value" placeholder="name@email.com"><span class="lbl">كلمة المرور</span><input type="password" dir="ltr" style="text-align:right" oninput="s.au.pw=this.value" placeholder="••••••••" autocomplete="off">${a.mode=="up"?`<span class="lbl">رقم الهاتف</span><input type="tel" inputmode="tel" dir="ltr" style="text-align:right" value="${esc(a.phone)}" oninput="s.au.phone=this.value" placeholder="+49 ...">`:""}${a.mode=="up"?bizFields():""}${a.info?`<div class="err" style="background:rgba(22,160,106,.12);color:var(--ok)">${a.info}</div>`:""}${a.err?`<div class="err">${a.err}</div>`:""}<button class="cta" onclick="auth()">${a.mode=="up"?"إنشاء الحساب":"دخول"}</button>${a.mode=="in"?`<button class="tg" style="justify-content:center;border:0;color:var(--brand);font-size:14px;margin-top:6px" onclick="s.au.mode='forgot';s.au.err='';draw()">نسيت كلمة المرور؟</button>`:""}</div><button class="cta ghost" onclick="go('home')">تصفّح الأسعار كزائر</button><p class="note" style="text-align:center;margin-top:8px">لحجز شحنة وتتبعها تحتاج حساباً</p></div>`;}
+else if(!u){const a=s.au;h=slim("حسابي")+`<div class="pad pt"><div class="card">${langSw()}</div>${acctLinks()}${moreLink()}${s.bio.on?bioBtn():""}<div class="card"><div class="opt2"><button class="${a.mode=="in"?"on":""}" onclick="s.au.mode='in';s.au.err='';draw()">تسجيل الدخول</button><button class="${a.mode=="up"?"on":""}" onclick="s.au.mode='up';s.au.err='';draw()">حساب جديد</button></div>${a.mode=="up"?`<span class="lbl">الاسم الكامل</span><input value="${esc(a.name)}" oninput="s.au.name=this.value" placeholder="مثال: أحمد الخطيب">`:""}<span class="lbl">البريد الإلكتروني</span><input type="email" dir="ltr" style="text-align:right" value="${esc(a.email)}" oninput="s.au.email=this.value" placeholder="name@email.com"><span class="lbl">كلمة المرور</span><input type="password" dir="ltr" style="text-align:right" oninput="s.au.pw=this.value" placeholder="••••••••" autocomplete="off">${a.mode=="up"?`<span class="lbl">رقم الهاتف</span><input type="tel" inputmode="tel" dir="ltr" style="text-align:right" value="${esc(a.phone)}" oninput="s.au.phone=this.value" placeholder="+49 ...">`:""}${a.mode=="up"?bizFields():""}${a.info?`<div class="err" style="background:rgba(22,160,106,.12);color:var(--ok)">${a.info}</div>`:""}${a.err?`<div class="err">${a.err}</div>`:""}<button class="cta" onclick="auth()">${a.mode=="up"?"إنشاء الحساب":"دخول"}</button>${window.socialBtns?socialBtns():""}${a.mode=="in"?`<button class="tg" style="justify-content:center;border:0;color:var(--brand);font-size:14px;margin-top:6px" onclick="s.au.mode='forgot';s.au.err='';draw()">نسيت كلمة المرور؟</button>`:""}</div><button class="cta ghost" onclick="go('home')">تصفّح الأسعار كزائر</button><p class="note" style="text-align:center;margin-top:8px">لحجز شحنة وتتبعها تحتاج حساباً</p></div>`;}
 else{h=slim("حسابي")+`<div class="pad pt"><div class="card">${langSw()}</div><div class="card" style="display:flex;align-items:center;gap:14px"><div style="width:56px;height:56px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:24px;font-weight:800;flex:none">${esc(u.name.trim().slice(0,1).toUpperCase())}</div><div><b data-nt style="display:block;font-size:17px">${esc(u.name)}</b><small class="sub" data-nt>${esc(u.email)}${u.phone?" · "+esc(u.phone):""}</small>${u.biz?`<br><span class="badge ok">حساب شركة</span> <small class="sub" data-nt>${esc(u.biz.co)}</small>`:""}</div></div>
 <div class="card"><h3>عناويني المحفوظة</h3>${s.addr.length?s.addr.map((x,i)=>`<div class="r" style="align-items:center"><span data-nt><b style="color:var(--ink)">${esc(x.l)}</b><br>${esc(x.t)}</span><button class="cta ghost" style="width:auto;margin:0;padding:6px 12px" onclick="delAddr(${i})">حذف</button></div>`).join(""):`<p class="sub">لا توجد عناوين محفوظة بعد</p>`}<span class="lbl">إضافة عنوان</span><input id="al" placeholder="الاسم، مثال: المنزل"><input id="at" placeholder="العنوان بالتفصيل" style="margin-top:8px">${s.au.aerr?`<div class="err">${s.au.aerr}</div>`:""}<button class="cta ghost" onclick="addAddr()">حفظ العنوان</button></div>
 ${acctLinks()}${moreLink()}${bioCard()}${refCard()}${rcpCard()}<div class="card"><h3>سجل الطلبات</h3>${s.ships.length?s.ships.map(x=>`<button class="tg" onclick="go('detail','${x.id}')"><span>${x.id}<br><small class="sub">${C[x.f.from][0]} ← ${C[x.f.to][0]}</small></span><b>${eur(x.price)}</b></button>`).join(""):empty("box","لا توجد طلبات بعد","ستظهر طلباتك السابقة هنا",0,1)}</div>
@@ -786,6 +786,7 @@ async function onSess(sess,ev){
   draw();
 }
 sb.auth.onAuthStateChange((ev,sess)=>{
+  if(ev==="INITIAL_SESSION"&&!sess){try{localStorage.removeItem("tk-bio2")}catch(e){}const l=document.getElementById("biolock");if(l)l.remove()}
   if(ev==="PASSWORD_RECOVERY"){setTimeout(()=>{s.view="acct";s.au.mode="newpw";s.au.err="";draw()},0);return}
   if(ev==="INITIAL_SESSION"||ev==="SIGNED_IN"||ev==="SIGNED_OUT")setTimeout(()=>onSess(sess,ev),0);
 });
@@ -835,7 +836,7 @@ window.saveNewPw=async function(){
   });
   draw();
 };
-window.logout=async function(){await sb.auth.signOut()};
+window.logout=async function(){try{localStorage.removeItem("tk-bio2")}catch(e){}await sb.auth.signOut()};
 
 /* ---- booking ---- */
 async function createOne(p,promo){
@@ -902,7 +903,6 @@ window.notifLog=function(){
   const txt=n=>{const p=n.payload||{};if(n.kind==="booked")return "تم حجز شحنتك "+(p.shipment||"");if(n.kind==="status")return "شحنة "+(p.shipment||"")+": "+(STEPS[p.status]||"");return "إشعار من T.K Group"};
   return `<div class="card"><h3>آخر الإشعارات</h3>${L.length?L.map(n=>`<div class="r"><span data-nt>${esc(txt(n))}</span><b data-nt dir="ltr">${stampOf(n.created_at)}</b></div>`).join(""):`<p class="sub">لا توجد إشعارات بعد</p>`}<p class="note">نرسل لك بريداً إلكترونياً عند كل تغيّر في حالة شحنتك.</p></div>`;
 };
-window.bioCard=()=>"";
 window.bioBtn=()=>"";
 window.sendRate=async function(id){
   const x=s.ships.find(z=>z.id==id);if(!x||!x.rt)return;
@@ -931,7 +931,78 @@ const _saveRcp=window.saveRcp;window.saveRcp=function(){_saveRcp();lsSet("tk-rcp
 const _addAddr=window.addAddr;window.addAddr=function(){_addAddr();lsSet("tk-addr",s.addr)};
 const _delAddr=window.delAddr;window.delAddr=function(){_delAddr.apply(null,arguments);lsSet("tk-addr",s.addr)};
 
-/* ---- fake biometric login is disabled: it would bypass the real password ---- */
+
+/* ---- social login: buttons appear only for providers enabled in Supabase ---- */
+const SOC={google:["Google",'<svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.6 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.4-4.7 3.4-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.5-2.7c-1 .7-2.2 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2.1v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.7 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.1-3.1A11 11 0 0 0 2.1 7.1l3.6 2.8C6.6 7.4 9.100 5.400 12 5.400z"/></svg>'],
+  apple:["Apple",'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16.4 12.6c0-2.500 2-3.700 2.100-3.800-1.200-1.700-3-1.900-3.600-2-1.500-.2-3 .9-3.800.9s-2-.9-3.300-.9C6 6.800 4.400 7.800 3.500 9.300c-1.800 3.100-.5 7.700 1.300 10.200.9 1.200 1.900 2.600 3.300 2.500 1.300-.1 1.800-.8 3.400-.8s2 .8 3.400.8 2.300-1.200 3.100-2.500c1-1.400 1.400-2.800 1.400-2.900-.1 0-2.700-1-2.700-4zM14 5c.7-.9 1.200-2.100 1.100-3.300-1 0-2.300.7-3 1.600-.7.800-1.200 2-1.100 3.200 1.100.1 2.300-.6 3-1.500z"/></svg>'],
+  facebook:["Facebook",'<svg viewBox="0 0 24 24" width="20" height="20"><path fill="#1877F2" d="M24 12a12 12 0 1 0-13.900 11.900v-8.400h-3V12h3V9.400c0-3 1.800-4.700 4.500-4.700 1.300 0 2.700.2 2.700.2v3h-1.500c-1.500 0-2 .9-2 1.900V12h3.400l-.5 3.500h-2.800v8.400A12 12 0 0 0 24 12z"/></svg>']};
+let socOn=[];
+fetch(SB_URL+"/auth/v1/settings",{headers:{apikey:SB_KEY}}).then(r=>r.json()).then(j=>{
+  socOn=Object.keys(SOC).filter(k=>j&&j.external&&j.external[k]);if(socOn.length){try{draw()}catch(e){}}
+}).catch(()=>{});
+window.socialBtns=function(){
+  if(!socOn.length||(s.au.mode!=="in"&&s.au.mode!=="up"))return "";
+  return `<div class="soc"><div class="or"><span>أو</span></div>${socOn.map(k=>`<button class="cta ghost socb" onclick="socialLogin('${k}')">${SOC[k][1]}<span>${s.au.mode==="up"?"التسجيل":"الدخول"} عبر ${SOC[k][0]}</span></button>`).join("")}</div>`;
+};
+window.socialLogin=async function(p){
+  s.au.err="";
+  const r=await sb.auth.signInWithOAuth({provider:p,options:{redirectTo:location.origin+location.pathname}});
+  if(r.error){s.au.err=em(r.error);draw()}
+};
+(function(){const st=document.createElement("style");st.textContent=`.soc{margin-top:12px}.or{display:flex;align-items:center;gap:10px;color:var(--mut,#789);font-size:13px;margin-bottom:4px}.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}.socb{display:flex;align-items:center;justify-content:center;gap:10px}#biolock{position:fixed;inset:0;z-index:99999;background:radial-gradient(circle at 50% 40%,#0a4590,#02183c 70%);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;font-family:inherit}#biolock button{border:0;border-radius:14px;padding:14px 22px;font:inherit;font-weight:700;cursor:pointer}#biolock .go{background:#ffc83d;color:#06214a}#biolock .lo{background:none;color:#cfe0ff;font-weight:500;text-decoration:underline}`;document.head.appendChild(st)})();
+
+/* ---- biometric app lock (WebAuthn: Face ID / Touch ID / fingerprint). Device-side lock on top of the saved session. ---- */
+const BIO_K="tk-bio2";
+const b64=u=>btoa(String.fromCharCode(...new Uint8Array(u)));
+const unb64=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
+const bioRec=()=>lsGet(BIO_K,null);
+let bioSup=false;
+try{if(window.isSecureContext&&window.PublicKeyCredential&&PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable)
+  PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable().then(v=>{bioSup=!!v;try{draw()}catch(e){}}).catch(()=>{})}catch(e){}
+window.bioCard=function(){
+  if(!s.user||!bioSup)return "";
+  const on=!!(bioRec()&&bioRec().uid===s.user.id);
+  return `<div class="card"><button class="tg ${on?"on":""}" onclick="bioToggle()" style="border-top:0">${ic("finger",22)}<span style="flex:1;margin-inline-start:10px"><b style="display:block">فتح التطبيق بالبصمة أو الوجه</b><small class="sub">يطلب بصمتك أو وجهك كل ما فتحت التطبيق</small></span><i></i></button>${s.bioErr?`<div class="err">${s.bioErr}</div>`:""}</div>`;
+};
+window.bioToggle=async function(){
+  s.bioErr="";
+  const on=bioRec()&&bioRec().uid===s.user.id;
+  if(on){lsSet(BIO_K,null);try{localStorage.removeItem(BIO_K)}catch(e){}draw();return}
+  try{
+    const cred=await navigator.credentials.create({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),rp:{name:"T.K Group"},
+      user:{id:new TextEncoder().encode(s.user.id).slice(0,64),name:s.user.email||"user",displayName:s.user.name||"user"},
+      pubKeyCredParams:[{type:"public-key",alg:-7},{type:"public-key",alg:-257}],
+      authenticatorSelection:{authenticatorAttachment:"platform",userVerification:"required",residentKey:"discouraged"},timeout:60000}});
+    lsSet(BIO_K,{uid:s.user.id,id:b64(cred.rawId)});
+  }catch(e){s.bioErr="ما تم التفعيل. تأكد إن البصمة أو الوجه مفعّل بالجهاز وجرّب مرة تانية."}
+  draw();
+};
+async function bioAsk(){
+  const r=bioRec();if(!r)return true;
+  try{
+    await navigator.credentials.get({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),userVerification:"required",timeout:60000,
+      allowCredentials:[{type:"public-key",id:unb64(r.id)}]}});
+    return true;
+  }catch(e){return false}
+}
+function lockShow(){
+  if(!bioRec()||document.getElementById("biolock"))return;
+  const d=document.createElement("div");d.id="biolock";d.dir="rtl";
+  d.innerHTML=`<div style="width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center">${ic("finger",44)}</div><h2 style="margin:0">T.K Group</h2><p style="margin:0;opacity:.85">افتح التطبيق بالبصمة أو الوجه</p><button class="go" id="bl-go">فتح</button><button class="lo" id="bl-out">تسجيل الخروج واستخدام كلمة المرور</button>`;
+  document.body.appendChild(d);
+  const go=async()=>{if(await bioAsk())d.remove()};
+  d.querySelector("#bl-go").onclick=go;
+  d.querySelector("#bl-out").onclick=async()=>{try{localStorage.removeItem(BIO_K)}catch(e){}d.remove();await sb.auth.signOut()};
+  setTimeout(go,300);
+}
+lockShow();
+let hiddenAt=0;
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)hiddenAt=Date.now();
+  else if(hiddenAt&&Date.now()-hiddenAt>60000)lockShow();
+});
+
+/* ---- old fake biometric login is disabled: it would bypass the real password ---- */
 try{localStorage.removeItem("tk-bio")}catch(e){}
 s.bio={on:false,no:true,data:null};
 s.ships=[];s.user=null;
