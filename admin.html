@@ -42,10 +42,10 @@ const GN={newc:"جديد",used:"مستعمل",elec:"كهربائيات",tools:"�
 const PM={bank:"تحويل بنكي",cod:"عند التسليم",wallet:"محفظة",card:"بطاقة"};
 const RL={customer:"زبون",business:"شركة",herne_staff:"موظف هيرنه",support:"دعم",accountant:"محاسب",admin:"مدير"};
 const COND={ok:"سليمة",dmg:"فيها ضرر",short:"ناقصة"};
-const ERR={"Invalid login credentials":"الإيميل أو كلمة السر غير صحيحة","Email not confirmed":"لازم تأكدي الإيميل أول","forbidden":"ما عندك صلاحية لهالعملية","already received":"هالشحنة انستلمت من قبل","shipment not found":"رقم الشحنة غير موجود","weight and packages required":"اكتبي الوزن وعدد الطرود","receiver name required":"اكتبي اسم المستلم","no pending payment":"ما في دفعة معلّقة"};
+const ERR={"Invalid login credentials":"الإيميل أو كلمة السر غير صحيحة","Email not confirmed":"لازم تأكدي الإيميل أول","forbidden":"ما عندك صلاحية لهالعملية","user not found":"ما في حساب بهالإيميل. لازم يسجّل أول من تطبيق الزبون","cannot change own role":"ما بتقدري تغيّري دورك بنفسك","bank payment not confirmed":"التحويل البنكي لسا ما انأكّد. أكّدي الدفع أول","already received":"هالشحنة انستلمت من قبل","shipment not found":"رقم الشحنة غير موجود","weight and packages required":"اكتبي الوزن وعدد الطرود","receiver name required":"اكتبي اسم المستلم","no pending payment":"ما في دفعة معلّقة"};
 const em=e=>{const m=(e&&e.message)||String(e);for(const k in ERR)if(m.indexOf(k)>-1)return ERR[k];return m};
 const STAFF=["herne_staff","support","accountant","admin"];
-let S={user:null,prof:null,tab:"ships",ships:[],flt:"all",q:"",sel:null,det:null,pays:[],msg:null,busy:false,intake:{id:"",pin:"",w:"",n:"1",c:"ok"},ires:null};
+let S={team:[],tm:{e:"",r:"herne_staff"},user:null,prof:null,tab:"ships",ships:[],flt:"all",q:"",sel:null,det:null,pays:[],msg:null,busy:false,intake:{id:"",pin:"",w:"",n:"1",c:"ok"},ires:null};
 const msg=(t,k)=>{S.msg=t?{t,k:k||"e"}:null},M=()=>S.msg?`<div class="msg ${S.msg.k}">${h(S.msg.t)}</div>`:"";
 const role=()=>S.prof&&S.prof.role;
 const can=a=>role()==="admin"||a.includes(role());
@@ -82,8 +82,10 @@ function shipList(){
   <div class="row sp"><span class="mut">${h((x.profiles&&x.profiles.name)||"")} ← ${h(x.recipient_name)}</span><b>${eur(x.price)}</b></div></div>`).join("")||`<div class="box mut" style="text-align:center">لا يوجد شحنات</div>`}
 function vShips(){
   const f=S.flt;
-  const chips=[["all","الكل"],...ST.map((n,i)=>[String(i),n])].map(([k,l])=>`<button data-a="flt" data-k="${k}" class="${f===k?"on":""}">${l}</button>`).join("");
-  return `<div class="box"><input id="s_q" placeholder="بحث: رقم الشحنة أو اسم" value="${h(S.q)}"><div class="chips" style="margin-top:8px">${chips}</div></div><div id="sl">${shipList()}</div>`;
+  const cnt=k=>k==="all"?S.ships.length:S.ships.filter(x=>String(x.status)===k).length;
+  const chips=[["all","الكل"],...ST.map((n,i)=>[String(i),n])].map(([k,l])=>`<button data-a="flt" data-k="${k}" class="${f===k?"on":""}">${l} (${cnt(k)})</button>`).join("");
+  const on=f!=="all"?`<div class="msg i" style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span>الفلتر المفعّل: <b>${h(ST[+f])}</b></span><button class="btn g" data-a="flt" data-k="all" style="margin:0;padding:4px 12px;width:auto">إلغاء الفلتر ✕</button></div>`:"";
+  return `<div class="box"><input id="s_q" placeholder="بحث: رقم الشحنة أو اسم" value="${h(S.q)}"><div class="chips" style="margin-top:8px">${chips}</div>${on}</div><div id="sl">${shipList()}</div>`;
 }
 function vDetail(){
   const d=S.det;if(!d)return `<div class="spin">جاري التحميل…</div>`;const s=d.s;if(!s)return `<div class="box">غير موجودة</div>`;
@@ -119,10 +121,23 @@ function vPays(){return `<div class="box"><h2>دفعات بانتظار التأ
   <button class="btn ok" data-a="pay" data-id="${h(p.shipment_id)}" ${S.busy?"disabled":""}>تأكيد الاستلام</button><button class="btn g" data-a="open" data-id="${h(p.shipment_id)}">التفاصيل</button></div>`).join("")||`<div class="box mut" style="text-align:center">ما في دفعات معلّقة</div>`}${M()}`}
 function vAcct(){return `<div class="box"><h2>حسابي</h2><div class="kv"><span>الاسم</span><b>${h(S.prof.name)}</b></div><div class="kv"><span>الدور</span><b>${h(RL[role()]||role())}</b></div><button class="btn g" data-a="logout">تسجيل خروج</button></div>`}
 
+async function loadTeam(){
+  const r=await sb.from("profiles").select("id,name,email,role,phone").in("role",STAFF).order("role");
+  S.team=r.data||[];
+}
+function vTeam(){const T=S.team||[];
+  const opts=["herne_staff","support","accountant","admin","customer"].map(k=>`<option value="${k}">${RL[k]}</option>`).join("");
+  return `<div class="box"><h2>فريق العمل (${T.length})</h2>${T.map(x=>`<div class="kv"><span>${h(x.name)} <small class="mut" dir="ltr">${h(x.email)}</small></span><b>${h(RL[x.role]||x.role)}</b></div>`).join("")}</div>
+  <div class="box"><h2>إضافة أو تغيير دور موظف</h2>
+  <p class="mut">الموظف الجديد لازم يسجّل حساب أول من تطبيق الزبون ويأكّد إيميله. بعدين اكتبي إيميله هون واختاري دوره. لإرجاعه زبون اختاري "زبون".</p>
+  <label>إيميل الموظف<input id="t_e" type="email" dir="ltr" value="${h(S.tm.e)}"></label>
+  <label>الدور<select id="t_r">${opts.replace('value="'+S.tm.r+'"','value="'+S.tm.r+'" selected')}</select></label>
+  ${M()}<button class="btn" data-a="setrole" ${S.busy?"disabled":""}>حفظ الدور</button></div>`}
 function tabs(){const t=[];
   if(can(["support"])||can(["accountant"]))t.push(["ships","الشحنات"]);
   if(can(["herne_staff"]))t.push(["intake","استلام هيرنه"]);
   if(can(["accountant"]))t.push(["pays","المدفوعات"]);
+  if(role()==="admin")t.push(["team","الفريق"]);
   t.push(["acct","حسابي"]);return t}
 function R(){
   const a=$("app"),n=$("nav");$("who").textContent=S.prof?S.prof.name:"";
@@ -131,13 +146,19 @@ function R(){
   n.hidden=false;const T=tabs();if(!T.some(x=>x[0]===S.tab)&&S.tab!=="detail")S.tab=T[0][0];
   const cur=S.tab==="detail"?"ships":S.tab;
   n.innerHTML=T.map(([k,l])=>`<button data-a="tab" data-t="${k}" class="${cur===k?"on":""}">${l}</button>`).join("");
-  a.innerHTML=S.tab==="ships"?vShips():S.tab==="detail"?vDetail():S.tab==="intake"?vIntake():S.tab==="pays"?vPays():vAcct();
+  a.innerHTML=S.tab==="ships"?vShips():S.tab==="detail"?vDetail():S.tab==="intake"?vIntake():S.tab==="pays"?vPays():S.tab==="team"?vTeam():vAcct();
 }
 
 /* actions */
 async function reload(){await Promise.all([loadShips(),loadPays()])}
 async function act(a,el){
-  if(a==="tab"){msg(null);S.ires=null;S.tab=el.dataset.t;if(S.tab==="ships")await loadShips();if(S.tab==="pays")await loadPays();return R()}
+  if(a==="tab"){msg(null);S.ires=null;S.tab=el.dataset.t;if(S.tab==="ships")await loadShips();if(S.tab==="pays")await loadPays();if(S.tab==="team")await loadTeam();return R()}
+  if(a==="setrole"){const e=($("t_e").value||"").trim().toLowerCase(),r=$("t_r").value;S.tm={e,r};
+    if(!e){msg("اكتبي إيميل الموظف");return R()}
+    S.busy=true;msg(null);R();
+    const x=await sb.rpc("set_user_role",{p_email:e,p_role:r});S.busy=false;
+    if(x.error)msg(em(x.error));else{msg("تم تعديل الدور ✓","o");S.tm={e:"",r:"herne_staff"};await loadTeam()}
+    return R()}
   if(a==="flt"){S.flt=el.dataset.k;return R()}
   if(a==="open")return openShip(el.dataset.id);
   if(a==="logout"){await sb.auth.signOut();return}

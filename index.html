@@ -30,6 +30,8 @@ nav button.on{color:var(--yel);border-color:var(--yel);font-weight:700}
 .tl{list-style:none;margin:0;padding:0}.tl li{padding:6px 0;display:flex;gap:10px}.tl i{width:12px;height:12px;border-radius:50%;background:var(--bd);margin-top:6px;flex:none}.tl li.d i{background:var(--ok)}.tl li.d{color:var(--tx)}.tl li{color:var(--mut)}
 .paper{background:#fff;color:#111;border-radius:6px;padding:14px;direction:ltr;text-align:left;font:13px/1.5 Arial,sans-serif}.paper h3{margin:0 0 8px;font-size:18px}.paper table{width:100%;border-collapse:collapse;margin:8px 0}.paper td,.paper th{border:1px solid #bbb;padding:5px;text-align:left}.paper .r{text-align:right}
 .spin{text-align:center;padding:30px;color:var(--mut)}
+#printarea{display:none}
+@media print{body.pp>*:not(#printarea){display:none!important}body.pp #printarea{display:block}body.pp{background:#fff;padding:0}body.pp .paper{border-radius:0;font-size:14px}}
 </style></head><body>
 <header><b>T.K Group</b><small id="who"></small></header>
 <main id="app"><div class="spin">جاري التحميل…</div></main>
@@ -143,19 +145,28 @@ function vDetail(){
   ${d.inv.map(i=>invDoc(s,i)).join("")}`;
 }
 function invDoc(s,i){
+  return `<div class="box"><h2>الفاتورة</h2>${invPaper(s,i)}<button class="btn g" data-a="print" data-n="${h(i.number)}" style="margin-top:10px">تنزيل الفاتورة PDF</button></div>`;
+}
+function invPaper(s,i){
   const k=S.seller||{},rate=Math.round(+i.vat_rate*100);
-  return `<div class="box"><h2>الفاتورة</h2><div class="paper"><h3>RECHNUNG</h3>
+  return `<div class="paper"><h3>RECHNUNG</h3>
   <div><b>Verkäufer:</b> ${h(k.name)}, ${h(k.street)}, ${h(k.city)}<br>Tel: ${h(k.phone)} · Steuernummer: ${h(k.tax_no)} · USt-IdNr.: ${h(k.vat_id)}</div>
   <div style="margin-top:6px"><b>Käufer:</b> ${h(S.prof&&S.prof.name)}, ${h(S.prof&&S.prof.email)}</div>
   <div style="margin-top:6px"><b>Rechnungsnr.:</b> ${h(i.number)} · <b>Datum:</b> ${new Date(i.issued_at).toLocaleDateString("de-DE")}</div>
   <table><tr><th>Leistung</th><th>USt</th><th class="r">Netto</th></tr><tr><td>Transport ${h(s.id)} (${s.weight_kg} kg)</td><td>${rate} %</td><td class="r">${eur(i.net)}</td></tr></table>
   <div class="r">Nettosumme: ${eur(i.net)}<br>USt ${rate} %: ${eur(i.vat)}<br><b>Gesamtbetrag: ${eur(i.amount)}</b></div>
   <div style="margin-top:6px"><b>Bankverbindung:</b> Herner Sparkasse · M. Ismaiel Kaytou · IBAN DE43 4325 0030 0011 0384 45 · SWIFT WELADED1HRN</div>
-  <div style="margin-top:6px">Vielen Dank für Ihren Auftrag!</div></div></div>`;
+  <div style="margin-top:6px">Vielen Dank für Ihren Auftrag!</div></div>`;
 }
-function vAcct(){const p=S.prof||{};return `<div class="box"><h2>حسابي</h2>
-  <div class="kv"><span>الاسم</span><b>${h(p.name)}</b></div><div class="kv"><span>الإيميل</span><b>${h(p.email)}</b></div>
-  <div class="kv"><span>الهاتف</span><b>${h(p.phone||"—")}</b></div><div class="kv"><span>رصيد المحفظة</span><b>${eur(S.bal)}</b></div>
+function vAcct(){const p=S.prof||{};
+  const info=S.edit?`<label>الاسم<input id="e_n" value="${h(p.name)}"></label><label>الهاتف<input id="e_p" value="${h(p.phone||"")}" dir="ltr" inputmode="tel"></label>
+  <div class="kv"><span>الإيميل</span><b>${h(p.email)}</b></div>
+  <div class="row" style="gap:8px;margin-top:10px"><button class="btn" data-a="saveprof" ${S.busy?"disabled":""}>حفظ</button><button class="btn g" data-a="editoff">إلغاء</button></div>`
+  :`<div class="kv"><span>الاسم</span><b>${h(p.name)}</b></div><div class="kv"><span>الإيميل</span><b>${h(p.email)}</b></div>
+  <div class="kv"><span>الهاتف</span><b>${h(p.phone||"—")}</b></div>
+  <button class="btn g" data-a="editon" style="margin-top:10px">تعديل الاسم والهاتف</button>`;
+  return `<div class="box"><h2>حسابي</h2>${S.msg?`<div class="msg ${S.msg.k==="o"?"o":"e"}">${h(S.msg.t)}</div>`:""}${info}
+  <div class="kv"><span>رصيد المحفظة</span><b>${eur(S.bal)}</b></div>
   <div class="kv"><span>كود الإحالة</span><b>${h(p.ref_code)}</b></div>
   <p class="mut">شاركي كودك: صاحبك بياخد خصم 5% على أول شحنة، وإنتي بتاخدي 5 € عند وصولها.</p>
   <button class="btn g" data-a="logout">تسجيل خروج</button></div>`}
@@ -174,8 +185,25 @@ function R(){
 const val=i=>{const e=$(i);return e?e.value.trim():""};
 async function act(a,el){
   if(a==="mode"){S.mode=S.mode==="login"?"signup":"login";msg(null);return R()}
-  if(a==="tab"){msg(null);S.tab=el.dataset.t;if(S.tab==="list"||S.tab==="acct")await loadAll();return R()}
+  if(a==="tab"){msg(null);S.edit=false;S.tab=el.dataset.t;if(S.tab==="list"||S.tab==="acct")await loadAll();return R()}
   if(a==="open")return openShip(el.dataset.id);
+  if(a==="editon"){msg(null);S.edit=true;return R()}
+  if(a==="editoff"){msg(null);S.edit=false;return R()}
+  if(a==="print"){
+    const i=(S.detail&&S.detail.inv||[]).find(x=>x.number===el.dataset.n);if(!i)return;
+    let pa=$("printarea");if(!pa){pa=document.createElement("div");pa.id="printarea";document.body.appendChild(pa)}
+    pa.innerHTML=invPaper(S.detail.s,i);document.title="Rechnung "+i.number;
+    document.body.classList.add("pp");
+    try{window.print()}catch(e){}
+    setTimeout(()=>{document.body.classList.remove("pp");document.title="T.K Group"},1000);return}
+  if(a==="saveprof"){
+    const n=val("e_n"),p=val("e_p");
+    if(n.length<2){msg("اكتبي اسمك");return R()}
+    S.busy=true;msg(null);R();
+    const r=await sb.from("profiles").update({name:n,phone:p||null}).eq("id",S.user.id);
+    S.busy=false;
+    if(r.error){msg(em(r.error));return R()}
+    await loadAll();S.edit=false;msg("تم حفظ التعديلات","o");return R()}
   if(a==="logout"){await sb.auth.signOut();return}
   if(S.busy)return;
   if(a==="login"||a==="signup"){
