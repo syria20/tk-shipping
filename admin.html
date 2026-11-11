@@ -74,8 +74,22 @@ async function openShip(id){
     sb.from("invoices").select("number,issued_at,amount").eq("shipment_id",id)]);
   S.det={s:sh.data,log:lg.data||[],pay:py.data||[],inv:iv.data||[]};R();
   await loadFiles(id);R();
+  await loadDocs(id);R();
 }
 
+/* customer documents */
+async function loadDocs(id){
+  const r=await sb.from("shipment_docs").select("id,name,status,why,file_path").eq("shipment_id",id).not("file_path","is",null).order("id");
+  let list=r.data||[];
+  if(list.length){const u=await sb.storage.from("shipment-docs").createSignedUrls(list.map(f=>f.file_path),3600),m={};
+    (u.data||[]).forEach(x=>{if(x.path)m[x.path]=x.signedUrl});list=list.map(f=>({...f,url:m[f.file_path]||""}))}
+  S.dd={id,list,err:""};
+}
+function docBox(id){
+  const d=S.dd&&S.dd.id===id?S.dd:{list:[],err:""},T={pending:"قيد المراجعة",ok:"مقبول",bad:"مرفوض"};
+  const rows=d.list.map(x=>`<div class="kv" style="flex-wrap:wrap;gap:6px"><span><a href="${h(x.url)}" target="_blank" rel="noopener">${h(x.name)}</a></span><b>${T[x.status]||x.status}</b>${x.status==="bad"&&x.why?`<span class="mut" style="width:100%">السبب: ${h(x.why)}</span>`:""}${can(["support"])?`<div class="row" style="width:100%"><input id="dw${x.id}" placeholder="سبب الرفض" style="flex:1"><button class="btn ok" data-a="drev" data-ok="1" data-did="${x.id}" data-id="${h(id)}">قبول</button><button class="btn g" data-a="drev" data-ok="0" data-did="${x.id}" data-id="${h(id)}">رفض</button></div>`:""}</div>`).join("");
+  return `${rows||`<span class="mut">الزبون ما رفع مستندات</span>`}${d.err?`<div class="msg e">${h(d.err)}</div>`:""}`;
+}
 /* photos + signature */
 const FK={intake_photo:"صورة الاستلام",delivery_photo:"صورة التسليم",signature:"توقيع المستلم"};
 async function loadFiles(id){
@@ -154,6 +168,7 @@ function vDetail(){
   ${!paid&&main&&can(["accountant"])?`<button class="btn ok" data-a="pay" data-id="${h(s.id)}" ${S.busy?"disabled":""}>تأكيد استلام الدفعة (${PM[main.method]})</button>`:""}${M()}</div>
   ${stBtns?`<div class="box"><h2>تغيير الحالة</h2>${stBtns}${!paid&&main&&main.method==="bank"?`<p class="mut">المراحل بعد المستودع مقفلة لحد تأكيد التحويل البنكي.</p>`:""}</div>`:""}
   ${can(["support"])&&s.status>=1&&s.status<6?`<div class="box"><h2>تسجيل التسليم للمستلم</h2><label>اسم اللي استلم<input id="d_by"></label><button class="btn ok" data-a="deliver" data-id="${h(s.id)}">تم التسليم</button></div>`:""}
+  <div class="box"><h2>مستندات الزبون</h2>${docBox(s.id)}</div>
   <div class="box"><h2>الصور والتوقيع</h2>${fileBox(s.id,can(["support"])?["intake_photo","delivery_photo","signature"]:[])}</div>
   <div class="box"><h2>السجل</h2>${ST.map((n,i)=>seen[i]?`<div class="kv"><span>${n}</span><b>${dt(seen[i])}</b></div>`:"").join("")}</div>`;
 }
@@ -216,6 +231,11 @@ async function act(a,el){
     const r=await sb.rpc("chat_reply",{p_thread:S.chat.sel.tid,p_body:v});S.busy=false;
     if(r.error){S.chat.err=em(r.error);return R()}
     S.chat.draft="";await loadThread();R();const m=$("cmsgs");if(m)m.scrollTop=m.scrollHeight;return}
+  if(a==="drev"){const ok=el.dataset.ok==="1",w=($("dw"+el.dataset.did)||{}).value||"";
+    if(!ok&&w.trim().length<3){S.dd={...S.dd,err:"اكتبي سبب الرفض (3 أحرف على الأقل)"};return R()}
+    const r=await sb.rpc("review_doc",{p_doc:+el.dataset.did,p_ok:ok,p_why:ok?null:w.trim()});
+    if(r.error){S.dd={...S.dd,err:ferr(r.error)};return R()}
+    await loadDocs(el.dataset.id);return R()}
   if(a==="fdel"){const r=await sb.rpc("delete_shipment_file",{p_id:+el.dataset.fid});
     if(r.error){S.fl={...S.fl,err:ferr(r.error)};return R()}
     if(r.data)await sb.storage.from("shipment-files").remove([r.data]);
