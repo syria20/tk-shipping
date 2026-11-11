@@ -51,7 +51,7 @@ const COND={ok:"سليمة",dmg:"فيها ضرر",short:"ناقصة"};
 const ERR={"Invalid login credentials":"الإيميل أو كلمة السر غير صحيحة","Email not confirmed":"لازم تأكدي الإيميل أول","forbidden":"ما عندك صلاحية لهالعملية","user not found":"ما في حساب بهالإيميل. لازم يسجّل أول من تطبيق الزبون","cannot change own role":"ما بتقدري تغيّري دورك بنفسك","bank payment not confirmed":"التحويل البنكي لسا ما انأكّد. أكّدي الدفع أول","already received":"هالشحنة انستلمت من قبل","shipment not found":"رقم الشحنة غير موجود","weight and packages required":"اكتبي الوزن وعدد الطرود","receiver name required":"اكتبي اسم المستلم","no pending payment":"ما في دفعة معلّقة"};
 const em=e=>{const m=(e&&e.message)||String(e);for(const k in ERR)if(m.indexOf(k)>-1)return ERR[k];return m};
 const STAFF=["herne_staff","support","accountant","admin"];
-let S={team:[],tm:{e:"",r:"herne_staff"},user:null,prof:null,tab:"ships",ships:[],flt:"all",q:"",sel:null,det:null,pays:[],msg:null,busy:false,intake:{id:"",pin:"",w:"",n:"1",c:"ok"},ires:null};
+let S={team:[],tm:{e:"",r:"herne_staff"},user:null,prof:null,tab:"ships",ships:[],flt:"all",q:"",sel:null,det:null,pays:[],msg:null,busy:false,intake:{id:"",pin:"",w:"",n:"1",c:"ok"},ires:null,chat:{threads:[],sel:null,msgs:[],draft:"",err:""}};
 const msg=(t,k)=>{S.msg=t?{t,k:k||"e"}:null},M=()=>S.msg?`<div class="msg ${S.msg.k}">${h(S.msg.t)}</div>`:"";
 const role=()=>S.prof&&S.prof.role;
 const can=a=>role()==="admin"||a.includes(role());
@@ -143,6 +143,7 @@ function tabs(){const t=[];
   if(can(["support"])||can(["accountant"]))t.push(["ships","الشحنات"]);
   if(can(["herne_staff"]))t.push(["intake","استلام هيرنه"]);
   if(can(["accountant"]))t.push(["pays","المدفوعات"]);
+  if(can(["support"]))t.push(["chat","الدردشة"+(chatUnread()?" ("+chatUnread()+")":"")]);
   if(role()==="admin")t.push(["team","الفريق"]);
   t.push(["acct","حسابي"]);return t}
 function R(){
@@ -152,19 +153,26 @@ function R(){
   n.hidden=false;const T=tabs();if(!T.some(x=>x[0]===S.tab)&&S.tab!=="detail")S.tab=T[0][0];
   const cur=S.tab==="detail"?"ships":S.tab;
   n.innerHTML=T.map(([k,l])=>`<button data-a="tab" data-t="${k}" class="${cur===k?"on":""}">${l}</button>`).join("");
-  a.innerHTML=S.tab==="ships"?vShips():S.tab==="detail"?vDetail():S.tab==="intake"?vIntake():S.tab==="pays"?vPays():S.tab==="team"?vTeam():vAcct();
+  a.innerHTML=S.tab==="ships"?vShips():S.tab==="detail"?vDetail():S.tab==="intake"?vIntake():S.tab==="pays"?vPays():S.tab==="team"?vTeam():S.tab==="chat"?vChat():vAcct();
 }
 
 /* actions */
 async function reload(){await Promise.all([loadShips(),loadPays()])}
 async function act(a,el){
-  if(a==="tab"){msg(null);S.ires=null;S.tab=el.dataset.t;if(S.tab==="ships")await loadShips();if(S.tab==="pays")await loadPays();if(S.tab==="team")await loadTeam();return R()}
+  if(a==="tab"){msg(null);S.ires=null;S.tab=el.dataset.t;if(S.tab==="ships")await loadShips();if(S.tab==="pays")await loadPays();if(S.tab==="team")await loadTeam();if(S.tab==="chat"){S.chat.sel=null;await loadThreads()}return R()}
   if(a==="setrole"){const e=($("t_e").value||"").trim().toLowerCase(),r=$("t_r").value;S.tm={e,r};
     if(!e){msg("اكتبي إيميل الموظف");return R()}
     S.busy=true;msg(null);R();
     const x=await sb.rpc("set_user_role",{p_email:e,p_role:r});S.busy=false;
     if(x.error)msg(em(x.error));else{msg("تم تعديل الدور ✓","o");S.tm={e:"",r:"herne_staff"};await loadTeam()}
     return R()}
+  if(a==="thr"){S.chat.sel={tid:+el.dataset.tid,name:el.dataset.name,email:el.dataset.email,phone:el.dataset.phone};S.chat.msgs=[];S.chat.draft="";S.chat.err="";await loadThread();return R()}
+  if(a==="thrback"){S.chat.sel=null;await loadThreads();return R()}
+  if(a==="csend"){const v=(S.chat.draft||"").trim();if(!v||S.busy||!S.chat.sel)return;
+    S.busy=true;S.chat.err="";R();
+    const r=await sb.rpc("chat_reply",{p_thread:S.chat.sel.tid,p_body:v});S.busy=false;
+    if(r.error){S.chat.err=em(r.error);return R()}
+    S.chat.draft="";await loadThread();R();const m=$("cmsgs");if(m)m.scrollTop=m.scrollHeight;return}
   if(a==="flt"){S.flt=el.dataset.k;return R()}
   if(a==="open")return openShip(el.dataset.id);
   if(a==="logout"){await sb.auth.signOut();return}
@@ -200,12 +208,55 @@ async function act(a,el){
 document.addEventListener("click",e=>{const el=e.target.closest("[data-a]");if(el)act(el.dataset.a,el)});
 document.addEventListener("input",e=>{const id=e.target.id;
   if(id==="s_q"){S.q=e.target.value;const l=$("sl");if(l)l.innerHTML=shipList();return}
+  if(id==="c_in"){S.chat.draft=e.target.value;return}
   const k={i_id:"id",i_pin:"pin",i_w:"w",i_n:"n",i_c:"c"}[id];if(k)S.intake[k]=e.target.value});
+
+
+/* support chat */
+const chatUnread=()=>(S.chat.threads||[]).reduce((n,t)=>n+(+t.unread||0),0);
+async function loadThreads(){
+  const r=await sb.rpc("chat_threads_list");
+  if(!r.error)S.chat.threads=r.data||[];
+}
+async function loadThread(){
+  const c=S.chat.sel;if(!c)return;
+  const r=await sb.from("chat_messages").select("id,from_staff,body,at").eq("thread_id",c.tid).order("id",{ascending:true}).limit(500);
+  if(!r.error)S.chat.msgs=r.data||[];
+  await sb.rpc("chat_mark_read_staff",{p_thread:c.tid});
+}
+function vChat(){
+  const c=S.chat;
+  if(!c.sel){
+    return `<div class="box"><h2>الدردشة (${c.threads.length})</h2><p class="mut">رسائل الزبائن للدعم. الرسائل الجديدة بتظهر أول.</p></div>`+
+    (c.threads.map(t=>`<button class="box" data-a="thr" data-tid="${t.thread_id}" data-name="${h(t.name)}" data-email="${h(t.email)}" data-phone="${h(t.phone||"")}" style="display:block;width:100%;text-align:start;font:inherit;color:inherit;cursor:pointer">
+      <div class="row sp"><b>${h(t.name)}</b>${+t.unread?`<span class="tag s0" style="background:var(--err);color:#fff">${t.unread} جديد</span>`:`<span class="mut">${dt(t.last_at)}</span>`}</div>
+      <div class="mut" style="margin-top:4px">${t.last_from_staff?"أنتم: ":""}${h((t.last_body||"").slice(0,90))}</div></button>`).join("")||`<div class="box mut" style="text-align:center">ما في رسائل بعد</div>`);
+  }
+  const s=c.sel;
+  return `<button class="btn g" data-a="thrback" style="margin:0 0 10px">← الدردشات</button>
+  <div class="box"><h2>${h(s.name)}</h2><div class="kv"><span>الإيميل</span><b>${h(s.email)}</b></div>${s.phone?`<div class="kv"><span>الهاتف</span><b>${h(s.phone)}</b></div>`:""}</div>
+  <div class="box"><div id="cmsgs" style="max-height:48vh;overflow:auto;display:flex;flex-direction:column;gap:8px">${c.msgs.map(m=>`<div style="align-self:${m.from_staff?"flex-start":"flex-end"};max-width:84%;background:${m.from_staff?"var(--brand)":"var(--bg)"};color:${m.from_staff?"#fff":"var(--tx)"};padding:9px 12px;border-radius:14px;border:1px solid var(--bd)"><div>${h(m.body).split("\n").join("<br>")}</div><div style="font-size:11px;opacity:.7;margin-top:3px" dir="ltr">${dt(m.at)}</div></div>`).join("")||`<span class="mut">ما في رسائل</span>`}</div></div>
+  <div class="box"><textarea id="c_in" rows="3" placeholder="اكتبي ردك…" style="width:100%;box-sizing:border-box;font:inherit;padding:10px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx)">${h(c.draft)}</textarea>
+  ${c.err?`<div class="msg e">${h(c.err)}</div>`:""}<button class="btn" data-a="csend" ${S.busy?"disabled":""}>إرسال الرد</button></div>`;
+}
+let chatTick=0;
+setInterval(async()=>{
+  if(document.hidden||!S.prof||!can(["support"]))return;
+  chatTick++;
+  const typing=document.activeElement&&document.activeElement.id==="c_in";
+  if(S.tab==="chat"&&S.chat.sel){
+    const n=S.chat.msgs.length;await loadThread();
+    if(S.chat.msgs.length!==n&&!typing){R();const m=$("cmsgs");if(m)m.scrollTop=m.scrollHeight}
+  }else if(S.tab==="chat"||chatTick%4===0){
+    const u=chatUnread(),n=S.chat.threads.length;await loadThreads();
+    if((chatUnread()!==u||S.chat.threads.length!==n)&&!typing)R();
+  }
+},8000);
 
 async function onSession(sess){
   S.user=sess?sess.user:null;S.prof=null;
   if(S.user){const p=await sb.from("profiles").select("name,email,role").eq("id",S.user.id).single();S.prof=p.data;
-    if(S.prof&&STAFF.indexOf(S.prof.role)>=0)await reload()}
+    if(S.prof&&STAFF.indexOf(S.prof.role)>=0){await reload();if(can(["support"]))await loadThreads()}}
   R();
 }
 sb.auth.onAuthStateChange((ev,sess)=>{if(ev==="INITIAL_SESSION"||ev==="SIGNED_IN"||ev==="SIGNED_OUT")setTimeout(()=>onSession(sess),0)});
