@@ -1,1 +1,214 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T.K Group – Internationaler Transport und Bau</title>
+<meta name="description" content="T.K Group: Paketversand und Transport zwischen Deutschland, Niederlanden, Frankreich und Syrien. شحن موثوق بين أوروبا وسوريا.">
+<meta name="theme-color" content="#071533">
+<link rel="icon" href="../icon-192.png"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#071533;--bg2:#02060f;--card:#0d1f45;--line:rgba(212,175,55,.28);--g1:#fff4c9;--g2:#d4af37;--g3:#8a6a1f;--tx:#e9eefb;--mut:#aab6d3;--gold:linear-gradient(135deg,#f1d98a,#d4af37 50%,#a98322)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Cairo,system-ui,Arial,sans-serif;background:var(--bg2);color:var(--tx);line-height:1.7;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 50% 0%,#173a7a 0,#071533 45%,#02060f 100%)}
+a{color:inherit;text-decoration:none}
+.w{max-width:1080px;margin:auto;padding:0 20px}
+h1,h2,h3{font-family:Amiri,Cairo,serif;line-height:1.3;margin:0}
+.gt{background:var(--gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(7,21,51,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;gap:14px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;margin-inline-end:auto}
+.brand img{width:38px;height:38px;border-radius:10px}
+.brand span{font-family:Amiri,serif;font-size:20px}
+.lang{display:flex;gap:4px;direction:ltr}
+.lang button{font:inherit;font-size:12px;border:1px solid var(--line);background:transparent;color:var(--g2);border-radius:20px;padding:3px 10px;cursor:pointer}
+.lang button.on{background:var(--gold);color:#07204a;font-weight:700;border-color:transparent}
+.nl{display:flex;gap:18px;font-size:14px;color:var(--mut)}.nl a:hover{color:var(--g1)}
+@media(max-width:760px){.nl{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;border:0;border-radius:14px;padding:12px 22px;cursor:pointer;background:var(--gold);color:#07204a;box-shadow:0 8px 24px rgba(212,175,55,.25);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
+.btn.o{background:transparent;color:var(--g1);border:1.5px solid var(--g2);box-shadow:none}
+/* hero */
+.hero{padding:70px 0 56px;text-align:center;position:relative}
+.logo{width:150px;height:150px;margin:0 auto 20px;position:relative}
+.logo svg{width:100%;height:100%}
+.hero h1{font-size:clamp(34px,7vw,58px)}
+.hero p{max-width:640px;margin:14px auto 26px;color:var(--mut);font-size:18px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+/* route */
+.route{margin:44px auto 0;max-width:720px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(160deg,rgba(23,58,122,.45),rgba(7,21,51,.6));padding:22px 18px}
+.route svg{width:100%;height:auto;display:block}
+.route .lbl{display:flex;justify-content:space-between;font-weight:700;color:var(--g1);direction:ltr;font-size:14px;margin-top:6px}
+/* sections */
+section{padding:60px 0}
+.h{text-align:center;margin-bottom:34px}.h h2{font-size:clamp(28px,5vw,40px)}.h p{color:var(--mut);margin:8px 0 0}
+.h::after{content:"";display:block;width:70px;height:3px;border-radius:3px;margin:14px auto 0;background:var(--gold)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:linear-gradient(160deg,var(--card),#0a1836);border:1px solid var(--line);border-radius:20px;padding:22px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--g2)}
+.ic{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--gold);margin-bottom:12px}
+.ic svg{width:26px;height:26px;stroke:#07204a;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:21px;margin-bottom:6px;color:var(--g1)}.card p{margin:0;color:var(--mut);font-size:15px}
+.steps{counter-reset:s}.steps .card{position:relative;padding-top:34px}
+.steps .card::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;inset-inline-start:20px;width:34px;height:34px;border-radius:50%;background:var(--gold);color:#07204a;font-weight:800;display:grid;place-items:center}
+/* calc */
+.calc{max-width:560px;margin:auto;background:linear-gradient(160deg,var(--card),#0a1836);border:1px solid var(--g2);border-radius:24px;padding:26px}
+.calc label{display:block;font-size:14px;color:var(--mut);margin:12px 0 4px}
+.calc select,.calc input{width:100%;font:inherit;color:#fff;background:#071533;border:1px solid var(--line);border-radius:12px;padding:12px}
+.calc .btn{width:100%;margin-top:16px}
+#res{margin-top:16px;text-align:center;font-size:15px;color:var(--mut);min-height:30px}
+#res b{display:block;font-family:Amiri,serif;font-size:38px;font-weight:700;background:var(--gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.fine{font-size:12px;color:var(--mut);text-align:center;margin-top:10px}
+/* herne */
+.two{display:grid;gap:20px;grid-template-columns:1fr 1fr}@media(max-width:760px){.two{grid-template-columns:1fr}}
+.row{display:flex;gap:12px;align-items:flex-start;margin:10px 0}.row svg{flex:none;width:22px;height:22px;stroke:var(--g2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:4px}
+.map{border-radius:20px;overflow:hidden;border:1px solid var(--line);min-height:260px;background:#0a1836}.map iframe{width:100%;height:100%;min-height:260px;border:0;filter:invert(.92) hue-rotate(180deg) saturate(.7)}
+/* footer */
+footer{border-top:1px solid var(--line);padding:30px 0 90px;color:var(--mut);font-size:13px;text-align:center}
+footer a{color:var(--g2)}footer .l{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.fab{position:fixed;inset-inline-start:16px;bottom:16px;z-index:30;display:flex;flex-direction:column;gap:10px}
+.fab a{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--gold);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.fab svg{width:26px;height:26px;stroke:#07204a;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.rv{opacity:0;transform:translateY(18px);transition:.7s}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style></head><body>
 
+<nav><div class="w">
+ <a class="brand" href="#top"><img src="../icon-192.png" alt="T.K"><span class="gt">T.K Group</span></a>
+ <div class="nl"><a href="#services" data-i="n1"></a><a href="#how" data-i="n2"></a><a href="#price" data-i="n3"></a><a href="#herne" data-i="n4"></a></div>
+ <div class="lang"><button data-l="ar">ع</button><button data-l="de">DE</button><button data-l="en">EN</button></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="w">
+ <div class="logo"><svg viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="sg" gradientUnits="userSpaceOnUse" x1="90" y1="140" x2="450" y2="370"><stop offset="0" stop-color="#8a6a1f"/><stop offset=".28" stop-color="#f1d98a"/><stop offset=".46" stop-color="#fff6d2"/><stop offset=".66" stop-color="#d4af37"/><stop offset="1" stop-color="#7a5a14"/></linearGradient><clipPath id="sc"><rect x="300" y="150" width="170" height="210"/></clipPath></defs><circle cx="256" cy="256" r="236" fill="none" stroke="url(#sg)" stroke-width="4"/><circle cx="256" cy="256" r="220" fill="none" stroke="url(#sg)" stroke-width="1.4" opacity=".7"/><g transform="translate(-12 6) translate(256 256) scale(.9) translate(-256 -256)"><g fill="url(#sg)"><rect x="96" y="150" width="140" height="46"/><rect x="143" y="150" width="46" height="210"/><rect x="258" y="322" width="38" height="38"/><rect x="316" y="150" width="46" height="210"/><g clip-path="url(#sc)" stroke="url(#sg)" stroke-width="46" fill="none"><path d="M350 270 L452 126"/><path d="M356 232 L452 380"/></g></g></g></svg></div>
+ <h1 class="gt" data-i="h1"></h1>
+ <p data-i="h2"></p>
+ <div class="cta"><a class="btn" href="../" data-i="app"></a><a class="btn o" href="https://wa.me/491771816191" data-i="wa"></a></div>
+ <div class="route rv">
+  <svg viewBox="0 0 600 150" aria-hidden="true"><defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff4c9"/><stop offset=".45" stop-color="#d4af37"/><stop offset="1" stop-color="#8a6a1f"/></linearGradient></defs>
+   <path id="rp" d="M50 110C170 20 330 150 550 40" stroke="#d4af37" stroke-opacity=".6" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round" fill="none"/>
+   <circle cx="50" cy="110" r="10" fill="url(#og)"/><circle cx="550" cy="40" r="10" fill="url(#og)"/>
+   <g><circle r="24" fill="url(#og)"/><g transform="translate(-14 -14) scale(1.17)" fill="none" stroke="#07204a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7M5.5 18.5a2 2 0 100-.01M18.5 18.5a2 2 0 100-.01"/></g><animateMotion dur="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines=".45 .05 .25 1"><mpath href="#rp"/></animateMotion></g>
+  </svg>
+  <div class="lbl"><span data-i="r1"></span><span data-i="r2"></span></div>
+ </div>
+</div></header>
+
+<section id="services"><div class="w">
+ <div class="h rv"><h2 class="gt" data-i="s_t"></h2><p data-i="s_p"></p></div>
+ <div class="grid">
+  <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/></svg></div><h3 data-i="c1t"></h3><p data-i="c1p"></p></div>
+  <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg></div><h3 data-i="c2t"></h3><p data-i="c2p"></p></div>
+  <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3 data-i="c3t"></h3><p data-i="c3p"></p></div>
+  <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5"/></svg></div><h3 data-i="c4t"></h3><p data-i="c4p"></p></div>
+ </div>
+</div></section>
+
+<section id="how"><div class="w">
+ <div class="h rv"><h2 class="gt" data-i="h_t"></h2></div>
+ <div class="grid steps">
+  <div class="card rv"><h3 data-i="st1t"></h3><p data-i="st1p"></p></div>
+  <div class="card rv"><h3 data-i="st2t"></h3><p data-i="st2p"></p></div>
+  <div class="card rv"><h3 data-i="st3t"></h3><p data-i="st3p"></p></div>
+  <div class="card rv"><h3 data-i="st4t"></h3><p data-i="st4p"></p></div>
+ </div>
+</div></section>
+
+<section id="price"><div class="w">
+ <div class="h rv"><h2 class="gt" data-i="p_t"></h2><p data-i="p_p"></p></div>
+ <div class="calc rv">
+  <label data-i="p_g"></label><select id="g"></select>
+  <label data-i="p_w"></label><input id="w" type="number" min="1" value="20" inputmode="decimal">
+  <button class="btn" id="q" data-i="p_b"></button>
+  <div id="res"></div>
+  <div class="fine" data-i="p_f"></div>
+ </div>
+</div></section>
+
+<section id="herne"><div class="w">
+ <div class="h rv"><h2 class="gt" data-i="a_t"></h2><p data-i="a_p"></p></div>
+ <div class="two">
+  <div class="card rv">
+   <h3>T.K Group</h3><p data-i="a_o" style="margin-bottom:8px"></p>
+   <div class="row"><svg viewBox="0 0 24 24"><path d="M12 22s7-6 7-12a7 7 0 10-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><div dir="ltr" style="text-align:start">Baukauer Str. 39F<br>44653 Herne, Deutschland</div></div>
+   <div class="row"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg><a href="tel:+491771816191" dir="ltr">+49 177 1816191</a></div>
+   <div class="row"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l1.9-5.4A8.4 8.4 0 1121 11.5z"/></svg><a href="https://wa.me/491771816191" dir="ltr">WhatsApp</a></div>
+   <div class="cta" style="justify-content:flex-start;margin-top:14px"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Baukauer+Str.+39F+44653+Herne" data-i="a_d"></a></div>
+  </div>
+  <div class="map rv"><iframe loading="lazy" title="Map" src="https://www.openstreetmap.org/export/embed.html?bbox=7.19%2C51.52%2C7.26%2C51.56&layer=mapnik&marker=51.5405%2C7.2230"></iframe></div>
+ </div>
+</div></section>
+
+<footer><div class="w">
+ <div class="l"><a href="../privacy.html" data-i="f1"></a><a href="../impressum.html" data-i="f2"></a><a href="../" data-i="app"></a></div>
+ <div>© <span id="yr"></span> T.K Group für internationalen Transport und Bau · Inh. Ismaiel Kaytou · USt-IdNr. DE335745218</div>
+</div></footer>
+
+<div class="fab"><a href="https://wa.me/491771816191" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l1.9-5.4A8.4 8.4 0 1121 11.5z"/></svg></a><a href="tel:+491771816191" aria-label="Call"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></a></div>
+
+<script>
+const T={
+ar:{n1:"خدماتنا",n2:"كيف نعمل",n3:"الأسعار",n4:"نقطة الاستلام",app:"افتح التطبيق",wa:"واتساب",
+h1:"نشحن بثقة بين أوروبا وسوريا",h2:"T.K Group للنقل الدولي والبناء. نستلم شحنتك من ألمانيا وهولندا وفرنسا ونوصلها إلى سوريا، وبالعكس، مع تتبّع وأسعار واضحة باليورو.",
+r1:"ألمانيا · هولندا · فرنسا",r2:"سوريا",
+s_t:"خدماتنا",s_p:"كل ما تحتاجه لشحنتك بمكان واحد",
+c1t:"شحن الطرود والبضائع",c1p:"ملابس، إلكترونيات، أدوات، ماكينات، مواد غذائية ومونة وزيوت.",
+c2t:"نقل بري موثوق",c2p:"شحنات منظّمة بين أوروبا وسوريا ذهاباً وإياباً.",
+c3t:"تتبّع خطوة بخطوة",c3p:"تابع شحنتك من الحجز حتى التسليم عبر التطبيق.",
+c4t:"فواتير ووثائق واضحة",c4p:"فاتورة رسمية لكل شحنة، ومساعدة بأوراق الشحن.",
+h_t:"كيف نعمل",st1t:"احجز",st1p:"اختر البضاعة والوزن وشاهد السعر فوراً.",st2t:"سلّم الشحنة",st2p:"سلّمها بنقطة الاستلام بهيرنه وتُفحص وتُسجّل.",st3t:"نشحن",st3p:"نتابع الشحنة وتصلك إشعارات عند كل مرحلة.",st4t:"التسليم",st4p:"يستلمها المستلم بسوريا وتصلك صورة التسليم.",
+p_t:"احسب سعر شحنتك",p_p:"السعر يُحسب مباشرة من نظامنا",p_g:"نوع البضاعة",p_w:"الوزن (كغ)",p_b:"احسب السعر",p_f:"السعر تقريبي. السعر النهائي يُؤكَّد عند الحجز في التطبيق.",
+a_t:"نقطة الاستلام في هيرنه",a_p:"سلّم شحنتك عندنا مباشرة",a_o:"للاستلام والتسليم يرجى التواصل مسبقاً.",a_d:"الاتجاهات على الخريطة",
+f1:"سياسة الخصوصية",f2:"البيانات القانونية (Impressum)",
+no:"تعذّر حساب السعر الآن، تواصل معنا عبر واتساب.",cur:"€",
+G:{newc:"ملابس جديدة",used:"ملابس مستعملة",elec:"إلكترونيات",tools:"أدوات",mnew:"ماكينات جديدة",mused:"ماكينات مستعملة",fam:"عفش عائلي",oil:"زيت",mn:"مونة"}},
+de:{n1:"Leistungen",n2:"Ablauf",n3:"Preise",n4:"Abgabestelle",app:"App öffnen",wa:"WhatsApp",
+h1:"Wir versenden zuverlässig zwischen Europa und Syrien",h2:"T.K Group für internationalen Transport und Bau. Wir holen Ihre Sendung aus Deutschland, den Niederlanden und Frankreich ab und liefern sie nach Syrien – und umgekehrt. Mit Sendungsverfolgung und klaren Preisen in Euro.",
+r1:"Deutschland · Niederlande · Frankreich",r2:"Syrien",
+s_t:"Unsere Leistungen",s_p:"Alles für Ihre Sendung an einem Ort",
+c1t:"Paket- und Warenversand",c1p:"Kleidung, Elektronik, Werkzeuge, Maschinen, Lebensmittel, Öl und Vorräte.",
+c2t:"Zuverlässiger Landtransport",c2p:"Geplante Sendungen zwischen Europa und Syrien, hin und zurück.",
+c3t:"Verfolgung Schritt für Schritt",c3p:"Verfolgen Sie Ihre Sendung von der Buchung bis zur Zustellung in der App.",
+c4t:"Rechnungen und Dokumente",c4p:"Offizielle Rechnung zu jeder Sendung und Hilfe bei den Versandpapieren.",
+h_t:"So funktioniert es",st1t:"Buchen",st1p:"Ware und Gewicht wählen, Preis sofort sehen.",st2t:"Abgeben",st2p:"Abgabe in Herne, wo die Sendung geprüft und erfasst wird.",st3t:"Versand",st3p:"Wir begleiten die Sendung, Sie erhalten Benachrichtigungen.",st4t:"Zustellung",st4p:"Der Empfänger in Syrien erhält die Sendung, Sie bekommen ein Zustellfoto.",
+p_t:"Preis berechnen",p_p:"Der Preis kommt direkt aus unserem System",p_g:"Warenart",p_w:"Gewicht (kg)",p_b:"Preis berechnen",p_f:"Richtpreis. Der endgültige Preis wird bei der Buchung in der App bestätigt.",
+a_t:"Abgabestelle in Herne",a_p:"Geben Sie Ihre Sendung direkt bei uns ab",a_o:"Bitte vorher Kontakt aufnehmen.",a_d:"Route auf der Karte",
+f1:"Datenschutz",f2:"Impressum",
+no:"Preis aktuell nicht berechenbar. Bitte per WhatsApp melden.",cur:"€",
+G:{newc:"Neue Kleidung",used:"Gebrauchte Kleidung",elec:"Elektronik",tools:"Werkzeuge",mnew:"Maschinen neu",mused:"Maschinen gebraucht",fam:"Umzugsgut",oil:"Öl",mn:"Vorräte (Mouneh)"}},
+en:{n1:"Services",n2:"How it works",n3:"Pricing",n4:"Drop-off",app:"Open the app",wa:"WhatsApp",
+h1:"Reliable shipping between Europe and Syria",h2:"T.K Group for international transport and construction. We collect your shipment in Germany, the Netherlands and France and deliver it to Syria – and back – with tracking and clear prices in euros.",
+r1:"Germany · Netherlands · France",r2:"Syria",
+s_t:"Our services",s_p:"Everything for your shipment in one place",
+c1t:"Parcels and goods",c1p:"Clothes, electronics, tools, machines, food, oils and pantry goods.",
+c2t:"Reliable road transport",c2p:"Scheduled shipments between Europe and Syria, both directions.",
+c3t:"Step-by-step tracking",c3p:"Follow your shipment from booking to delivery in the app.",
+c4t:"Invoices and documents",c4p:"An official invoice for every shipment and help with shipping papers.",
+h_t:"How it works",st1t:"Book",st1p:"Choose goods and weight and see the price instantly.",st2t:"Drop off",st2p:"Hand it in at our Herne point, where it is checked and logged.",st3t:"We ship",st3p:"We follow the shipment and notify you at every stage.",st4t:"Delivery",st4p:"The recipient in Syria receives it and you get a delivery photo.",
+p_t:"Calculate your price",p_p:"The price comes straight from our system",p_g:"Type of goods",p_w:"Weight (kg)",p_b:"Calculate",p_f:"Estimate only. The final price is confirmed when you book in the app.",
+a_t:"Drop-off point in Herne",a_p:"Hand your shipment in directly",a_o:"Please contact us beforehand.",a_d:"Directions on the map",
+f1:"Privacy",f2:"Legal notice (Impressum)",
+no:"Price can't be calculated right now. Please message us on WhatsApp.",cur:"€",
+G:{newc:"New clothes",used:"Used clothes",elec:"Electronics",tools:"Tools",mnew:"New machines",mused:"Used machines",fam:"Household goods",oil:"Oil",mn:"Pantry goods (Mouneh)"}}};
+let L="ar";try{L=localStorage.getItem("tk-web-l")||(navigator.language||"").slice(0,2)}catch(e){}if(!T[L])L="ar";
+function setL(l){L=l;try{localStorage.setItem("tk-web-l",l)}catch(e){}
+ const d=T[l];document.documentElement.lang=l;document.documentElement.dir=l=="ar"?"rtl":"ltr";
+ document.querySelectorAll("[data-i]").forEach(e=>e.textContent=d[e.dataset.i]);
+ document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l==l));
+ const g=document.getElementById("g"),v=g.value;g.innerHTML=Object.keys(d.G).map(k=>`<option value="${k}">${d.G[k]}</option>`).join("");if(v)g.value=v;
+ document.getElementById("res").textContent=""}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setL(b.dataset.l));
+const SB="https://uvaugdqmktntmautneyp.supabase.co",KEY="sb_publishable_FJgqWlepVpPPpocjYOxq1Q_sD7zGoP8";
+document.getElementById("q").onclick=async()=>{const r=document.getElementById("res"),d=T[L],w=+document.getElementById("w").value;
+ if(!(w>0)){return}r.textContent="…";
+ try{const x=await fetch(SB+"/rest/v1/rpc/quote_price",{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json"},body:JSON.stringify({p_goods:document.getElementById("g").value,p_weight:w,p_biz:false})});
+  if(!x.ok)throw 0;let j=await x.json();
+  let n=typeof j=="number"?j:(j&&typeof j=="object"?(j.total??j.price??j.eur??j.amount??Object.values(j).find(v=>typeof v=="number")):parseFloat(j));
+  if(!(n>=0))throw 0;r.innerHTML=`<b dir="ltr">${n.toFixed(2)} ${d.cur}</b>`}
+ catch(e){r.textContent=d.no}};
+document.getElementById("yr").textContent=new Date().getFullYear();
+setL(L);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+</script></body></html>
