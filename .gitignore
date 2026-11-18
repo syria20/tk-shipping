@@ -1,0 +1,5 @@
+# Arena skill run output (generated, do not commit)
+.arena/
+
+# Python bytecode cache (created when the Arena skill's bracket.py runs)
+__pycache__/
