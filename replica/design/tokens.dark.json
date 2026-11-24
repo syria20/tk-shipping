@@ -1,0 +1,283 @@
+{
+  "_about": "T.K Group dark theme colours. Scales live in tokens.json.",
+  "color": {
+    "bg": "#07142e",
+    "surface": "#0e2247",
+    "surface-raised": "#132b57",
+    "header": "#02183c",
+    "on-header": "#ffffff",
+    "on-header-muted": "#c9d6ef",
+    "border": "#2b4a86",
+    "border-input": "#4470c4",
+    "text": "#eef2fb",
+    "text-muted": "#a9bbdd",
+    "accent": "#8db4f5",
+    "on-accent": "#07142e",
+    "highlight": "#ffd400",
+    "on-highlight": "#07204a",
+    "focus": "#ffd400",
+    "danger": "#ff6b5a",
+    "on-danger": "#07142e",
+    "success": "#4ade80",
+    "on-success": "#07142e",
+    "warning": "#f0a04b",
+    "info": "#7fb0ff",
+    "status-0": "#f0a04b",
+    "status-1": "#8db4f5",
+    "status-2": "#8db4f5",
+    "status-3": "#7fb0ff",
+    "status-4": "#c39bff",
+    "status-5": "#4fd1c5",
+    "status-6": "#4ade80",
+    "mode-road": "#d9a85c",
+    "mode-air": "#5cc0f2",
+    "mode-sea": "#4fcf9f",
+    "status-0-tint": "#2e3448",
+    "status-0-on-tint": "#f0a04b",
+    "status-1-tint": "#20365f",
+    "status-1-on-tint": "#8db4f5",
+    "status-2-tint": "#20365f",
+    "status-2-on-tint": "#8db4f5",
+    "status-3-tint": "#1e3661",
+    "status-3-on-tint": "#7fb0ff",
+    "status-4-tint": "#273361",
+    "status-4-on-tint": "#c39bff",
+    "status-5-tint": "#173a59",
+    "status-5-on-tint": "#4fd1c5",
+    "status-6-tint": "#163c4f",
+    "status-6-on-tint": "#4ade80",
+    "success-tint": "#163c4f",
+    "success-on-tint": "#4ade80",
+    "danger-tint": "#302c4a",
+    "danger-on-tint": "#ff6b5a",
+    "warning-tint": "#2e3448",
+    "warning-on-tint": "#f0a04b",
+    "info-tint": "#1e3661",
+    "info-on-tint": "#7fb0ff",
+    "mode-road-tint": "#2a354a",
+    "mode-road-on-tint": "#d9a85c",
+    "mode-air-tint": "#19385f",
+    "mode-air-on-tint": "#5cc0f2",
+    "mode-sea-tint": "#173a53",
+    "mode-sea-on-tint": "#4fcf9f"
+  },
+  "pairs": [
+    [
+      "text",
+      "bg"
+    ],
+    [
+      "text",
+      "surface"
+    ],
+    [
+      "text",
+      "surface-raised"
+    ],
+    [
+      "text-muted",
+      "bg"
+    ],
+    [
+      "text-muted",
+      "surface"
+    ],
+    [
+      "text-muted",
+      "surface-raised"
+    ],
+    [
+      "accent",
+      "bg"
+    ],
+    [
+      "accent",
+      "surface"
+    ],
+    [
+      "on-accent",
+      "accent"
+    ],
+    [
+      "on-highlight",
+      "highlight"
+    ],
+    [
+      "on-header",
+      "header"
+    ],
+    [
+      "on-header-muted",
+      "header"
+    ],
+    [
+      "on-danger",
+      "danger"
+    ],
+    [
+      "on-success",
+      "success"
+    ],
+    [
+      "danger",
+      "bg"
+    ],
+    [
+      "danger",
+      "surface"
+    ],
+    [
+      "success",
+      "bg"
+    ],
+    [
+      "success",
+      "surface"
+    ],
+    [
+      "warning",
+      "surface"
+    ],
+    [
+      "info",
+      "surface"
+    ],
+    [
+      "border-input",
+      "bg",
+      "ui"
+    ],
+    [
+      "border-input",
+      "surface",
+      "ui"
+    ],
+    [
+      "focus",
+      "bg",
+      "ui"
+    ],
+    [
+      "focus",
+      "surface",
+      "ui"
+    ],
+    [
+      "highlight",
+      "header",
+      "ui"
+    ],
+    [
+      "status-0-on-tint",
+      "status-0-tint"
+    ],
+    [
+      "status-0",
+      "surface"
+    ],
+    [
+      "status-1-on-tint",
+      "status-1-tint"
+    ],
+    [
+      "status-1",
+      "surface"
+    ],
+    [
+      "status-2-on-tint",
+      "status-2-tint"
+    ],
+    [
+      "status-2",
+      "surface"
+    ],
+    [
+      "status-3-on-tint",
+      "status-3-tint"
+    ],
+    [
+      "status-3",
+      "surface"
+    ],
+    [
+      "status-4-on-tint",
+      "status-4-tint"
+    ],
+    [
+      "status-4",
+      "surface"
+    ],
+    [
+      "status-5-on-tint",
+      "status-5-tint"
+    ],
+    [
+      "status-5",
+      "surface"
+    ],
+    [
+      "status-6-on-tint",
+      "status-6-tint"
+    ],
+    [
+      "status-6",
+      "surface"
+    ],
+    [
+      "success-on-tint",
+      "success-tint"
+    ],
+    [
+      "success",
+      "surface"
+    ],
+    [
+      "danger-on-tint",
+      "danger-tint"
+    ],
+    [
+      "danger",
+      "surface"
+    ],
+    [
+      "warning-on-tint",
+      "warning-tint"
+    ],
+    [
+      "warning",
+      "surface"
+    ],
+    [
+      "info-on-tint",
+      "info-tint"
+    ],
+    [
+      "info",
+      "surface"
+    ],
+    [
+      "mode-road-on-tint",
+      "mode-road-tint"
+    ],
+    [
+      "mode-road",
+      "surface"
+    ],
+    [
+      "mode-air-on-tint",
+      "mode-air-tint"
+    ],
+    [
+      "mode-air",
+      "surface"
+    ],
+    [
+      "mode-sea-on-tint",
+      "mode-sea-tint"
+    ],
+    [
+      "mode-sea",
+      "surface"
+    ]
+  ]
+}

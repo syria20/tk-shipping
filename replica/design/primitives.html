@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ar" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T.K Design Primitives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Amiri:wght@700&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* Reference implementation of the components in components.md.
+   Logical properties only, so one markup serves RTL (ar) and LTR (de). */
+*{box-sizing:border-box}
+body{margin:0;background:var(--c-bg);color:var(--c-text);font:var(--weight-base) var(--text-base)/var(--leading-base) var(--font-ui);font-variant-numeric:lining-nums tabular-nums}
+[lang="de"]{--font-ui:var(--font-sans-latin);--font-display:var(--font-display-latin)}
+[lang="ar"]{--font-ui:var(--font-sans-ar);--font-display:var(--font-display-ar)}
+.bar{position:sticky;top:0;z-index:var(--z-sticky);display:flex;gap:var(--space-2);align-items:center;flex-wrap:wrap;padding:var(--space-3) var(--space-4);background:var(--c-header);color:var(--c-on-header)}
+.bar b{font-family:var(--font-display);font-size:var(--text-lg);margin-inline-end:auto}
+.bar button{min-height:36px;padding:0 var(--space-3);border-radius:var(--radius-pill);border:1px solid var(--c-on-header-muted);background:transparent;color:var(--c-on-header);font:inherit;font-size:var(--text-sm);cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--c-highlight);color:var(--c-on-highlight);border-color:var(--c-highlight)}
+.grid{display:grid;grid-template-columns:1fr;gap:var(--space-6);padding:var(--space-4);max-width:1240px;margin-inline:auto}
+@media(min-width:1024px){.grid{grid-template-columns:1fr 1fr}}
+.pane{font-family:var(--font-ui);min-width:0}
+.pane>h2{font:var(--weight-xs) var(--text-xs)/var(--leading-xs) var(--font-ui);letter-spacing:.04em;text-transform:uppercase;color:var(--c-text-muted);margin:0 0 var(--space-3)}
+h3{font-size:var(--text-sm);line-height:var(--leading-sm);color:var(--c-text-muted);margin:var(--space-5) 0 var(--space-2);font-weight:600}
+.card{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-card);padding:var(--space-4)}
+.row{display:flex;gap:var(--space-2);flex-wrap:wrap;align-items:center}
+.stack{display:grid;gap:var(--space-3)}
+/* header */
+.apphead{display:flex;align-items:center;gap:var(--space-3);background:var(--c-header);color:var(--c-on-header);border-radius:var(--radius-xl);padding:var(--space-4)}
+.logo{width:40px;height:40px;border-radius:50%;background:var(--c-highlight);color:var(--c-on-highlight);display:grid;place-items:center;font-weight:800}
+.apphead b{font-family:var(--font-display);font-size:var(--text-lg)}
+.apphead small{display:block;color:var(--c-on-header-muted);font-size:var(--text-xs)}
+.apphead .end{margin-inline-start:auto}
+.hero-price{margin-top:var(--space-3);background:var(--c-header);color:var(--c-on-header);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);display:flex;justify-content:space-between;align-items:baseline}
+.hero-price b{color:var(--c-highlight);font-size:var(--text-2xl);line-height:var(--leading-2xl);font-weight:800}
+/* buttons */
+.btn{min-height:44px;padding:0 var(--space-4);border-radius:var(--radius-md);border:1px solid transparent;font:inherit;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:var(--space-2);transition:transform var(--motion-fast) var(--motion-ease)}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,.field input:focus-visible,.opt label:focus-within,.iconbtn:focus-visible,.tab:focus-visible{outline:2px solid var(--c-focus);outline-offset:2px}
+.btn.primary{background:var(--c-highlight);color:var(--c-on-highlight);box-shadow:var(--shadow-cta)}
+.btn.secondary{background:var(--c-accent);color:var(--c-on-accent)}
+.btn.ghost{background:transparent;color:var(--c-text);border-color:var(--c-border-input)}
+.btn.danger{background:var(--c-danger);color:var(--c-on-danger)}
+.btn.success{background:var(--c-success);color:var(--c-on-success)}
+.btn.lg{min-height:52px;width:100%;justify-content:center;border-radius:var(--radius-lg);font-size:var(--text-md);font-weight:800}
+.btn.sm{min-height:36px;border-radius:var(--radius-sm);font-size:var(--text-sm)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-inline-end-color:transparent;animation:r 800ms linear infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spin{animation:none}}
+.iconbtn{width:44px;height:44px;border-radius:var(--radius-md);border:1px solid var(--c-border);background:var(--c-surface);color:var(--c-accent);display:grid;place-items:center;cursor:pointer}
+[dir="rtl"] .flip{transform:scaleX(-1)}
+/* fields */
+.field{display:grid;gap:var(--space-1)}
+.field label{font-size:var(--text-sm);font-weight:600}
+.field input{height:48px;padding:0 var(--space-3);border-radius:var(--radius-md);border:1px solid var(--c-border-input);background:var(--c-bg);color:var(--c-text);font:inherit;font-weight:600}
+.field input:hover{border-color:var(--c-accent)}
+.field .help{font-size:var(--text-xs);color:var(--c-text-muted)}
+.field.err input{border-color:var(--c-danger)}
+.field.err .help{color:var(--c-danger)}
+.stepper{display:grid;grid-template-columns:44px 1fr 44px;gap:var(--space-2);align-items:center}
+.stepper input{text-align:center}
+/* option group */
+.opt{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-2);border:0;padding:0;margin:0}
+.opt label{border:1.5px solid var(--c-border);background:var(--c-surface);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-1);display:grid;justify-items:center;gap:var(--space-1);font-size:var(--text-sm);font-weight:600;cursor:pointer;position:relative}
+.opt input{position:absolute;opacity:0}
+.opt label:has(input:checked){border:2px solid var(--c-accent);background:color-mix(in srgb,var(--c-accent) 8%,var(--c-surface))}
+.opt small{color:var(--c-text-muted);font-weight:500;font-size:var(--text-xs)}
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:var(--radius-pill);padding:2px 10px;font-size:var(--text-xs);line-height:var(--leading-xs);font-weight:600}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+/* quote card + breakdown */
+.quote{display:grid;grid-template-columns:auto 1fr auto;gap:var(--space-3);align-items:center;border:1.5px solid var(--c-border);border-radius:var(--radius-lg);padding:var(--space-3);background:var(--c-surface)}
+.quote.sel{border:2px solid var(--c-accent)}
+.quote .ic{width:40px;height:40px;border-radius:var(--radius-md);display:grid;place-items:center}
+.quote .price{font-size:var(--text-xl);line-height:var(--leading-xl);font-weight:800;color:var(--c-accent);text-align:end}
+.quote .price small{display:block;font-size:var(--text-xs);line-height:var(--leading-xs);color:var(--c-text-muted);font-weight:500}
+.brk{display:grid;gap:var(--space-1);font-size:var(--text-sm)}
+.brk div{display:flex;justify-content:space-between}
+.brk .disc{color:var(--c-success)}
+.brk .tot{border-top:1px dashed var(--c-border);padding-top:var(--space-2);margin-top:var(--space-1);font-size:var(--text-lg);line-height:var(--leading-lg);font-weight:800}
+/* progress */
+.prog{display:flex;gap:var(--space-1)}
+.prog i{flex:1;height:4px;border-radius:4px;background:var(--c-border)}
+.prog i.done{background:var(--c-accent)}.prog i.cur{background:var(--c-highlight)}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;padding-inline-start:28px;padding-bottom:var(--space-4)}
+.tl li::before{content:"";position:absolute;inset-inline-start:0;top:6px;width:14px;height:14px;border-radius:50%;background:var(--c-surface);border:2px solid var(--c-border-input)}
+.tl li::after{content:"";position:absolute;inset-inline-start:6px;top:22px;bottom:-2px;width:2px;background:var(--c-border)}
+.tl li:last-child::after{display:none}
+.tl li.done::before{background:var(--c-accent);border-color:var(--c-accent)}
+.tl li.done::after{background:var(--c-accent)}
+.tl li.cur::before{background:var(--c-highlight);border-color:var(--c-accent)}
+.tl b{display:block;font-size:var(--text-sm)}
+.tl span{font-size:var(--text-xs);color:var(--c-text-muted)}
+.tl .late{color:var(--c-warning-on-tint);background:var(--c-warning-tint);border-radius:var(--radius-sm);padding:0 6px;font-weight:600}
+/* shipment card */
+.ship{display:grid;grid-template-columns:4px 1fr auto;gap:var(--space-3);align-items:center;background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-lg);padding:var(--space-3);padding-inline-start:0;overflow:hidden}
+.ship .urg{align-self:stretch;background:var(--c-warning)}
+.ship .id{font-family:var(--font-mono);font-size:var(--text-sm);font-weight:700}
+.ship .meta{font-size:var(--text-xs);color:var(--c-text-muted)}
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:var(--text-sm)}
+.tbl th{text-align:start;color:var(--c-text-muted);font-weight:600;font-size:var(--text-xs);border-bottom:1px solid var(--c-border);padding:var(--space-2)}
+.tbl td{border-bottom:1px solid var(--c-border);padding:var(--space-2)}
+.tbl td.num{text-align:end}
+/* kpi */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-2)}
+.kpi{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-lg);padding:var(--space-3)}
+.kpi span{font-size:var(--text-xs);color:var(--c-text-muted)}
+.kpi b{display:block;font-size:var(--text-2xl);line-height:var(--leading-2xl);font-weight:800}
+.kpi em{font-style:normal;font-size:var(--text-xs);color:var(--c-success);font-weight:600}
+/* toast, empty, tabbar, chat */
+.toast{display:flex;gap:var(--space-2);align-items:center;background:var(--c-text);color:var(--c-bg);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);box-shadow:var(--shadow-pop);font-size:var(--text-sm);font-weight:600}
+.toast.err{background:var(--c-danger);color:var(--c-on-danger)}
+.empty{text-align:center;padding:var(--space-6) var(--space-4);color:var(--c-text-muted)}
+.empty svg{color:var(--c-border-input)}
+.empty b{display:block;color:var(--c-text);font-size:var(--text-md);margin:var(--space-2) 0 var(--space-1)}
+.tabbar{display:grid;grid-template-columns:repeat(5,1fr);background:var(--c-surface);border-top:1px solid var(--c-border);border-radius:0 0 var(--radius-xl) var(--radius-xl)}
+.tab{min-height:64px;display:grid;place-items:center;align-content:center;gap:2px;border:0;background:none;color:var(--c-text-muted);font:inherit;font-size:var(--text-xs);cursor:pointer}
+.tab[aria-current="page"]{color:var(--c-accent);font-weight:700}
+.chat{display:grid;gap:var(--space-2)}
+.msg{max-width:78%;padding:var(--space-2) var(--space-3);border-radius:var(--radius-lg);font-size:var(--text-sm)}
+.msg.me{justify-self:end;background:var(--c-accent);color:var(--c-on-accent);border-end-end-radius:4px}
+.msg.them{justify-self:start;background:var(--c-surface-raised);border:1px solid var(--c-border);border-end-start-radius:4px}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:var(--space-2)}
+.sw div{border-radius:var(--radius-md);padding:var(--space-2);font-size:11px;line-height:1.3;border:1px solid var(--c-border)}
+bdi{font-family:var(--font-mono)}
+/* Money, weights and signed numbers are LTR runs inside Arabic text.
+   Without this, "150,00 €" renders as "€ 150,00" and "−10,00 €" as "10,00−". */
+.money,.hero-price b,.quote .price,.brk div>span:last-child,.tbl td.num,.kpi b,.kpi em{direction:ltr;unicode-bidi:isolate}
+.quote .price small{direction:inherit}
+</style>
+</head>
+<body>
+<div class="bar" role="toolbar" aria-label="Theme">
+  <b>T.K · Design primitives</b>
+  <button data-t="light" aria-pressed="true">Light</button>
+  <button data-t="dark" aria-pressed="false">Dark</button>
+  <button data-t="gold" aria-pressed="false">Gold</button>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<template id="pane">
+<section class="pane">
+  <h2 data-k="pane"></h2>
+
+  <div class="apphead">
+    <div class="logo">TK</div>
+    <div><b>T.K Group</b><small data-k="tagline"></small></div>
+    <button class="iconbtn end" data-k-aria="notif"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button>
+  </div>
+  <div class="hero-price"><span data-k="est"></span><b data-k="price"></b></div>
+
+  <h3 data-k="h-buttons"></h3>
+  <div class="row">
+    <button class="btn primary" data-k="b-price"></button>
+    <button class="btn secondary" data-k="b-book"></button>
+    <button class="btn ghost" data-k="b-cancel"></button>
+    <button class="btn danger sm" data-k="b-reject"></button>
+    <button class="btn success sm" data-k="b-confirm"></button>
+    <button class="btn secondary sm" aria-busy="true"><span class="spin" aria-hidden="true"></span><span data-k="b-saving"></span></button>
+    <button class="btn ghost sm" disabled data-k="b-disabled"></button>
+    <button class="iconbtn" data-k-aria="next"><svg class="flip" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+  <div style="margin-top:var(--space-3)"><button class="btn primary lg" data-k="b-cta"></button></div>
+
+  <h3 data-k="h-fields"></h3>
+  <div class="card stack">
+    <div class="field"><label data-k="f-name"></label><input data-k-val="v-name"></div>
+    <div class="field"><label data-k="f-phone"></label><input dir="ltr" inputmode="tel" value="+963 944 000 000"><span class="help" data-k="f-phone-h"></span></div>
+    <div class="field err"><label data-k="f-pin"></label><input dir="ltr" value="12" aria-invalid="true"><span class="help" data-k="f-pin-e"></span></div>
+    <div class="field"><label data-k="f-weight"></label>
+      <div class="stepper"><button class="iconbtn" aria-label="-">−</button><input value="25 kg" dir="ltr" style="height:44px;border-radius:var(--radius-md);border:1px solid var(--c-border-input);background:var(--c-bg);color:var(--c-text);font:inherit;font-weight:700;text-align:center"><button class="iconbtn" aria-label="+">+</button></div></div>
+    <fieldset class="opt" role="radiogroup">
+      <label><input type="radio" name="m" checked>🚚<span data-k="road"></span><small data-k="road-d"></small></label>
+      <label><input type="radio" name="m">🚢<span data-k="sea"></span><small data-k="sea-d"></small></label>
+      <label><input type="radio" name="m">✈️<span data-k="air"></span><small data-k="air-d"></small></label>
+    </fieldset>
+    <div class="prog" aria-label="2 / 4"><i class="done"></i><i class="cur"></i><i></i><i></i></div>
+  </div>
+
+  <h3 data-k="h-quote"></h3>
+  <div class="stack">
+    <div class="quote sel"><div class="ic" style="background:var(--c-mode-road-tint);color:var(--c-mode-road-on-tint)">🚚</div><div><b data-k="road"></b><div class="row"><span class="chip" style="background:var(--c-success-tint);color:var(--c-success-on-tint)" data-k="cheapest"></span><small style="color:var(--c-text-muted)" data-k="days"></small></div></div><div class="price" data-k="q1"></div></div>
+    <div class="quote"><div class="ic" style="background:var(--c-mode-sea-tint);color:var(--c-mode-sea-on-tint)">🚢</div><div><b data-k="sea"></b><div class="row"><small style="color:var(--c-text-muted)" data-k="days2"></small></div></div><div class="price" data-k="q2"></div></div>
+    <div class="card brk">
+      <div><span data-k="freight"></span><span data-k="a1"></span></div>
+      <div class="disc"><span data-k="disc"></span><span data-k="a2"></span></div>
+      <div><span data-k="pickup"></span><span data-k="a3"></span></div>
+      <div class="tot"><span data-k="total"></span><span data-k="a4"></span></div>
+    </div>
+  </div>
+
+  <h3 data-k="h-status"></h3>
+  <div class="row" data-chips></div>
+
+  <h3 data-k="h-track"></h3>
+  <div class="card">
+    <ol class="tl" data-tl></ol>
+  </div>
+
+  <h3 data-k="h-list"></h3>
+  <div class="stack">
+    <div class="ship"><i class="urg"></i><div><div class="id"><bdi dir="ltr">TK-48213</bdi></div><div data-k="route"></div><div class="meta" data-k="meta"></div></div><span class="chip" style="background:var(--c-status-4-tint);color:var(--c-status-4-on-tint)" data-s="4"></span></div>
+    <div class="toast" role="status">✓ <span data-k="toast"></span></div>
+    <div class="toast err" role="alert">! <span data-k="toast-e"></span></div>
+  </div>
+
+  <h3 data-k="h-admin"></h3>
+  <div class="kpis">
+    <div class="kpi"><span data-k="k1"></span><b>12</b><em>+3</em></div>
+    <div class="kpi"><span data-k="k2"></span><b>5</b></div>
+    <div class="kpi"><span data-k="k3"></span><b>8</b></div>
+  </div>
+  <div class="card" style="margin-top:var(--space-2);overflow-x:auto">
+    <table class="tbl">
+      <thead><tr><th data-k="t-id"></th><th data-k="t-cust"></th><th data-k="t-st"></th><th class="num" data-k="t-amt"></th></tr></thead>
+      <tbody>
+        <tr><td><bdi dir="ltr">TK-48213</bdi></td><td data-k="c1"></td><td><span class="chip" style="background:var(--c-warning-tint);color:var(--c-warning-on-tint)" data-k="pending"></span></td><td class="num" data-k="a4"></td></tr>
+        <tr><td><bdi dir="ltr">TK-48190</bdi></td><td data-k="c2"></td><td><span class="chip" style="background:var(--c-success-tint);color:var(--c-success-on-tint)" data-k="accepted"></span></td><td class="num" data-k="a5"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 data-k="h-chat"></h3>
+  <div class="card chat" role="log">
+    <div class="msg them" data-k="m1"></div>
+    <div class="msg me" data-k="m2"></div>
+  </div>
+
+  <h3 data-k="h-empty"></h3>
+  <div class="card empty">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>
+    <b data-k="e-t"></b><span data-k="e-d"></span>
+    <div style="margin-top:var(--space-3)"><button class="btn secondary" data-k="b-book"></button></div>
+  </div>
+
+  <h3 data-k="h-nav"></h3>
+  <nav class="tabbar" data-k-aria="nav">
+    <button class="tab" aria-current="page">⌂<span data-k="n1"></span></button>
+    <button class="tab">＋<span data-k="n2"></span></button>
+    <button class="tab">⌖<span data-k="n3"></span></button>
+    <button class="tab">✉<span data-k="n4"></span></button>
+    <button class="tab">◎<span data-k="n5"></span></button>
+  </nav>
+
+  <h3 data-k="h-tokens"></h3>
+  <div class="sw" data-sw></div>
+</section>
+</template>
+
+<script>
+const T={
+ar:{pane:"العربية · RTL",tagline:"شحن دولي · ألمانيا ⇄ سوريا",notif:"الإشعارات",est:"السعر التقديري",price:"150,00 €","h-buttons":"الأزرار","b-price":"احسب السعر","b-book":"احجز الآن","b-cancel":"إلغاء","b-reject":"رفض","b-confirm":"تأكيد الدفعة","b-saving":"جارٍ الحفظ","b-disabled":"غير متاح",next:"التالي","b-cta":"متابعة إلى الدفع","h-fields":"الحقول والاختيارات","f-name":"اسم المستلم","v-name":"سامر","f-phone":"رقم هاتف المستلم","f-phone-h":"سنرسل له رسالة عند وصول الشحنة","f-pin":"رمز الشحنة (PIN)","f-pin-e":"الرمز يتكون من 4 أرقام. تحقق من رسالة الحجز.","f-weight":"الوزن",road:"بري","road-d":"7 – 10 أيام",sea:"بحري","sea-d":"18 – 25 يوماً",air:"جوي","air-d":"3 – 5 أيام","h-quote":"عروض الأسعار",cheapest:"الأوفر",days:"7 – 10 أيام",days2:"18 – 25 يوماً",q1:"150,00 €<small>6,00 € للكيلو</small>",q2:"112,50 €<small>4,50 € للكيلو</small>",freight:"أجرة الشحن",disc:"خصم الكمية",pickup:"استلام من العنوان",total:"المجموع",a1:"150,00 €",a2:"−10,00 €",a3:"15,00 €",a4:"155,00 €",a5:"1.240,00 €","h-status":"حالات الشحنة","h-track":"مسار الشحنة","h-list":"القوائم والتنبيهات",route:"برلين ← دمشق",meta:"25 كغ · بري · الوصول المتوقع 3 كانون الأول",toast:"تم حفظ العنوان",toast_e:"تعذّر رفع الملف. حاول مجدداً.","toast-e":"تعذّر رفع الملف. حاول مجدداً.","h-admin":"لوحة الإدارة",k1:"حجوزات جديدة",k2:"دفعات بانتظار التأكيد",k3:"مستندات للمراجعة","t-id":"رقم الشحنة","t-cust":"الزبون","t-st":"الحالة","t-amt":"المبلغ",c1:"أحمد خليل",c2:"شركة النور",pending:"بانتظار المراجعة",accepted:"مقبول","h-chat":"المحادثة",m1:"أهلاً! شحنتك الآن في التخليص الجمركي.",m2:"شكراً، متى تصل تقريباً؟","h-empty":"حالة فارغة","e-t":"لا توجد شحنات بعد","e-d":"احسب السعر واحجز أول شحنة خلال دقيقتين.","h-nav":"شريط التنقل",n1:"الرئيسية",n2:"أرسل",n3:"تتبّع",n4:"الرسائل",n5:"حسابي",nav:"التنقل الرئيسي","h-tokens":"الألوان (أدوار)",
+ st:["تم الحجز","تم الاستلام في هيرنه","في مستودع T.K","في الشحن","التخليص الجمركي","وصلت إلى بلد الوجهة","تم التسليم"],when:["1 كانون الأول · 10:20","1 كانون الأول · 15:05","2 كانون الأول · 09:40","","","",""],exp:"متوقع",late:"تأخير يوم بسبب الجمارك"},
+de:{pane:"Deutsch · LTR",tagline:"Internationaler Transport · Deutschland ⇄ Syrien",notif:"Benachrichtigungen",est:"Geschätzter Preis",price:"150,00 €","h-buttons":"Buttons","b-price":"Preis berechnen","b-book":"Jetzt buchen","b-cancel":"Abbrechen","b-reject":"Ablehnen","b-confirm":"Zahlung bestätigen","b-saving":"Speichert","b-disabled":"Nicht verfügbar",next:"Weiter","b-cta":"Weiter zur Zahlung","h-fields":"Felder und Auswahl","f-name":"Name des Empfängers","v-name":"Samer","f-phone":"Telefon des Empfängers","f-phone-h":"Wir benachrichtigen ihn bei Ankunft","f-pin":"Sendungs-PIN","f-pin-e":"Die PIN hat 4 Ziffern. Bitte prüfe deine Buchungsbestätigung.","f-weight":"Gewicht",road:"Straße","road-d":"7–10 Tage",sea:"See","sea-d":"18–25 Tage",air:"Luft","air-d":"3–5 Tage","h-quote":"Angebote",cheapest:"Günstigste",days:"7–10 Tage",days2:"18–25 Tage",q1:"150,00 €<small>6,00 € pro kg</small>",q2:"112,50 €<small>4,50 € pro kg</small>",freight:"Fracht",disc:"Mengenrabatt",pickup:"Abholung",total:"Gesamt",a1:"150,00 €",a2:"−10,00 €",a3:"15,00 €",a4:"155,00 €",a5:"1.240,00 €","h-status":"Sendungsstatus","h-track":"Sendungsverlauf","h-list":"Listen und Hinweise",route:"Berlin → Damaskus",meta:"25 kg · Straße · Ankunft vsl. 3. Dez.",toast:"Adresse gespeichert","toast-e":"Upload fehlgeschlagen. Bitte erneut versuchen.","h-admin":"Verwaltung",k1:"Neue Buchungen",k2:"Zahlungen offen",k3:"Dokumente prüfen","t-id":"Sendung","t-cust":"Kunde","t-st":"Status","t-amt":"Betrag",c1:"Ahmad Khalil",c2:"Al-Nour GmbH",pending:"In Prüfung",accepted:"Angenommen","h-chat":"Chat",m1:"Hallo! Deine Sendung ist jetzt in der Zollabfertigung.",m2:"Danke, wann kommt sie ungefähr an?","h-empty":"Leerer Zustand","e-t":"Noch keine Sendungen","e-d":"Preis berechnen und die erste Sendung in zwei Minuten buchen.","h-nav":"Navigation",n1:"Start",n2:"Senden",n3:"Verfolgen",n4:"Nachrichten",n5:"Konto",nav:"Hauptnavigation","h-tokens":"Farben (Rollen)",
+ st:["Gebucht","In Herne angenommen","Im T.K-Lager","Unterwegs","Zollabfertigung","Im Zielland angekommen","Zugestellt"],when:["1. Dez. · 10:20","1. Dez. · 15:05","2. Dez. · 09:40","","","",""],exp:"erwartet",late:"1 Tag Verzögerung durch Zoll"}
+};
+const ROLES=["bg","surface","header","accent","highlight","text","text-muted","border-input","danger","success","warning","info"];
+function render(){
+  const g=document.getElementById("grid");g.innerHTML="";
+  for(const [lang,dir] of [["ar","rtl"],["de","ltr"]]){
+    const n=document.getElementById("pane").content.cloneNode(true),L=T[lang],s=n.querySelector("section");
+    s.lang=lang;s.dir=dir;
+    n.querySelectorAll("[data-k]").forEach(e=>{const v=L[e.dataset.k];if(v!=null)e.innerHTML=v});
+    n.querySelectorAll("[data-k-aria]").forEach(e=>e.setAttribute("aria-label",L[e.dataset.kAria]));
+    n.querySelectorAll("[data-k-val]").forEach(e=>e.value=L[e.dataset.kVal]);
+    n.querySelectorAll("[data-s]").forEach(e=>e.textContent=L.st[+e.dataset.s]);
+    n.querySelector("[data-chips]").innerHTML=L.st.map((t,i)=>`<span class="chip" style="background:var(--c-status-${i}-tint);color:var(--c-status-${i}-on-tint)">${t}</span>`).join("");
+    n.querySelector("[data-tl]").innerHTML=L.st.map((t,i)=>{const c=i<3?"done":i==3?"cur":"";const w=L.when[i]||(L.exp+" "+(lang=="ar"?(i+2)+" كانون الأول":(i+2)+". Dez."));return `<li class="${c}" ${i==3?'aria-current="step"':''}><b>${t}</b><span>${w}</span>${i==4?` <span class="late">${L.late}</span>`:""}</li>`}).join("");
+    const ON={header:"on-header",accent:"on-accent",highlight:"on-highlight",danger:"on-danger",success:"on-success",bg:"text",surface:"text"};
+    n.querySelector("[data-sw]").innerHTML=ROLES.map(r=>`<div style="background:var(--c-${r});color:var(--c-${ON[r]||"bg"})">${r}</div>`).join("");
+    g.appendChild(n);
+  }
+}
+function theme(t){document.documentElement.dataset.theme=t;document.querySelectorAll(".bar button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t==t))}
+document.querySelectorAll(".bar button").forEach(b=>b.onclick=()=>theme(b.dataset.t));
+const q=new URLSearchParams(location.search).get("theme");render();if(q)theme(q);
+</script>
+</body>
+</html>

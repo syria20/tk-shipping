@@ -1,0 +1,64 @@
+feature,area,priority,original,clone,notes
+Instant price from lane + cargo form,quote,must,yes,no,Freightos Marketplace; tk-shipping has a price form (create_shipment takes from/to/goods/weight/mode)
+Compare options by price and transit time,quote,must,yes,no,Freightos Marketplace; for T.K compare modes/service levels not providers
+All-in price breakdown with surcharges,quote,must,yes,no,"Freightos Pay/Rate & Quote ""pay what you see"""
+Sign up and log in,account,must,yes,no,tk-shipping has login + biometric unlock
+Booking form with shipper and consignee,booking,must,yes,no,Flexport booking API parties; tk-shipping has sender/recipient forms
+Cargo lines (units count weight volume),booking,must,yes,no,Flexport cargo.shipping_units
+Goods description and dangerous-goods flags,booking,must,yes,no,Flexport DG/li-ion/magnet flags; tk-shipping has goods description + food confirmation
+Cargo ready date / pickup appointment,booking,must,yes,no,Flexport cargo_ready_date; tk-shipping has pickup time from address
+Add-on services (pickup export/import customs insurance),booking,should,yes,no,Flexport wants_* flags; Forto additional services
+Booking confirmation with reference number,booking,must,yes,no,
+Ops review: accept or reject booking,admin,must,yes,no,Flexport async ops review
+Booking amendments after submit,booking,should,yes,no,Flexport /booking_amendments
+Shipments dashboard with filters and search,tracking,must,yes,partial,"Flexport list + filters; tk-shipping has My shipments; S07 built (ui/screens/shipments.js): filters all/active/delivered, counts, status+mode chips, progress; search stays on the old home view"
+Urgent issues shown first on login,tracking,should,yes,no,Ship by Forto; needs tk_exceptions (DB)
+Shipment detail with milestone timeline,tracking,must,yes,yes,"tk-shipping has 7-step status log; S08 built: summary, route map, 7-step timeline with actual times, details, all existing actions reused; parity tested"
+Estimated vs actual date per milestone,tracking,must,yes,partial,"Flexport estimated_/actual_ dates; S08 shows actual times only; estimates need tk_milestone_estimates (DB, not approved yet)"
+Public tracking by reference without login,tracking,must,yes,no,"tk-shipping home asks ""where's your shipment?"""
+Ops sets status / milestone and ETA,admin,must,yes,no,tk-shipping admin set_status
+Intake check (pieces actual weight photos),admin,must,yes,no,tk-shipping admin verify_intake at Herne
+Delivery proof (photo receiver name signature),admin,must,yes,no,tk-shipping admin record_delivery
+Upload documents by type,documents,must,yes,no,Flexport documents API; tk-shipping add_shipment_doc
+Download and archive documents,documents,should,yes,no,Flexport /documents/id/download archived_at
+Ops document review approve/reject,admin,should,yes,no,inferred; tk-shipping admin review_doc
+Invoices list with status and balance,billing,must,yes,no,Flexport invoice object (past_due void)
+Pay by card,billing,must,yes,no,Freightos Pay
+Pay by bank transfer with receipt + ops confirmation,billing,must,yes,no,Freightos Pay; tk-shipping payment receipt + confirm_payment
+Cash on delivery,billing,should,no,no,tk-specific; tk-shipping has cod
+Wallet balance,billing,could,no,no,tk-specific; tk-shipping has wallet_ledger
+Invoice PDF download,billing,should,yes,no,
+Per-shipment messaging with the forwarder,messaging,must,yes,no,Freightos Marketplace; tk-shipping chat_send / chat_reply
+Staff support inbox with unread,admin,must,yes,no,tk-shipping chat_threads_list
+In-app notifications feed,notifications,must,yes,no,Forto Notifications Center; tk-shipping notifications table
+Email notifications,notifications,should,yes,no,Forto inbox channel
+Per-event and per-channel notification settings,notifications,should,yes,no,Forto Advanced Notifications
+Delay / ready-date change / customs hold alerts,notifications,should,yes,no,Forto event list
+Saved addresses and parties,account,should,yes,no,Flexport pre-configured parties and locations; tk-shipping saved addresses/recipients
+Company account with team members and roles,account,should,yes,no,
+Staff roles and permissions,admin,must,yes,no,tk-shipping roles customer business herne_staff support accountant admin
+Rate sheets per lane mode and unit,admin,must,yes,no,Freightos Rate & Quote
+Surcharges and minimum charges,admin,should,yes,no,Freightos Rate & Quote
+Markup profiles and customer-specific pricing,admin,should,yes,no,Freightos Rate & Quote
+Rate validity dates (spot vs contract),admin,could,yes,no,Freightos Rate Book & Manage
+Manual quote builder for non-standard cargo,admin,should,yes,no,Freightos branded quotes
+Branded quote PDF,admin,could,yes,no,Freightos Rate & Quote
+Ops dashboard work queues,admin,must,yes,no,inferred; tk-shipping admin shows pending payments + latest shipments
+Customer management,admin,should,yes,no,inferred
+Sales insights (close rate price sensitivity volume),analytics,could,yes,no,Freightos Sales Portal
+Customer reports (performance),analytics,could,yes,no,Ship by Forto Measure it
+Emissions report per shipment,analytics,could,yes,no,Ship by Forto; Freightos CO2 filter
+Repeat a past shipment,booking,could,no,no,tk-specific; tk-shipping has repeat shipment
+Rate the shipment after delivery,feedback,could,no,no,tk-specific; tk-shipping rate_shipment
+Referral / discount code,growth,could,no,no,tk-specific; tk-shipping referrals
+Arabic RTL + German + English UI,platform,must,yes,partial,"Freightos site offers Arabic and German; tk-shipping is Arabic-first; new screens: native AR/DE/EN copy, logical CSS, money as LTR runs; old screens unchanged"
+Installable mobile PWA,platform,should,no,yes,tk-shipping already a PWA; existing app (manifest + sw.js); desktop layout added behind ?ui=2
+Marketplace of 30+ third-party forwarders with reviews,quote,could,yes,skip,a partner network not a feature
+Live carrier and airline API rates and capacity,quote,could,yes,skip,carrier integrations/partner deals
+Freight market indices and benchmarking,analytics,could,yes,skip,proprietary data
+Licensed US/CA customs brokerage,customs,could,yes,skip,regulated licence; T.K can offer its own customs service
+Insurance underwriting,booking,could,yes,skip,regulated; can resell a partner policy later
+Credit lines / trade finance,billing,could,yes,skip,regulated lending
+Data feeds from 100+ logistics partners,tracking,could,yes,skip,partner network; T.K updates milestones manually
+Developer API and EDI for customers,integrations,could,yes,skip,out of slice for now
+Purchase orders and product library,booking,could,yes,skip,enterprise procurement; not T.K's customers

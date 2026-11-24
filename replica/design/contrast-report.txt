@@ -1,0 +1,173 @@
+T.K Group design tokens: WCAG 2.2 contrast report (2026-11-24)
+Command: python3 .claude/skills/replica-design/contrast.py replica/design/<file>
+
+===== tokens.json
+  AAA   15.60:1  text                     on bg                   
+  AAA   17.04:1  text                     on surface              
+  AAA   17.04:1  text                     on surface-raised       
+  AA     4.97:1  text-muted               on bg                   
+  AA     5.44:1  text-muted               on surface              
+  AA     5.44:1  text-muted               on surface-raised       
+  AAA   11.78:1  accent                   on bg                   
+  AAA   12.87:1  accent                   on surface              
+  AAA   12.87:1  on-accent                on accent               
+  AAA   11.16:1  on-highlight             on highlight            
+  AAA   17.52:1  on-header                on header               
+  AAA   11.97:1  on-header-muted          on header               
+  AA     5.03:1  on-danger                on danger               
+  AA     5.08:1  on-success               on success              
+  AA     4.60:1  danger                   on bg                   
+  AA     5.03:1  danger                   on surface              
+  AA     4.65:1  success                  on bg                   
+  AA     5.08:1  success                  on surface              
+  AA     5.03:1  warning                  on surface              
+  AA     5.76:1  info                     on surface              
+  PASS   3.05:1  border-input             on bg                   ui
+  PASS   3.33:1  border-input             on surface              ui
+  PASS  11.78:1  focus                    on bg                   ui
+  PASS  12.87:1  focus                    on surface              ui
+  PASS  12.24:1  highlight                on header               ui
+  AA     4.71:1  status-0-on-tint         on status-0-tint        
+  AA     5.03:1  status-0                 on surface              
+  AAA    9.89:1  status-1-on-tint         on status-1-tint        
+  AAA   12.87:1  status-1                 on surface              
+  AAA    9.89:1  status-2-on-tint         on status-2-tint        
+  AAA   12.87:1  status-2                 on surface              
+  AA     4.70:1  status-3-on-tint         on status-3-tint        
+  AA     5.76:1  status-3                 on surface              
+  AA     5.10:1  status-4-on-tint         on status-4-tint        
+  AA     6.30:1  status-4                 on surface              
+  AA     4.71:1  status-5-on-tint         on status-5-tint        
+  AA     4.72:1  status-5                 on surface              
+  AA     4.61:1  status-6-on-tint         on status-6-tint        
+  AA     5.09:1  status-6                 on surface              
+  AA     4.60:1  success-on-tint          on success-tint         
+  AA     5.08:1  success                  on surface              
+  AA     4.66:1  danger-on-tint           on danger-tint          
+  AA     5.03:1  danger                   on surface              
+  AA     4.71:1  warning-on-tint          on warning-tint         
+  AA     5.03:1  warning                  on surface              
+  AA     4.70:1  info-on-tint             on info-tint            
+  AA     5.76:1  info                     on surface              
+  AA     4.67:1  mode-road-on-tint        on mode-road-tint       
+  AA     5.09:1  mode-road                on surface              
+  AA     4.62:1  mode-air-on-tint         on mode-air-tint        
+  AA     4.62:1  mode-air                 on surface              
+  AA     4.71:1  mode-sea-on-tint         on mode-sea-tint        
+  AA     4.63:1  mode-sea                 on surface              
+
+  53 pairs, 0 failing AA
+
+===== tokens.dark.json
+  AAA   16.31:1  text                     on bg                   
+  AAA   13.99:1  text                     on surface              
+  AAA   12.40:1  text                     on surface-raised       
+  AAA    9.44:1  text-muted               on bg                   
+  AAA    8.10:1  text-muted               on surface              
+  AAA    7.17:1  text-muted               on surface-raised       
+  AAA    8.69:1  accent                   on bg                   
+  AAA    7.46:1  accent                   on surface              
+  AAA    8.69:1  on-accent                on accent               
+  AAA   11.16:1  on-highlight             on highlight            
+  AAA   17.52:1  on-header                on header               
+  AAA   11.97:1  on-header-muted          on header               
+  AA     6.53:1  on-danger                on danger               
+  AAA   10.49:1  on-success               on success              
+  AA     6.53:1  danger                   on bg                   
+  AA     5.61:1  danger                   on surface              
+  AAA   10.49:1  success                  on bg                   
+  AAA    9.00:1  success                  on surface              
+  AAA    7.35:1  warning                  on surface              
+  AAA    7.14:1  info                     on surface              
+  PASS   3.80:1  border-input             on bg                   ui
+  PASS   3.26:1  border-input             on surface              ui
+  PASS  12.77:1  focus                    on bg                   ui
+  PASS  10.96:1  focus                    on surface              ui
+  PASS  12.24:1  highlight                on header               ui
+  AA     5.78:1  status-0-on-tint         on status-0-tint        
+  AAA    7.35:1  status-0                 on surface              
+  AA     5.69:1  status-1-on-tint         on status-1-tint        
+  AAA    7.46:1  status-1                 on surface              
+  AA     5.69:1  status-2-on-tint         on status-2-tint        
+  AAA    7.46:1  status-2                 on surface              
+  AA     5.44:1  status-3-on-tint         on status-3-tint        
+  AAA    7.14:1  status-3                 on surface              
+  AA     5.46:1  status-4-on-tint         on status-4-tint        
+  AAA    7.06:1  status-4                 on surface              
+  AA     6.30:1  status-5-on-tint         on status-5-tint        
+  AAA    8.41:1  status-5                 on surface              
+  AA     6.72:1  status-6-on-tint         on status-6-tint        
+  AAA    9.00:1  status-6                 on surface              
+  AA     6.72:1  success-on-tint          on success-tint         
+  AAA    9.00:1  success                  on surface              
+  AA     4.73:1  danger-on-tint           on danger-tint          
+  AA     5.61:1  danger                   on surface              
+  AA     5.78:1  warning-on-tint          on warning-tint         
+  AAA    7.35:1  warning                  on surface              
+  AA     5.44:1  info-on-tint             on info-tint            
+  AAA    7.14:1  info                     on surface              
+  AA     5.69:1  mode-road-on-tint        on mode-road-tint       
+  AAA    7.25:1  mode-road                on surface              
+  AA     5.80:1  mode-air-on-tint         on mode-air-tint        
+  AAA    7.68:1  mode-air                 on surface              
+  AA     6.09:1  mode-sea-on-tint         on mode-sea-tint        
+  AAA    8.04:1  mode-sea                 on surface              
+
+  53 pairs, 0 failing AA
+
+===== tokens.gold.json
+  AAA   16.66:1  text                     on bg                   
+  AAA   15.44:1  text                     on surface              
+  AAA   14.08:1  text                     on surface-raised       
+  AAA   11.26:1  text-muted               on bg                   
+  AAA   10.44:1  text-muted               on surface              
+  AAA    9.52:1  text-muted               on surface-raised       
+  AAA   11.85:1  accent                   on bg                   
+  AAA   10.98:1  accent                   on surface              
+  AAA   11.04:1  on-accent                on accent               
+  AAA    8.71:1  on-highlight             on highlight            
+  AAA   16.87:1  on-header                on header               
+  AAA   11.40:1  on-header-muted          on header               
+  AA     6.55:1  on-danger                on danger               
+  AAA   11.28:1  on-success               on success              
+  AAA    7.02:1  danger                   on bg                   
+  AA     6.51:1  danger                   on surface              
+  AAA   11.28:1  success                  on bg                   
+  AAA   10.45:1  success                  on surface              
+  AAA    8.53:1  warning                  on surface              
+  AAA    8.29:1  info                     on surface              
+  PASS   3.30:1  border-input             on bg                   ui
+  PASS   3.06:1  border-input             on surface              ui
+  PASS  11.85:1  focus                    on bg                   ui
+  PASS  10.98:1  focus                    on surface              ui
+  PASS   9.46:1  highlight                on header               ui
+  AA     6.72:1  status-0-on-tint         on status-0-tint        
+  AAA    8.53:1  status-0                 on surface              
+  AAA    8.15:1  status-1-on-tint         on status-1-tint        
+  AAA   10.98:1  status-1                 on surface              
+  AAA    8.15:1  status-2-on-tint         on status-2-tint        
+  AAA   10.98:1  status-2                 on surface              
+  AA     6.45:1  status-3-on-tint         on status-3-tint        
+  AAA    8.29:1  status-3                 on surface              
+  AA     6.40:1  status-4-on-tint         on status-4-tint        
+  AAA    8.20:1  status-4                 on surface              
+  AAA    7.48:1  status-5-on-tint         on status-5-tint        
+  AAA    9.77:1  status-5                 on surface              
+  AAA    7.92:1  status-6-on-tint         on status-6-tint        
+  AAA   10.45:1  status-6                 on surface              
+  AAA    7.92:1  success-on-tint          on success-tint         
+  AAA   10.45:1  success                  on surface              
+  AA     5.39:1  danger-on-tint           on danger-tint          
+  AA     6.51:1  danger                   on surface              
+  AA     6.72:1  warning-on-tint          on warning-tint         
+  AAA    8.53:1  warning                  on surface              
+  AA     6.45:1  info-on-tint             on info-tint            
+  AAA    8.29:1  info                     on surface              
+  AA     6.56:1  mode-road-on-tint        on mode-road-tint       
+  AAA    8.42:1  mode-road                on surface              
+  AA     6.89:1  mode-air-on-tint         on mode-air-tint        
+  AAA    8.92:1  mode-air                 on surface              
+  AAA    7.20:1  mode-sea-on-tint         on mode-sea-tint        
+  AAA    9.33:1  mode-sea                 on surface              
+
+  53 pairs, 0 failing AA

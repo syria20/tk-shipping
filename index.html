@@ -480,6 +480,11 @@ html[lang=de] nav button,html[lang=en] nav button{font-size:9px;letter-spacing:-
 .ivp{font-size:12.5px;font-weight:700;margin:12px 0 6px}.ivb{font-size:12px;display:flex;flex-direction:column;gap:1px;margin-bottom:8px;overflow-wrap:anywhere}
 .inv-t td{white-space:nowrap}.inv-t td:first-child{white-space:normal;min-width:70px}
 @media print{body.pp *{visibility:hidden!important}body.pp .inv,body.pp .inv *{visibility:visible!important}body.pp .inv{position:absolute;left:0;top:0;width:100%;box-shadow:none;border:0}}</style>
+<!-- T.K UI v2 (feature switch, off by default: see ui/tk-ui.js) -->
+<link rel="stylesheet" href="ui/tokens.css">
+<link rel="stylesheet" href="ui/tk-ui.css">
+<script src="ui/tk-ui.js"></script>
+<script src="ui/screens/shipments.js"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gld" gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="22" y2="22"><stop offset="0" stop-color="#b38a2a"/><stop offset=".3" stop-color="#f1d98a"/><stop offset=".5" stop-color="#fff4c9"/><stop offset=".75" stop-color="#d4af37"/><stop offset="1" stop-color="#9a7a2a"/></linearGradient></defs></svg><div id="app">
@@ -860,7 +865,7 @@ function slim(title,back){return `<div class="top slim"><div class="bar"><img sr
 const prog=n=>`<div class="prog">${[1,2,3].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}</div>`;
 function tg(k,t){return `<button class="tg ${s.notif[k]?"on":""}" onclick="s.notif.${k}=!s.notif.${k};draw()">${t}<i></i></button>`;}
 function draw(){const v=s.view;let h="";
-if(v=="home"){const mine=s.ships,act=mine.find(z=>z.step<LAST);
+if(window.TKUI&&TKUI.on(v)&&(h=TKUI.render(v,s))){}else if(v=="home"){const mine=s.ships,act=mine.find(z=>z.step<LAST);
 h=`<div class="top lxt"><div class="bar"><img src="${LOGO}" alt=""><div class="gr"><small>${new Date().getHours()<12?"صباح الخير":"مساء الخير"}</small><b>${esc(((s.user&&s.user.name)||"T.K Group").split(" ")[0])}</b></div>${langSw()}<button class="gearb" onclick="setMute()" aria-label="صامت">${ic(isMute()?"mute":"spk",20)}</button><button class="gearb" onclick="go('more')" aria-label="الإعدادات">${ic("gear",20)}</button></div><h1>وين شحنتك؟</h1></div>
 <div class="pad"><div class="card lift"><div class="srch"><input placeholder="أدخل رقم التتبع، مثال: TK482915" value="${s.tq}" oninput="s.tq=this.value" onkeydown="if(event.key=='Enter')track()"><button onclick="track()" aria-label="بحث">${ic("search")}</button></div>${s.terr?`<div class="err">${s.terr}</div>`:""}</div>
 ${s.sk?'<div class="sk h"></div>':(act?hero(act):"")}${s.sk?"":quickRow()+offerBanner()}

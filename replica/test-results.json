@@ -1,0 +1,2202 @@
+{
+  "started": "2026-11-24T19:30:06.103Z",
+  "loads": [],
+  "parity": [
+    {
+      "lang": "ar",
+      "id": "TK100000",
+      "step": 0,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 1,
+      "timesShownOld": 1,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "id": "TK100001",
+      "step": 1,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 2,
+      "timesShownOld": 2,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "id": "TK100002",
+      "step": 2,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 3,
+      "timesShownOld": 3,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "id": "TK100003",
+      "step": 3,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 4,
+      "timesShownOld": 4,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "id": "TK100004",
+      "step": 4,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 5,
+      "timesShownOld": 5,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "id": "TK100005",
+      "step": 5,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 6,
+      "timesShownOld": 6,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "id": "TK100006",
+      "step": 6,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        0,
+        0
+      ],
+      "timesShown": 8,
+      "timesShownOld": 8,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "ar",
+      "id": "TK100007",
+      "step": 6,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        0,
+        0
+      ],
+      "timesShown": 8,
+      "timesShownOld": 8,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100000",
+      "step": 0,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 1,
+      "timesShownOld": 1,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100001",
+      "step": 1,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 2,
+      "timesShownOld": 2,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100002",
+      "step": 2,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 3,
+      "timesShownOld": 3,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100003",
+      "step": 3,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 4,
+      "timesShownOld": 4,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100004",
+      "step": 4,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 5,
+      "timesShownOld": 5,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100005",
+      "step": 5,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        1,
+        1
+      ],
+      "timesShown": 6,
+      "timesShownOld": 6,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100006",
+      "step": 6,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        0,
+        0
+      ],
+      "timesShown": 8,
+      "timesShownOld": 8,
+      "newNetworkCalls": 0,
+      "errors": []
+    },
+    {
+      "lang": "de",
+      "id": "TK100007",
+      "step": 6,
+      "newScreen": "S08",
+      "missingData": [],
+      "missingInOld": [],
+      "missingActions": [],
+      "extraActions": [],
+      "fileInputs": [
+        0,
+        0
+      ],
+      "timesShown": 8,
+      "timesShownOld": 8,
+      "newNetworkCalls": 0,
+      "errors": []
+    }
+  ],
+  "views": [
+    {
+      "lang": "ar",
+      "view": "home",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "draw",
+          "go",
+          "openChat",
+          "openWal",
+          "reorderLast",
+          "setMute",
+          "track",
+          "trackFocus"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 895
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "draw",
+          "go",
+          "openChat",
+          "openWal",
+          "reorderLast",
+          "setMute",
+          "track",
+          "trackFocus"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 895
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "draw",
+          "go",
+          "openChat",
+          "openWal",
+          "reorderLast",
+          "setMute",
+          "track",
+          "trackFocus"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 895
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "send",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addW",
+          "bump",
+          "go",
+          "nextSend",
+          "openPk",
+          "setG",
+          "setW",
+          "swapDir",
+          "upd"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 462
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addW",
+          "bump",
+          "go",
+          "nextSend",
+          "openPk",
+          "setG",
+          "setW",
+          "swapDir",
+          "upd"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 462
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addW",
+          "bump",
+          "go",
+          "nextSend",
+          "openPk",
+          "setG",
+          "setW",
+          "swapDir",
+          "upd"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 462
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "eu2sy",
+      "orig": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "off": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "on": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "sy2eu",
+      "orig": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "off": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "on": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "recip",
+      "orig": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "off": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "on": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "cart",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 78
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 78
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 78
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "pay",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 78
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 78
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 78
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "payc",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 160
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 160
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 160
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "paid",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 160
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 160
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 160
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "paidc",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 67
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 67
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 67
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "detail",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "printInv",
+          "reorder"
+        ],
+        "fileInputs": 1,
+        "tku": null,
+        "textLen": 1473
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "printInv",
+          "reorder"
+        ],
+        "fileInputs": 1,
+        "tku": null,
+        "textLen": 1473
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "printInv",
+          "reorder"
+        ],
+        "fileInputs": 1,
+        "tku": "S08",
+        "textLen": 1544
+      },
+      "offSameAsOrig": true,
+      "onReplaced": true
+    },
+    {
+      "lang": "ar",
+      "view": "chat",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "chatSend",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 216
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "chatSend",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 216
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "chatSend",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 216
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "bills",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "billsCsv",
+          "cp",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 520
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "billsCsv",
+          "cp",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 520
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "billsCsv",
+          "cp",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 520
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "wallet",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 286
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 286
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 286
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "points",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 138
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 138
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 138
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "refer",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "cp",
+          "go",
+          "refMsg"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 426
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "cp",
+          "go",
+          "refMsg"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 426
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "cp",
+          "go",
+          "refMsg"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 426
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "more",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "openChat",
+          "setMute",
+          "setSnd",
+          "setSndK",
+          "setTap",
+          "setTheme",
+          "setVib",
+          "window.open"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 397
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "openChat",
+          "setMute",
+          "setSnd",
+          "setSndK",
+          "setTap",
+          "setTheme",
+          "setVib",
+          "window.open"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 397
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "openChat",
+          "setMute",
+          "setSnd",
+          "setSndK",
+          "setTap",
+          "setTheme",
+          "setVib",
+          "window.open"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 397
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "ar",
+      "view": "acct",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addAddr",
+          "copyRef",
+          "delOpen",
+          "draw",
+          "go",
+          "logout",
+          "openChat",
+          "openWal"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 974
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addAddr",
+          "copyRef",
+          "delOpen",
+          "draw",
+          "go",
+          "logout",
+          "openChat",
+          "openWal"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 974
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addAddr",
+          "copyRef",
+          "delOpen",
+          "draw",
+          "go",
+          "logout",
+          "openChat",
+          "openWal"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 974
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "home",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "draw",
+          "go",
+          "openChat",
+          "openWal",
+          "reorderLast",
+          "setMute",
+          "track",
+          "trackFocus"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 1101
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "draw",
+          "go",
+          "openChat",
+          "openWal",
+          "reorderLast",
+          "setMute",
+          "track",
+          "trackFocus"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 1101
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "draw",
+          "go",
+          "openChat",
+          "openWal",
+          "reorderLast",
+          "setMute",
+          "track",
+          "trackFocus"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 1101
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "send",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addW",
+          "bump",
+          "go",
+          "nextSend",
+          "openPk",
+          "setG",
+          "setW",
+          "swapDir",
+          "upd"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 575
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addW",
+          "bump",
+          "go",
+          "nextSend",
+          "openPk",
+          "setG",
+          "setW",
+          "swapDir",
+          "upd"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 575
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addW",
+          "bump",
+          "go",
+          "nextSend",
+          "openPk",
+          "setG",
+          "setW",
+          "swapDir",
+          "upd"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 575
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "eu2sy",
+      "orig": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "off": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "on": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "sy2eu",
+      "orig": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "off": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "on": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "recip",
+      "orig": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "off": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "on": {
+        "errors": [],
+        "empty": true,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 0
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "cart",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 142
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 142
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 142
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "pay",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 142
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 142
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 142
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "payc",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 205
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 205
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 205
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "paid",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 205
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 205
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "applyPromo",
+          "draw",
+          "go",
+          "payCart"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 205
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "paidc",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 110
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 110
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 110
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "detail",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "printInv",
+          "reorder"
+        ],
+        "fileInputs": 1,
+        "tku": null,
+        "textLen": 1601
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "printInv",
+          "reorder"
+        ],
+        "fileInputs": 1,
+        "tku": null,
+        "textLen": 1601
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "printInv",
+          "reorder"
+        ],
+        "fileInputs": 1,
+        "tku": "S08",
+        "textLen": 1667
+      },
+      "offSameAsOrig": true,
+      "onReplaced": true
+    },
+    {
+      "lang": "de",
+      "view": "chat",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "chatSend",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 327
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "chatSend",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 327
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "chatSend",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 327
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "bills",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "billsCsv",
+          "cp",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 590
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "billsCsv",
+          "cp",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 590
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "billsCsv",
+          "cp",
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 590
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "wallet",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 397
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 397
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 397
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "points",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 167
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 167
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 167
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "refer",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "cp",
+          "go",
+          "refMsg"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 650
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "cp",
+          "go",
+          "refMsg"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 650
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "cp",
+          "go",
+          "refMsg"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 650
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "more",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "openChat",
+          "setMute",
+          "setSnd",
+          "setSndK",
+          "setTap",
+          "setTheme",
+          "setVib",
+          "window.open"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 468
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "openChat",
+          "setMute",
+          "setSnd",
+          "setSndK",
+          "setTap",
+          "setTheme",
+          "setVib",
+          "window.open"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 468
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "go",
+          "openChat",
+          "setMute",
+          "setSnd",
+          "setSndK",
+          "setTap",
+          "setTheme",
+          "setVib",
+          "window.open"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 468
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    },
+    {
+      "lang": "de",
+      "view": "acct",
+      "orig": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addAddr",
+          "copyRef",
+          "delOpen",
+          "draw",
+          "go",
+          "logout",
+          "openChat",
+          "openWal"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 1231
+      },
+      "off": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addAddr",
+          "copyRef",
+          "delOpen",
+          "draw",
+          "go",
+          "logout",
+          "openChat",
+          "openWal"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 1231
+      },
+      "on": {
+        "errors": [],
+        "empty": false,
+        "handlers": [
+          "addAddr",
+          "copyRef",
+          "delOpen",
+          "draw",
+          "go",
+          "logout",
+          "openChat",
+          "openWal"
+        ],
+        "fileInputs": 0,
+        "tku": null,
+        "textLen": 1231
+      },
+      "offSameAsOrig": true,
+      "onReplaced": false,
+      "onSameAsOrig": true
+    }
+  ],
+  "network": [
+    {
+      "variant": "orig",
+      "calls": [
+        "rest:chat_messages:GET",
+        "rest:chat_messages:GET",
+        "rest:invoices:GET",
+        "rest:invoices:GET",
+        "rest:notifications:GET",
+        "rest:notifications:GET",
+        "rest:payments:GET",
+        "rest:payments:GET",
+        "rest:profiles:GET",
+        "rest:profiles:GET",
+        "rest:referrals:GET",
+        "rest:referrals:GET",
+        "rest:seller:GET",
+        "rest:seller:GET",
+        "rest:shipment_docs:GET",
+        "rest:shipment_docs:GET",
+        "rest:shipment_files:GET",
+        "rest:shipment_files:GET",
+        "rest:shipment_items:GET",
+        "rest:shipment_items:GET",
+        "rest:shipment_status_log:GET",
+        "rest:shipment_status_log:GET",
+        "rest:shipments:GET",
+        "rest:shipments:GET",
+        "rest:wallet_ledger:GET",
+        "rest:wallet_ledger:GET",
+        "rpc:wallet_balance",
+        "rpc:wallet_balance",
+        "storage:object/sign/shipment-docs",
+        "storage:object/sign/shipment-docs",
+        "storage:object/sign/shipment-files",
+        "storage:object/sign/shipment-files"
+      ],
+      "writes": [],
+      "errors": []
+    },
+    {
+      "variant": "off",
+      "calls": [
+        "rest:chat_messages:GET",
+        "rest:chat_messages:GET",
+        "rest:invoices:GET",
+        "rest:invoices:GET",
+        "rest:notifications:GET",
+        "rest:notifications:GET",
+        "rest:payments:GET",
+        "rest:payments:GET",
+        "rest:profiles:GET",
+        "rest:profiles:GET",
+        "rest:referrals:GET",
+        "rest:referrals:GET",
+        "rest:seller:GET",
+        "rest:seller:GET",
+        "rest:shipment_docs:GET",
+        "rest:shipment_docs:GET",
+        "rest:shipment_files:GET",
+        "rest:shipment_files:GET",
+        "rest:shipment_items:GET",
+        "rest:shipment_items:GET",
+        "rest:shipment_status_log:GET",
+        "rest:shipment_status_log:GET",
+        "rest:shipments:GET",
+        "rest:shipments:GET",
+        "rest:wallet_ledger:GET",
+        "rest:wallet_ledger:GET",
+        "rpc:wallet_balance",
+        "rpc:wallet_balance",
+        "storage:object/sign/shipment-docs",
+        "storage:object/sign/shipment-docs",
+        "storage:object/sign/shipment-files",
+        "storage:object/sign/shipment-files"
+      ],
+      "writes": [],
+      "errors": []
+    },
+    {
+      "variant": "on",
+      "calls": [
+        "rest:chat_messages:GET",
+        "rest:chat_messages:GET",
+        "rest:invoices:GET",
+        "rest:invoices:GET",
+        "rest:notifications:GET",
+        "rest:notifications:GET",
+        "rest:payments:GET",
+        "rest:payments:GET",
+        "rest:profiles:GET",
+        "rest:profiles:GET",
+        "rest:referrals:GET",
+        "rest:referrals:GET",
+        "rest:seller:GET",
+        "rest:seller:GET",
+        "rest:shipment_docs:GET",
+        "rest:shipment_docs:GET",
+        "rest:shipment_files:GET",
+        "rest:shipment_files:GET",
+        "rest:shipment_items:GET",
+        "rest:shipment_items:GET",
+        "rest:shipment_status_log:GET",
+        "rest:shipment_status_log:GET",
+        "rest:shipments:GET",
+        "rest:shipments:GET",
+        "rest:wallet_ledger:GET",
+        "rest:wallet_ledger:GET",
+        "rpc:wallet_balance",
+        "rpc:wallet_balance",
+        "storage:object/sign/shipment-docs",
+        "storage:object/sign/shipment-docs",
+        "storage:object/sign/shipment-files",
+        "storage:object/sign/shipment-files"
+      ],
+      "writes": [],
+      "errors": []
+    }
+  ],
+  "layout": [
+    {
+      "screen": "old detail",
+      "variant": "off",
+      "lang": "ar",
+      "vp": "iphone",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "S07",
+      "variant": "on",
+      "lang": "ar",
+      "vp": "iphone",
+      "overflow": 0
+    },
+    {
+      "screen": "S08",
+      "variant": "on",
+      "lang": "ar",
+      "vp": "iphone",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "old detail",
+      "variant": "off",
+      "lang": "de",
+      "vp": "iphone",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "S07",
+      "variant": "on",
+      "lang": "de",
+      "vp": "iphone",
+      "overflow": 0
+    },
+    {
+      "screen": "S08",
+      "variant": "on",
+      "lang": "de",
+      "vp": "iphone",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "old detail",
+      "variant": "off",
+      "lang": "ar",
+      "vp": "desktop",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "home (shell)",
+      "variant": "off",
+      "lang": "ar",
+      "vp": "desktop",
+      "overflow": 0
+    },
+    {
+      "screen": "S07",
+      "variant": "on",
+      "lang": "ar",
+      "vp": "desktop",
+      "overflow": 0
+    },
+    {
+      "screen": "S08",
+      "variant": "on",
+      "lang": "ar",
+      "vp": "desktop",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "home (shell)",
+      "variant": "on",
+      "lang": "ar",
+      "vp": "desktop",
+      "overflow": 0
+    },
+    {
+      "screen": "old detail",
+      "variant": "off",
+      "lang": "de",
+      "vp": "desktop",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "home (shell)",
+      "variant": "off",
+      "lang": "de",
+      "vp": "desktop",
+      "overflow": 0
+    },
+    {
+      "screen": "S07",
+      "variant": "on",
+      "lang": "de",
+      "vp": "desktop",
+      "overflow": 0
+    },
+    {
+      "screen": "S08",
+      "variant": "on",
+      "lang": "de",
+      "vp": "desktop",
+      "overflow": 0,
+      "errors": []
+    },
+    {
+      "screen": "home (shell)",
+      "variant": "on",
+      "lang": "de",
+      "vp": "desktop",
+      "overflow": 0
+    },
+    {
+      "screen": "S07 guest",
+      "variant": "on",
+      "lang": "ar",
+      "vp": "iphone",
+      "overflow": 0,
+      "guestPrompt": true,
+      "errors": []
+    },
+    {
+      "screen": "S07 empty/loading + S08 not found",
+      "variant": "on",
+      "lang": "de",
+      "vp": "iphone",
+      "notFoundShown": true,
+      "errors": []
+    }
+  ],
+  "keyboard": [
+    {
+      "steps": [
+        "card focused after 5 Tab",
+        "back button reached"
+      ],
+      "focusRing": "solid",
+      "openedDetail": true,
+      "backToList": true,
+      "errors": []
+    }
+  ],
+  "admin": [
+    {
+      "who": "signed out",
+      "vp": "iphone",
+      "orig": {
+        "errors": [],
+        "textLen": 59,
+        "overflow": 0,
+        "hash": "0dd5c422af"
+      },
+      "off": {
+        "errors": [],
+        "textLen": 59,
+        "overflow": 0,
+        "hash": "0dd5c422af"
+      },
+      "on": {
+        "errors": [],
+        "textLen": 59,
+        "overflow": 0,
+        "hash": "0dd5c422af"
+      },
+      "sameText": true
+    },
+    {
+      "who": "signed out",
+      "vp": "desktop",
+      "orig": {
+        "errors": [],
+        "textLen": 59,
+        "overflow": 0,
+        "hash": "0dd5c422af"
+      },
+      "off": {
+        "errors": [],
+        "textLen": 59,
+        "overflow": 0,
+        "hash": "0dd5c422af"
+      },
+      "on": {
+        "errors": [],
+        "textLen": 59,
+        "overflow": 0,
+        "hash": "0dd5c422af"
+      },
+      "sameText": true
+    },
+    {
+      "who": "staff",
+      "vp": "iphone",
+      "orig": {
+        "errors": [],
+        "textLen": 690,
+        "overflow": 0,
+        "hash": "bc9a713e7e"
+      },
+      "off": {
+        "errors": [],
+        "textLen": 690,
+        "overflow": 0,
+        "hash": "bc9a713e7e"
+      },
+      "on": {
+        "errors": [],
+        "textLen": 690,
+        "overflow": 0,
+        "hash": "bc9a713e7e"
+      },
+      "sameText": true
+    },
+    {
+      "who": "staff",
+      "vp": "desktop",
+      "orig": {
+        "errors": [],
+        "textLen": 690,
+        "overflow": 0,
+        "hash": "bc9a713e7e"
+      },
+      "off": {
+        "errors": [],
+        "textLen": 690,
+        "overflow": 0,
+        "hash": "bc9a713e7e"
+      },
+      "on": {
+        "errors": [],
+        "textLen": 690,
+        "overflow": 0,
+        "hash": "bc9a713e7e"
+      },
+      "sameText": true
+    }
+  ],
+  "blocked": [],
+  "finished": "2026-11-24T19:34:21.444Z"
+}
